@@ -18,6 +18,7 @@ angular.module('MyApp')
         .then(function(response) {
           console.log(response)
           $scope.items = angular.fromJson(response.data)
+          console.log($scope.items)
                 
         })
     };  
