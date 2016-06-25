@@ -1,0 +1,54 @@
+<md-card layout-align="center center">
+  <md-card-content class="md-display-1"> 
+      <p>N'hésite pas à réagir et à poser tes questions sur les réseaux sociaux. Nos supers community managers te répondront avec plaisir !</p>
+  </md-card-content>
+</md-card>
+
+<div layout-gt-sm="row" layout-align="center">
+
+  <md-card flex-gt-sm="60"  layout-align="center center">
+    <form name="userForm" layout-align="center center">
+      <div layout layout-gt-xs="column" layout-xs="column" class="md-headline">
+        <md-input-container flex> <label></label> <input ng-model="user.firstName" placeholder="Nom"> </md-input-container>
+        <md-input-container flex> <label></label> <input ng-model="theMax" placeholder="Prenom"> </md-input-container>
+        <md-input-container flex> <label></label> <input ng-model="user.address" placeholder="Email"> </md-input-container>
+        <md-input-container flex> <label></label> <textarea name="textarea" rows="5" cols="30" placeholder="Commentaire"></textarea> </md-input-container>
+      </div>
+    </form>
+    <md-card-content>
+    </md-card-content>
+    <md-card-actions>
+      <md-button class="success"ng-click="null">Soumettre</md-button>
+    </md-card-actions>
+  </md-card>
+
+  <md-card flex-gt-sm="40" layout-gt-sm="row" layout-align="center">
+    <md-card-header layout-gt-sm="column">
+      <md-card-header-text flex> Adresse </md-card-header-text>
+    </md-card-header>
+    <md-card-title flex>
+      <md-card-title-text>
+        <p class="md-headline"> ACENSI <br> Tour Monge<br> 22, place des Vosges<br> 92400 Courbevoie – La Défense5<br> </p>
+        <h4>Email</h4>
+        <h4>Par téléphone</h4>
+        <p><a href="tel:0175611077">01 75 61 10 77</a></p>
+        <p><a href="mailto:aul@acensi.fr">aul@acensi.fr</a></p>
+      </md-card-title-text>
+    </md-card-title>
+    
+  </md-card>
+</div>
+
+<div style="width:100%;height:25%;">
+  <md-card layout="column" layout-align="center center">
+    <md-card-content>
+      <div layout-gt-sm="row" layout-align="center center">
+        <div align="center"> <img src="http://divinity-g4ming.com/images/LogoLES.jpg" alt=""> </div>
+        <div align="center"> <img src="http://starcraft.md/Content/Gallery/e2cb5500-74f7-46e9-bbbf-71e6a6342ebb-millenium.jpg" alt=""> </div>
+        <div align="center"> <img src="http://img.stackshare.io/stack/21284/hackerrankcom.png" alt=""> </div>
+        <div align="center"> <img src="https://cdn2.iconfinder.com/data/icons/metro-ui-icon-set/128/Intel.png" alt=""> </div>
+      </div>
+      <div> <span class="col-xs-6"><a href="/2015/organizers">A propos d’ACENSI</a></span> <span class="col-xs-6"><a href="/2015/legal">Mentions légales</a></span> <span><a href="/2015/contact">Nous contacter</a></span> </div>
+    </md-card-content>
+  </md-card>
+</div>

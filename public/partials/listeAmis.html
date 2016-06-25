@@ -1,0 +1,28 @@
+<div flex layout-gt-sm="column" layout-align="center space-between">
+    <h2>Mes Amis</h2>
+    <div ng-repeat="amis in AMIS">
+        <md-card flex>
+            <md-card-title ng-click="activeButton(amis.index)">
+                <md-card-title-text>
+                    <h3 style="cursor: pointer;" ng-bind-html=renderHtml(amis.titre)></h3>
+                    <div layout="row" layout-align="end center space-between">
+                        <h3 style="cursor: pointer;" ng-show="amis.status=='confirmé'"> vous etes amis avec cette personne
+                        </h3>
+                        <h3 style="cursor: pointer;" ng-show="amis.status=='invitationEncours'"> invitation En cours ... 
+                        </h3> 
+                    </div>
+                    <div layout="row" layout-align="end center space-between" style="cursor: pointer;" ng-show="amis.status=='attenteAjout'||amis.status=='recomandéPar'">
+                        <h3 style="cursor: pointer;" ng-bind-html=renderHtml(amis.status)>{{amis.status}}</h3>&nbsp;
+                        <h3 ng-show="amis.status=='recomandéPar'"> {{amis.recomandation}} </h3>&nbsp;
+                        <button class="success">accepter</button>
+                        <button class="md-primary"> refuser</button>
+                    </div>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content flex>
+                <div id="id{{amis.index}}" class="FAQclose">
+                    <div>{{amis.name}}</div> <img src="" {{amis.img}} ""> </div>
+            </md-card-content>
+        </md-card>
+    </div>
+</div>

@@ -1,0 +1,175 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-10">
+      <div class="panel">
+        <div class="panel-body">
+          <h3>Heading</h3>
+
+          <img src="http://www.babelio.com/users/AVT_Anonyme_7683.jpeg">
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris
+            condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod.
+            Donec sed odio dui.</p>
+            <span class="md-title">{{ul.selected[1].game[0].name}}</span> <span class="md-subhead ">Cash Price : {{ul.selected[1].game[0].price}}</span>
+
+
+
+            <div class="list-group">
+  <a href="#" class="list-group-item active">
+    <h4 class="list-group-item-heading">messages</h4>
+    <p class="list-group-item-text">
+    </p>
+    <p class="list-group-item-text">
+    </p>
+    <p class="list-group-item-text">...</p>
+    <p class="list-group-item-text">...</p>
+  </a>
+</div>
+          <a href="#" role="button" class="btn btn-default">View details</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+
+<div flex layout-gt-sm="column" layout-align="space-between">
+
+  <div flex layout-gt-sm="row" layout-align="center end space-between">
+
+
+    <md-card class="md-whiteframe-15dp" flex-gt-sm="60" layout-gt-sm="column" layout-align="center space-between center">
+
+
+      <md-card-header layout-align="center center" style="background-image:url({{ul.selected[1].game[0].img}});background-position: 30% 30%;background-size: 100%;">
+
+
+      <div layout="column" layout-align="end center">
+
+
+        <md-card class="md-whiteframe-15dp"  flex-gt-sm="180" layout-gt-sm="column" ><img src="http://www.babelio.com/users/AVT_Anonyme_7683.jpeg"></md-card>
+
+
+      </div>
+      
+
+       </md-card-header>
+      <md-card-title flex>
+        <md-card-title-text> <span class="md-title">{{ul.selected[1].game[0].name}}</span> <span class="md-subhead ">Cash Price : {{ul.selected[1].game[0].price}}</span> </md-card-title-text>
+      </md-card-title>
+      <md-card-content flex>
+
+
+
+<div ng-cloak>
+  <md-content>
+    <md-tabs md-dynamic-height md-border-bottom>
+      <md-tab label="Messages">
+        <md-content class="md-padding">
+
+
+        <ul layout="column" style="list-style-type: none;">
+
+          <li> <i class="material-icons" style="font-size:200%">messages : </i> </li>
+
+            
+         
+
+          <md-card class="md-whiteframe-15dp" flex-gt-sm="70" layout-gt-sm="column" layout-align="center space-between center">
+          <div>Aujourdui : </div>
+          <md-card-header layout="row" layout-align="space-between end">
+          <div>hello</div> 
+          <div>14 : 08</div>
+          </md-card-header>
+          <md-card-content>
+          le message
+          </md-card-content>
+          <md-card-actions layout="column" layout-align="center end" id="card1" style="width:100%;margin:0px;">
+      <md-button class="success" style="width:10%;" ng-click="clicked4=true" ng-hide="clicked4">répondre</md-button>
+        <div layout="row" layout-margin ng-if="clicked4">
+          <md-content flex class="md-padding">
+                <md-content class="md-padding" ng-if="clicked4">
+                    <md-content class="md-padding">
+                      <form name="userForm">
+                        <div layout layout-sm="column">
+                          <md-input-container flex> <label>reponse</label> <input ng-model="user.reponse" placeholder="écrir la réponse ici"> </md-input-container>
+                          
+                        </div>
+                        
+                      </form>
+                    </md-content>
+                    <div class="md-actions" layout="row"> <span flex></span>
+                      <md-button ng-click="answer(\'not useful\')"> Cancel </md-button>
+                      <md-button ng-click="answer(\'useful\')" class="md-primary"> Save </md-button>
+                    </div>
+                  </md-input-container>
+                </md-content>   
+          </md-content>
+        </div>       
+      </md-card-actions>
+          
+          </md-card>
+          <md-card class="md-whiteframe-15dp" flex-gt-sm="70" layout-gt-sm="column" layout-align="center space-between center">
+          <div>hier : </div>
+          <md-card-header>
+          hello
+          </md-card-header>
+          <md-card-content>
+          le message
+          </md-card-content>
+           <md-card-actions layout="column" layout-align="center end" id="card1" style="width:100%;margin:0px;">
+      <md-button class="success" style="width:10%;" ng-click="clicked4=true" ng-hide="clicked4">répondre</md-button>
+        <div layout="row" layout-margin ng-if="clicked4">
+          <md-content flex class="md-padding">
+                <md-content class="md-padding" ng-if="clicked4">
+                    <md-content class="md-padding">
+                      <form name="userForm">
+                        <div layout layout-sm="column">
+                          <md-input-container flex> <label>reponse</label> <input ng-model="user.reponse" placeholder="écrir la réponse ici"> </md-input-container>
+                          
+                        </div>
+                        
+                      </form>
+                    </md-content>
+                    <div class="md-actions" layout="row"> <span flex></span>
+                      <md-button ng-click="answer(\'not useful\')"> Cancel </md-button>
+                      <md-button ng-click="answer(\'useful\')" class="md-primary"> Save </md-button>
+                    </div>
+                  </md-input-container>
+      
+
+      <ng-controller
+  ng-controller="listeAmis">
+  <ng-include src="'src/users/view/listeAmis.html'" [onload="string"]
+  [autoscroll="string"]> </ng-include>
+
+</ng-controller>-->
+
+
+
+     

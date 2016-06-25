@@ -1,0 +1,60 @@
+<nav ng-controller="HeaderCtrl" class="navbar navbar-default navbar-static-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" data-toggle="collapse" data-target="#navbar" class="navbar-toggle collapsed">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand">Project name</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li ng-class="{ active: isActive('/')}"><a href="/">Home</a></li>
+        <li ng-class="{ active: isActive('/contact')}"><a href="/contact">Contact</a></li>
+        <li ng-class="{ active: isActive('/monProfil')}"><a href="/monProfil">monProfil</a></li>
+        <li ng-class="{ active: isActive('/listeAmis')}"><a href="/listeAmis">Amis</a></li>
+        <li ng-class="{ active: isActive('/faq')}"><a href="/faq">faq</a></li>
+        <li ng-class="{ active: isActive('/chat')}"><a href="/chat">chat</a></li>
+      </ul>
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search" ng-model='search'>
+        </div>
+        
+      <!-- Render a li element for every entry in the items array. Notice
+         the custom search filter "searchFor". It takes the value of the
+         searchString model as an argument.
+       -->
+       <ul class="list-group">
+      <li class="list-group-item" ng-show="search" ng-repeat="i in items | filter:search">
+        <a ng-href="/profil/{{i._id}}">
+          <img ng-src="{{i.image}}" />
+          <p >{{i.name}}</p>
+        </a>
+        
+        
+      </li> 
+    </ul>
+      </form>
+      <ul ng-if="isAuthenticated()" class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" data-toggle="dropdown" class="navbar-avatar dropdown-toggle">
+            <img ng-src="{{currentUser.picture || currentUser.gravatar}}"> {{currentUser.name || currentUser.email || currentUser.id}} <i class="caret"></i>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="/account">My Account</a></li>
+            <li class="divider"></li>
+            <li><a href="#" ng-click="logout()"}>Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+      <ul ng-if="!isAuthenticated()" class="nav navbar-nav navbar-right">
+        <li ng-class="{ active: isActive('/login')}"><a href="/login">Log in</a></li>
+        <li ng-class="{ active: isActive('/signup')}"><a href="/signup">Sign up</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
