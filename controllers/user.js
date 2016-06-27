@@ -368,17 +368,26 @@ exports.search = function(req, res, next) {
 
 
 
-exports.searchById = function(req, res, next) {
-  console.log(req.body.id)
-  function trouveUserById(userId) {
-    return userId._id == ''+req.body.id+'';
-  }
-  data = userList.find(trouveUserById);
+// exports.searchById = function(req, res, next) {
 
-// { nom: 'cerises', quantité: 5}
-  //console.log(userList.indexOf(req.body.id))
-  res.send(data);
-  };
+//   console.log(req.body.id)
+//   function trouveUserById(userId) {
+//     return userId._id == ''+req.body.id+'';
+//   }
+//   data = userList.find(trouveUserById);
+
+// // { nom: 'cerises', quantité: 5}
+//   //console.log(userList.indexOf(req.body.id))
+//   res.send(data);
+//   };
+
+
+
+  exports.searchById = function(req, res, next) {
+  User.findById(req.body.id, function(err, user) {
+  res.send(user);
+  });
+};
 
 
 
