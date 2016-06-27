@@ -361,11 +361,13 @@ exports.search = function(req, res, next) {
     res.send(data);
    })
 };
+
 exports.searchById = function(req, res, next) {
   console.log(req.body.id)
-  User.findById(req.body.id).then(function(data){
-    console.log(data)
-    res.send(data);
-   })
+  User.findOne({ _id: req.body.id }, function (err, data) {
+  console.log(data)
+  res.send(data);
+  });
 };
+
 
