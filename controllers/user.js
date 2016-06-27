@@ -385,6 +385,7 @@ exports.search = function(req, res, next) {
 
   exports.searchById = function(req, res, next) {
   User.findById(req.body.id, function(err, user) {
+    console.log(user)
   res.send(user);
   });
 };
