@@ -6,9 +6,6 @@ angular.module('MyApp')
       		},
       		searchById: function(data) {
               return $http.post('/profil/:params', {id:data})
-              .then(function (data) {
-                  return data;
-            });
           }
       }
   	});
