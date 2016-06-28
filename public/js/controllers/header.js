@@ -15,11 +15,11 @@ angular.module('MyApp')
     };
     $scope.searchRequest = function() {
       return Search.searchRequest()
-        .then(function(response) {
-          console.log(response)
-          $scope.items = angular.fromJson(response.data)
-          console.log($scope.items)
-                
+        .success(function(data) {
+          return $scope.items = data;
+        })
+        .error(function (error) {
+          return console.log(error);
         })
     };  
     $scope.searchRequest();
