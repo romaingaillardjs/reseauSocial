@@ -361,8 +361,8 @@ exports.authFacebookCallback = function(req, res) {
 exports.search = function(req, res, next) {
    User.find().then(function(data){
     userList = data;
-    console.log(userList)
-    res.send(data);
+      console.log(userList)
+    return res.send(data);
    })
 };
 
@@ -386,7 +386,7 @@ exports.search = function(req, res, next) {
   exports.searchById = function(req, res, next) {
   User.findById(req.body.id, function(err, user) {
     console.log(user)
-  res.send(user);
+  return res.send(user);
   });
 };
 
