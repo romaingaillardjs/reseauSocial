@@ -72,7 +72,7 @@ app.get('/unlink/:provider', userController.ensureAuthenticated, userController.
 app.post('/auth/facebook', userController.authFacebook);
 app.get('/auth/facebook/callback', userController.authFacebookCallback);
 app.post('/search', userController.ensureAuthenticated, userController.search);
-app.post('/searchById', userController.ensureAuthenticated, userController.searchById);
+app.post('/profil/:params', userController.ensureAuthenticated, userController.searchById);
 
 app.get('*', function(req, res) {
   res.redirect('/#' + req.originalUrl);

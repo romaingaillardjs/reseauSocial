@@ -5,7 +5,7 @@ angular.module('MyApp')
         		  return $http.post('/search', data);
       		},
       		searchById: function(data) {
-              return $http.post('/searchById', {id:data})
+              return $http.post('/profil/:params', {id:data})
               .then(function (data) {
                   return data;
             });

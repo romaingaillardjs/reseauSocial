@@ -2,8 +2,7 @@
   'use strict';
 
 angular.module('MyApp')
-         .service('amisService', ['$q', function ($q){
-    
+         .service('amisService', function (){
     
     var AMIS = [
     {
@@ -49,10 +48,10 @@ angular.module('MyApp')
     // Promise-based API
     return {
       loadAllFaq  : function () {
-      return $q.when(AMIS);
-    }
+      return AMIS
+      }
     };
   
 
-}])
+})
 })();
