@@ -365,7 +365,8 @@ exports.search = function(req, res, next) {
 };
 
 exports.searchById = function(req, res, next) {
-  User.findById(req.body.id).then(function(err, user) {
+  User.findById(req.body.id, function(err, user) {
+    console.log(user)
   return res.send(user);
   });
 };
