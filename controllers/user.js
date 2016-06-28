@@ -6,7 +6,7 @@ var moment = require('moment');
 var request = require('request');
 var qs = require('querystring');
 var User = require('../models/User');
-var userList;
+
 
 function generateToken(user) {
   var payload = {
@@ -360,32 +360,12 @@ exports.authFacebookCallback = function(req, res) {
 
 exports.search = function(req, res, next) {
    User.find().then(function(data){
-    userList = data;
-      console.log(userList)
     return res.send(data);
    })
 };
 
-
-
-// exports.searchById = function(req, res, next) {
-
-//   console.log(req.body.id)
-//   function trouveUserById(userId) {
-//     return userId._id == ''+req.body.id+'';
-//   }
-//   data = userList.find(trouveUserById);
-
-// // { nom: 'cerises', quantité: 5}
-//   //console.log(userList.indexOf(req.body.id))
-//   res.send(data);
-//   };
-
-
-
-  exports.searchById = function(req, res, next) {
-  User.findById(req.body.id, function(err, user) {
-    console.log(user)
+exports.searchById = function(req, res, next) {
+  User.findById(req.body.id).then(function(err, user) {
   return res.send(user);
   });
 };
