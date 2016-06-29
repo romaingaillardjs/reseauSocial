@@ -1,5 +1,6 @@
 angular.module('MyApp')
 	.controller('ProfilCtrl', function($scope, $rootScope, $location, $window, $auth, $routeParams, Search) {
+    $scope.user = $rootScope.user;
   		// $scope.displayProfil = function () {
   		// 	return Search.searchById($routeParams.params)
   		// 	.success(function (data) {
