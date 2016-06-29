@@ -359,7 +359,11 @@ exports.authFacebookCallback = function(req, res) {
 
 
 exports.search = function(req, res, next) {
+<<<<<<< HEAD
   User.find(function(err, user){
+=======
+   User.find(function(err, user){
+>>>>>>> 729ecbde26ef2d2fb9d2716784ff43c532705a06
     return res.send(user);
    })
 };
