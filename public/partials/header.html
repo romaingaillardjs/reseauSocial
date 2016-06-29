@@ -23,21 +23,14 @@
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search" ng-model='search'>
         </div>
-        
-      <!-- Render a li element for every entry in the items array. Notice
-         the custom search filter "searchFor". It takes the value of the
-         searchString model as an argument.
-       -->
-       <ul class="list-group">
-      <li class="list-group-item" ng-show="search" ng-repeat="i in items | filter:search">
-        <a ng-href="/profil/{{i._id}}">
-          <img ng-src="{{i.image}}" />
-          <p >{{i.name}}</p>
-        </a>
-        
-        
-      </li> 
-    </ul>
+        <ul class="list-group" ng-if="isAuthenticated()">
+          <li class="list-group-item" ng-show="search" ng-repeat="i in items | filter:search">
+            <a  ng-click="viewProfil(i._id)">
+              <img ng-src="{{i.image}}" />
+              <p >{{i.name}}</p>
+            </a>
+          </li> 
+        </ul>
       </form>
       <ul ng-if="isAuthenticated()" class="nav navbar-nav navbar-right">
         <li class="dropdown">
@@ -58,4 +51,5 @@
     </div>
   </div>
 </nav>
+
 

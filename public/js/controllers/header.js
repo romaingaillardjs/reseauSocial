@@ -15,14 +15,14 @@ angular.module('MyApp')
     };
     $scope.searchRequest = function() {
       return Search.searchRequest()
-        .then(function(response) {
-          console.log(response)
-          $scope.items = angular.fromJson(response.data)
-          console.log($scope.items)
-                
+        .then(function(data) {
+          $scope.items = data.data;
         })
     };  
     $scope.searchRequest();
+    $scope.viewProfil = function(id) {
+      $location.path('/profil/'+id)
+    };   
   });
  
 

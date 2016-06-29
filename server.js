@@ -71,8 +71,8 @@ app.post('/reset/:token', userController.resetPost);
 app.get('/unlink/:provider', userController.ensureAuthenticated, userController.unlink);
 app.post('/auth/facebook', userController.authFacebook);
 app.get('/auth/facebook/callback', userController.authFacebookCallback);
-app.post('/search', userController.ensureAuthenticated, userController.search);
-app.post('/profil', userController.searchById);
+app.get('/search', userController.ensureAuthenticated, userController.search);
+app.post('/profil',userController.ensureAuthenticated, userController.searchById);
 
 app.get('*', function(req, res) {
   res.redirect('/#' + req.originalUrl);
