@@ -21,7 +21,8 @@ angular.module('MyApp')
     };  
     $scope.searchRequest();
     $scope.viewProfil = function(id) {
-      $location.path('/profil/'+id)
+      console.log(id)
+      //$location.path('/profil/'+id)
     };   
   });
  

@@ -27,7 +27,7 @@
           <li class="list-group-item" ng-show="search" ng-repeat="i in items | filter:search">
             <a  ng-click="viewProfil(i._id)">
               <img ng-src="{{i.image}}" />
-              <p >{{i.name}}</p>
+              <p ng-focus="true">{{i.name}}</p>
             </a>
           </li> 
         </ul>
