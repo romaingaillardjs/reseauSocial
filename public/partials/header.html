@@ -24,8 +24,8 @@
           <input type="text" class="form-control" placeholder="Search" ng-model='search'>
         </div>
 
-        <ul class="dropdown-menu" ng-if="isAuthenticated()">
-          <li class="divider" ng-show="search" ng-repeat="i in items | filter:search">
+        <ul class="list-group" ng-if="isAuthenticated()">
+          <li class="list-group-item" ng-show="search" ng-repeat="i in items | filter:search">
             <a  ng-click="viewProfil(i._id)">
               <img ng-src="{{i.image}}" />
               <p>{{i.name}}</p>
