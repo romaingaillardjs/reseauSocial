@@ -64,7 +64,7 @@ angular.module('MyApp', ['ngRoute', 'ngSanitize', 'satellizer'])
         resolve: { loginRequired: loginRequired }      
       })
       .when('/profil', {
-        templateUrl: 'partials/unprofil.html',
+        templateUrl: 'partials/unProfil.html',
         controller: 'ProfilCtrl',
         resolve: { loginRequired: loginRequired }      
       })
