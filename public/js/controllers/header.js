@@ -14,7 +14,6 @@ angular.module('MyApp')
       $location.path('/');
     };
     $scope.searchRequest = function() {
-<<<<<<< HEAD
       return $http.get('/search')
               .success(function (data) {
                 console.log(data)
@@ -23,15 +22,15 @@ angular.module('MyApp')
               .error(function (data) {
                 console.log(data)
               })
-=======
-      return Search.searchRequest()
-        .success(function(data) {
-          return $scope.items = data;
-        })
-        .error(function (error) {
-          return console.log(error);
-        })
->>>>>>> 729ecbde26ef2d2fb9d2716784ff43c532705a06
+
+      // return Search.searchRequest()
+      //   .success(function(data) {
+      //     return $scope.items = data;
+      //   })
+      //   .error(function (error) {
+      //     return console.log(error);
+      //   })
+
     };  
     $scope.searchRequest();
     $scope.viewProfil = function(id) {
