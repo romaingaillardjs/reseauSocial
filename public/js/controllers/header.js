@@ -35,7 +35,7 @@ angular.module('MyApp')
     $scope.searchRequest();
     $scope.viewProfil = function(id) {
       console.log(id)
-      $location.path('/profil/'+id)
+      //$location.path('/profil/'+id)
     };   
   });
  
