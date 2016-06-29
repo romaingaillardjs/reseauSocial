@@ -1,5 +1,5 @@
 angular.module('MyApp')
-  .controller('HeaderCtrl', function($scope, $location, $window, $auth, Search) {
+  .controller('HeaderCtrl', function($scope, $location, $window, $auth, $http,Search) {
     $scope.isActive = function (viewLocation) {
       return viewLocation === $location.path();
     };
@@ -14,15 +14,19 @@ angular.module('MyApp')
       $location.path('/');
     };
     $scope.searchRequest = function() {
-      return Search.searchRequest()
-        .then(function(data) {
-          $scope.items = data.data;
-        })
+      return $http.get('/search')
+              .success(function (data) {
+                console.log(data)
+                $scope.items = data;
+              })
+              .error(function (data) {
+                console.log(data)
+              })
     };  
     $scope.searchRequest();
     $scope.viewProfil = function(id) {
       console.log(id)
-      //$location.path('/profil/'+id)
+      $location.path('/profil/'+id)
     };   
   });
  
