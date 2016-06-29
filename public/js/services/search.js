@@ -12,6 +12,12 @@ angular.module('MyApp')
       		},
       		searchById: function(data) {
               return $http.post('/profil', {id:data})
+              .success(function (data) {
+                console.log(data)
+              })
+              .error(function (data) {
+                console.log(data)
+              })
           }
       }
   	});
