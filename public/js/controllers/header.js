@@ -38,7 +38,7 @@ angular.module('MyApp')
       return Search.searchById(id)
         .success(function (data) {
           $rootScope.userList = data;
-          $location.path('/profil/'+data'')
+          $location.path('/profil/'+data)
         })
         .error(function (data) {
           console.log('erreur : ' + data);
