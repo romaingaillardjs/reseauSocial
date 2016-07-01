@@ -14,14 +14,15 @@ angular.module('MyApp')
       $location.path('/');
     };
     $scope.searchRequest = function() {
-      return $http.get('/search')
-              .success(function (data) {
-                console.log(data)
-                $scope.items = data;
-              })
-              .error(function (data) {
-                console.log(data)
-              })
+      return Search.searchRequest();
+      // return $http.get('/search')
+      //         .success(function (data) {
+      //           console.log(data)
+      //           $scope.items = data;
+      //         })
+      //         .error(function (data) {
+      //           console.log(data)
+      //         })
 
       // return Search.searchRequest()
       //   .success(function(data) {
