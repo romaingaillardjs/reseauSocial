@@ -1,5 +1,5 @@
 angular.module('MyApp')
-  	.factory('Search', function($http) {
+  	.factory('Search', function($http, $scope) {
     	return {
       		searchRequest: function(data) {
         		  return $http.get('/search')
