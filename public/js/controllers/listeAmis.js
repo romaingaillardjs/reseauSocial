@@ -1,17 +1,11 @@
 angular.module('MyApp')
             
-.controller('ListeAmisCtrl',['$scope', '$timeout','amisService','$log','$q','$rootScope', '$sce','$sanitize', function($scope, $timeout,amisService,$log,$q,$rootScope,$sce, $sanitize) {
+.controller('ListeAmisCtrl',['$scope', '$timeout','$log','$q','$rootScope', '$sce','$sanitize', function($scope, $timeout,$log,$q,$rootScope,$sce, $sanitize) {
         $scope.renderHtml = function (htmlCode) {
             return $sce.trustAsHtml(htmlCode);
         };
 
-    var that = this;
-
-     amisService
-    .loadAllFaq()
-    .then( function( amis) {
-            $scope.AMIS = amis;
-          });
+  
 
 
 
