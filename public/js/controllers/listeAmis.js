@@ -7,7 +7,7 @@ angular.module('MyApp')
           return $scope.amis;
       }
     $scope.listeAmis()
-}])
+})
 
 
 
