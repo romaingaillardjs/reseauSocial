@@ -1,28 +1,82 @@
 <div flex layout-gt-sm="column" layout-align="center space-between">
     <h2>Mes Amis</h2>
     <div ng-repeat="amis in AMIS">
-        <md-card flex>
-            <md-card-title ng-click="activeButton(amis.index)">
-                <md-card-title-text>
-                    <h3 style="cursor: pointer;" ng-bind-html=renderHtml(amis.titre)></h3>
+
+ 
+ 
                     <div layout="row" layout-align="end center space-between">
                         <h3 style="cursor: pointer;" ng-show="amis.status=='confirmé'"> vous etes amis avec cette personne
                         </h3>
                         <h3 style="cursor: pointer;" ng-show="amis.status=='invitationEncours'"> invitation En cours ... 
                         </h3> 
-                    </div>
+    
                     <div layout="row" layout-align="end center space-between" style="cursor: pointer;" ng-show="amis.status=='attenteAjout'||amis.status=='recomandéPar'">
                         <h3 style="cursor: pointer;" ng-bind-html=renderHtml(amis.status)>{{amis.status}}</h3>&nbsp;
                         <h3 ng-show="amis.status=='recomandéPar'"> {{amis.recomandation}} </h3>&nbsp;
                         <button class="success">accepter</button>
                         <button class="md-primary"> refuser</button>
-                    </div>
-                </md-card-title-text>
-            </md-card-title>
+
             <md-card-content flex>
                 <div id="id{{amis.index}}" class="FAQclose">
                     <div>{{amis.name}}</div> <img src="" {{amis.img}} ""> </div>
             </md-card-content>
         </md-card>
     </div>
+</div>
+
+
+<div class="container">
+  <div class="panel">
+    <div class="panel-heading">
+      <h3 class="panel-title">{{ami.name}}</h3>
+    </div>
+    <div class="panel-body">
+      <div ng-if="messages.error" role="alert" class="alert alert-danger">
+        <div ng-repeat="error in messages.error">{{error.msg}}</div>
+      </div>
+      <div ng-if="messages.success" role="alert" class="alert alert-success">
+        <div ng-repeat="success in messages.success">{{success.msg}}</div>
+      </div>
+      <form ng-submit="sendContactForm()" class="form-horizontal">
+        <div class="form-group">
+          <label for="name" class="col-sm-2" ng-show="amis.status=='confirmé'"> vous etes amis avec cette personne</label>
+        </div>
+        <div class="form-group">
+          <label for="name" class="col-sm-2" ng-show="amis.status=='invitationEncours'"> invitation En cours ... </label>
+        </div>
+         <div class="form-group">
+          <label for="name" class="col-sm-2" ng-show="amis.status=='attenteAjout'||amis.status=='recomandéPar'">
+           <h3 style="cursor: pointer;" ng-bind-html=renderHtml(amis.status)>{{amis.status}}</h3>&nbsp;
+                        <h3 ng-show="amis.status=='recomandéPar'"> {{amis.recomandation}} </h3>&nbsp;
+                        <button class="success">accepter</button>
+                        <button class="md-primary"> refuser</button>
+              
+          </label>
+        <div id="id{{amis.index}}" class="FAQclose">
+            <div>{{amis.name}}</div> <img src="" {{amis.img}} ""> </div>
+        </div>
+          <div class="col-sm-8">
+            <input type="text" name="name" id="name" class="form-control" ng-model="contact.name" autofocus>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email" class="col-sm-2">Email</label>
+          <div class="col-sm-8">
+            <input type="email" name="email" id="email" class="form-control" ng-model="contact.email">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="message" class="col-sm-2">Body</label>
+          <div class="col-sm-8">
+            <textarea name="message" id="message" rows="7" class="form-control" ng-model="contact.message"></textarea>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-8">
+            <button type="submit" class="btn btn-success">Send</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>
