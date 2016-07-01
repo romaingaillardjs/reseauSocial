@@ -18,36 +18,13 @@ angular.module('MyApp')
         $scope.items = data
       });    
       return $scope.items;
-      // return $http.get('/search')
-      //         .success(function (data) {
-      //           console.log(data)
-      //           $scope.items = data;
-      //         })
-      //         .error(function (data) {
-      //           console.log(data)
-      //         })
-
-      // return Search.searchRequest()
-      //   .success(function(data) {
-      //     return $scope.items = data;
-      //   })
-      //   .error(function (error) {
-      //     return console.log(error);
-      //   })
-
     };  
     $scope.searchRequest();
     $scope.viewProfil = function(id) {
-      console.log(id)
-      return Search.searchById(id)
-        .success(function (data) {
-          $rootScope.userList = data;
-          $location.path('/profil/'+data.name)
-        })
-        .error(function (data) {
-          console.log('erreur : ' + data);
-        })
-      //$location.path('/profil/'+id)
+      return Search.searchById(id).success(function (data) {
+        $rootScope.userList = data;
+        $location.path('/profil/'+data.name)
+      })
     };   
   });
  
