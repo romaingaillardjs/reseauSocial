@@ -14,7 +14,10 @@ angular.module('MyApp')
       $location.path('/');
     };
     $scope.searchRequest = function() {
-      return Search.searchRequest();
+      Search.searchRequest().success(function (data) {
+        $scope.items = data
+      });    
+      return $scope.items;
       // return $http.get('/search')
       //         .success(function (data) {
       //           console.log(data)

@@ -1,11 +1,10 @@
 angular.module('MyApp')
-  	.factory('Search', function($http, $scope) {
+  	.factory('Search', function($http) {
     	return {
       		searchRequest: function(data) {
         		  return $http.get('/search')
               .success(function (data) {
                 console.log(data)
-                $scope.items = data;
               })
               .error(function (data) {
                 console.log(data)
