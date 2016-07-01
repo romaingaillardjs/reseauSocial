@@ -5,6 +5,7 @@ angular.module('MyApp')
         		  return $http.get('/search')
               .success(function (data) {
                 console.log(data)
+                $scope.items = data;
               })
               .error(function (data) {
                 console.log(data)
@@ -21,3 +22,6 @@ angular.module('MyApp')
           }
       }
   	});
+    
+
+
