@@ -9,6 +9,6 @@ angular.module('MyApp')
             .error(function (data) {
               console.log(data)
             })
-        };
+        }
     }
   });
