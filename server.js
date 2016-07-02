@@ -74,7 +74,6 @@ app.get('/auth/facebook/callback', userController.authFacebookCallback);
 app.get('/search', userController.ensureAuthenticated, userController.search);
 app.post('/profil',userController.ensureAuthenticated, userController.searchById);
 app.post('/search', userController.ensureAuthenticated, userController.search);
-//app.post('/profil', userController.ensureAuthenticated, userController.searchById);
 
 
 app.get('*', function(req, res) {

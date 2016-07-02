@@ -1,14 +1,7 @@
 angular.module('MyApp')
-  .factory('Amis', function($http) {
+  .factory('Amis', function($http, $window) {
     return {
         listeAmisRequest: function(data) {
-            return $http.get('/listeAmis')
-            .success(function (data) {
-              console.log(data)
-            })
-            .error(function (data) {
-              console.log(data)
-            })
+            return $window.localStorage.user.ami
         }
-    }
   });
