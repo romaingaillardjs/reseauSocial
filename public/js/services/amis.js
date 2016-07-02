@@ -3,5 +3,6 @@ angular.module('MyApp')
     return {
         listeAmisRequest: function(data) {
             return $window.localStorage.user.ami
-        }
+     	}
+    }
   });
