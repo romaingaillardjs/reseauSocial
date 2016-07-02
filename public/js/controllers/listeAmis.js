@@ -1,8 +1,8 @@
 angular.module('MyApp')
   .controller('ListeAmisCtrl', function($scope, Amis) {
-    $scope.listeAmis = function () {
-    	console.log(data)
+    $scope.listeAmis = function () {	
       Amis.listeAmisRequest().success(function (data) {
+      	console.log(data)
             $scope.amis = data;
           });    
           return $scope.amis;
