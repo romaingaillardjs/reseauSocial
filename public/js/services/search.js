@@ -18,6 +18,9 @@ angular.module('MyApp')
               .error(function (data) {
                 console.log(data)
               })
+          },
+          searchAmisById: function(data) {
+              return $http.post('/AmisById', {idList:data})
           }
       }
   	});

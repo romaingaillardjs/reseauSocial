@@ -73,7 +73,7 @@ app.post('/auth/facebook', userController.authFacebook);
 app.get('/auth/facebook/callback', userController.authFacebookCallback);
 app.get('/search', userController.ensureAuthenticated, userController.search);
 app.post('/profil',userController.ensureAuthenticated, userController.searchById);
-app.post('/search', userController.ensureAuthenticated, userController.search);
+app.post('/AmisById', userController.ensureAuthenticated, userController.searchAmisById);
 
 
 app.get('*', function(req, res) {

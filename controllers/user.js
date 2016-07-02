@@ -6,6 +6,9 @@ var moment = require('moment');
 var request = require('request');
 var qs = require('querystring');
 var User = require('../models/User');
+var mongoose = require('mongoose');
+
+
 
 
 function generateToken(user) {
@@ -357,17 +360,31 @@ exports.authFacebookCallback = function(req, res) {
  * POST /search
  */
 
-
 exports.search = function(req, res, next) {
    User.find(function(err, user){
     return res.send(user);
    })
 };
-
 exports.searchById = function(req, res, next) {
   User.findById(req.body.id, function(err, user) {
     return res.send(user);
   });
+};
+
+exports.searchAmisById = function(req, res, next) {
+var local = [];
+for (var i = 0; i < req.body.idList.length; i++) {
+  console.log(req.body.idList[i].id)
+  local.push(mongoose.Types.ObjectId(''+req.body.idList[i].id+''))
+};
+console.log(local)
+  User.find({
+    '_id': { $in: local}
+    }, function(err, UserList){
+    console.log(UserList);
+     return res.send(UserList)
+    }
+  )
 };
 
 

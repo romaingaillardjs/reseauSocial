@@ -50,6 +50,6 @@ userSchema.virtual('gravatar').get(function() {
   return 'https://gravatar.com/avatar/' + md5 + '?s=200&d=retro';
 });
 
-var User = mongoose.model('User', userSchema);
+User = mongoose.model('User', userSchema);
 
 module.exports = User;
