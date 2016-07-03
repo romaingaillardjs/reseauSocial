@@ -15,9 +15,9 @@ angular.module('MyApp')
     };
     $scope.searchRequest = function() {
       Search.searchRequest().success(function (data) {
-        $scope.items = data
+        $rootScope.items = data;
       });    
-      return $scope.items;
+      return $rootScope.items;
     };  
     $scope.searchRequest();
     $scope.viewProfil = function(id) {

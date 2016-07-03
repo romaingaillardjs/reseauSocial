@@ -11,6 +11,10 @@ var schemaOptions = {
 
 var userSchema = new mongoose.Schema({
   name: String,
+  ami:[mongoose.Schema.Types.Mixed],
+  getRecommandation: [mongoose.Schema.Types.Mixed],
+  setRecommandation: [mongoose.Schema.Types.Mixed],
+  clientRecommandation: [mongoose.Schema.Types.Mixed],
   email: { type: String, unique: true},
   password: String,
   passwordResetToken: String,

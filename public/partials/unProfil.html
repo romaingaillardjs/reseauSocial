@@ -24,7 +24,17 @@
     <p class="list-group-item-text">...</p>
   </a>
 </div>
-          <a href="#" role="button" class="btn btn-default">View details</a>
+          <button ng-click="ajouterAmi(user._id)" class="btn btn-default">Ajouter{{user._id}}</button>
+          
+          <form name="myForm">
+            <label for="repeatSelect"> Repeat select: </label>
+            <select name="repeatSelect" id="repeatSelect" 
+              ng-model="userModel">
+              <option ng-repeat="option in userlist" value="{{option.id}}">{{option.name}}</option>
+            </select>
+          </form>
+          <tt>model = {{userModel}}</tt>
+          <button ng-click="recomanderAmi(user._id,userModel)" class="btn btn-default">Recommander à {{userModel}}</button>
         </div>
       </div>
     </div>

@@ -74,6 +74,8 @@ app.get('/auth/facebook/callback', userController.authFacebookCallback);
 app.get('/search', userController.ensureAuthenticated, userController.search);
 app.post('/profil',userController.ensureAuthenticated, userController.searchById);
 app.post('/AmisById', userController.ensureAuthenticated, userController.searchAmisById);
+app.post('/AjouterAmi', userController.ensureAuthenticated, userController.AjouterAmi);
+app.post('/recomanderAmi', userController.ensureAuthenticated, userController.recomanderAmi);
 
 
 app.get('*', function(req, res) {

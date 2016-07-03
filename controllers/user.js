@@ -387,4 +387,82 @@ console.log(local)
   )
 };
 
+exports.AjouterAmi = function  (req, res, next) {
+  console.log(req.body.id)
+  User.findOne({
+      _id : req.user.id , 
+      ami : { id : req.body.id}
+      }, function(err, user) {
+    if(user){
+      console.log({ msg:"vous etes deja ami avec cette personne"})
+      //return res.send("vous etes deja ami avec cette personne")
+    }else{
+        User.findOne({ _id : req.user.id }, function(err, user) {
+            user.ami.push({"id":""+req.body.id+""})
+            user.save()
+            return res.send({ msg:"vous etes maintenant ami avec cette personne"})
+          });
+    }
+    });
+
+
+}
+exports.recomanderAmi = function  (req, res, next) {
+  console.log(req.body.idArecommande + req.body.idcible)
+
+  User.findOne({
+      _id : req.body.idcible , 
+      ami : { id : req.body.idArecommande}
+      }, function(err, user) {
+    if(user){
+      res.send({ msg:"ces personnes sont deja en relation"})
+      //return res.send("vous etes deja ami avec cette personne")
+    } else { 
+      User.findOne({
+        _id : req.body.idcible , 
+        recommandation : 
+                {
+                  "recommander":""+req.user.id+"",
+                  "recommande":""+req.body.idArecommande+"",
+                }
+        }, function(err, user) {
+      if(user){
+        res.send({ msg:"vous avez deja envoyé une demande de recomandation"})
+        //return res.send("vous etes deja ami avec cette personne")
+      } else{
+          User.findOne({ _id : req.body.idcible }, function(err, user) {
+              user.clientRecommandation.push(
+                {
+                  "recommandeur":""+req.user.id+"",
+                  "recommande":""+req.body.idArecommande+"",
+                }
+              )
+              user.save()
+            });
+          User.findOne({ _id : req.user.id }, function(err, user) {
+              user.setRecommandation.push(
+                {      
+                  "_a":""+req.body.idcible+"",
+                  "recommande":""+req.body.idArecommande+"",
+                }
+              )
+              user.save()
+            });
+          User.findOne({ _id : req.body.idArecommande }, function(err, user) {
+              user.getRecommandation.push(
+                {      
+                  "recommandation_de":""+req.user.id+"",
+                  "recommande_a":""+req.body.idcible+"",
+                }
+              )
+              user.save()
+            });
+              return res.send({ msg:"vous avez envoyé une demande de recomandation a cette personne"})
+        }
+      });
+    }
+  });
+};
+
+
 
