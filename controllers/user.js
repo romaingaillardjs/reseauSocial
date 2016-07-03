@@ -389,23 +389,24 @@ console.log(local)
 
 exports.AjouterAmi = function  (req, res, next) {
   console.log(req.body.id)
+   console.log(req.user.id)
   User.findOne({
       _id : req.user.id , 
       ami : { id : req.body.id}
       }, function(err, user) {
-    if(user){
-      console.log({ msg:"vous etes deja ami avec cette personne"})
-      //return res.send("vous etes deja ami avec cette personne")
-    }else{
-        User.findOne({ _id : req.user.id }, function(err, user) {
-            user.ami.push({"id":""+req.body.id+""})
-            user.save()
-            return res.send({ msg:"vous etes maintenant ami avec cette personne"})
-          });
-    }
-    });
-
-
+        if(user){
+          console.log({ msg:"vous etes deja ami avec cette personne"})
+          //return res.send("vous etes deja ami avec cette personne")
+        }else{
+            User.findOne({ _id : req.user.id }, function(err, user) {
+                user.ami.push({"id":""+req.body.id+""})
+                user.save()
+                return res.send({ msg:"vous etes maintenant ami avec cette personne"})
+                }
+            );
+        }
+      }
+  );
 }
 exports.recomanderAmi = function  (req, res, next) {
   console.log(req.body.idArecommande + req.body.idcible)
