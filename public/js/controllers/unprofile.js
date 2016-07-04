@@ -23,7 +23,17 @@ angular.module('MyApp')
             console.log(data)
         })
         
+    }; 
+    $scope.confirmerAmi = function (id) {
+        Amis.confirmerAmi(id)
+        .success(function  (data) {
+            console.log(data)
+        })
+        .error(function  (data) {
+            console.log(data)
+        })     
     };  
+    
 console.log($scope.userModel)
     
 

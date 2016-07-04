@@ -15,6 +15,8 @@ var userSchema = new mongoose.Schema({
   getRecommandation: [mongoose.Schema.Types.Mixed],
   setRecommandation: [mongoose.Schema.Types.Mixed],
   clientRecommandation: [mongoose.Schema.Types.Mixed],
+  demande_d_ajout: [mongoose.Schema.Types.Mixed],
+  demande_en_attente: [mongoose.Schema.Types.Mixed],
   email: { type: String, unique: true},
   password: String,
   passwordResetToken: String,

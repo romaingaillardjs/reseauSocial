@@ -6,8 +6,8 @@ angular.module('MyApp')
         	console.log(data);
             return data
      	},
-     	AjouterAmi : function(data) {
-          return $http.post('/AjouterAmi', {id:data})
+     	AjouterAmi : function(id) {
+          return $http.post('/AjouterAmi', {id:id})
           .success(function (data) {
             console.log(data)
           })
@@ -17,6 +17,15 @@ angular.module('MyApp')
       },
       recomanderAmi : function(idArecommande, idcible) {
           return $http.post('/recomanderAmi', {idArecommande:idArecommande, idcible:idcible})
+          .success(function (data) {
+            console.log(data)
+          })
+          .error(function (data) {
+            console.log(data)
+          })
+      },
+      confirmerAmi : function(id) {
+          return $http.post('/confirmerAmi', {id:id})
           .success(function (data) {
             console.log(data)
           })

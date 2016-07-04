@@ -399,11 +399,17 @@ exports.AjouterAmi = function  (req, res, next) {
           //return res.send("vous etes deja ami avec cette personne")
         }else{
             User.findOne({ _id : req.user.id }, function(err, user) {
-                user.ami.push({"id":""+req.body.id+""})
+                user.demande_en_attente.push({"id":""+req.body.id+""})
+                user.save()
+                
+                }
+            )
+            User.findOne({ _id : req.body.id }, function(err, user) {
+                user.demande_d_ajout.push({"id":""+req.user.id+""})
                 user.save()
                 return res.send({ msg:"vous etes maintenant ami avec cette personne"})
                 }
-            );
+            )
         }
       }
   );
@@ -464,6 +470,39 @@ exports.recomanderAmi = function  (req, res, next) {
     }
   });
 };
+exports.confirmerAmi = function  (req, res, next) {
+  console.log(req.body.id)
+   console.log(req.user.id)
+  User.findOne({
+      _id : req.user.id , 
+      ami : { id : req.body.id}
+      }, function(err, user) {
+        if(user){
+          console.log({ msg:"vous etes deja ami avec cette personne"})
+          //return res.send("vous etes deja ami avec cette personne")
+        }else{
+            User.update( { _id: req.user.id }, 
+              { 
+                $pullAll: { demande_d_ajout: [{"id":""+req.body.id+""}] } 
+              } , function() {})
+            User.update( { _id: req.user.id }, 
+              { 
+                $set: { ami: [{"id":""+req.body.id+""}] } 
+              } , function() {})
+            
+            User.update( { _id: req.body.id }, 
+              { 
+                $pullAll: { demande_en_attente: [{"id":""+req.user.id+""}] } 
+              } , function() {})
+            User.update( { _id: req.body.id }, 
+              { 
+                $set: { ami: [{"id":""+req.user.id+""}] } 
+              } , function() {})       
+        }
+      }
+  );
+}
+
 
 
 
