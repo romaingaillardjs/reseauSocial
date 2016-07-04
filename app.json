@@ -1,8 +1,8 @@
 {
-  "name": "Node.js Getting Started",
-  "description": "A barebones Node.js app using Express 4",
-  "repository": "https://github.com/heroku/node-js-getting-started",
-  "logo": "http://node-js-sample.herokuapp.com/node.svg",
-  "keywords": ["node", "express", "static"],
+  "name": "asocialnetworkforyou",
+  "description": "A MEAN Stack Social Network",
+  "repository": "https://github.com/romaingaillardjs/reseauSocial.git",
+  "logo": "https://cdn4.iconfinder.com/data/icons/bloggers-1-to-7-vol-PNG/512/share_this_icon.png",
+  "keywords": ["MongoDb","ExpressJS","AngularJS", "NodeJS"],
   "image": "heroku/nodejs"
 }
