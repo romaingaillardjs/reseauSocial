@@ -35,3 +35,9 @@ angular.module('MyApp')
         });
     };
   });
+
+  function function_name(id,gag) {
+    console.log(gag)
+  }
+function_name('toto',10);
+
