@@ -507,7 +507,7 @@ exports.postMessage = function(req, res, next) {
     User.update( { _id: req.body.user_id }, 
       { 
         $set: { 
-          messagePublicsRecus: 
+          messagePublicsRecus:
           [
             {
               "de":""+req.user.id+"",

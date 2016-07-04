@@ -44,32 +44,4 @@ exports.contactPost = function(req, res) {
   });
 };
 
-exports.postMessage = function(req, res, next) {
-  console.log(  req.body.userModel + req.body.message)
-    User.update( { _id: req.body.userModel }, 
-      { 
-        $set: { 
-          messagePublicsRecus: 
-          [
-            {
-              "de":""+req.user.id+"",
-              "message" : ""+req.body.message+"",
-            }
-          ]
-        } 
-      } , function() {}
-      )
-    User.update( { _id: req.user.id }, 
-      { 
-        $set: { 
-          messagePublicEnvoyés: 
-          [
-            {
-              "a":""+req.body.userModel+"",
-              "id":""+req.body.message+"",
-            }
-          ] 
-        } 
-      } , function() {}
-      )       
-  };
+
