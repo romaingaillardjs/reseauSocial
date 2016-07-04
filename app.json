@@ -2,7 +2,7 @@
   "name": "asocialnetworkforyou",
   "description": "A MEAN Stack Social Network",
   "repository": "https://github.com/romaingaillardjs/reseauSocial.git",
-  "logo": "https://cdn4.iconfinder.com/data/icons/bloggers-1-to-7-vol-PNG/512/share_this_icon.png",
+  "logo": "",
   "keywords": ["MongoDb","ExpressJS","AngularJS", "NodeJS"],
   "image": "heroku/nodejs"
 }
