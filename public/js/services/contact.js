@@ -1,8 +1,13 @@
 angular.module('MyApp')
   .factory('Contact', function($http) {
     return {
-      send: function(data) {
-        return $http.post('/contact', data);
+      send: function(user_id, message) {
+        return $http.post('/contact', 
+        	{
+        		user_id : user_id, 
+        		message: message
+        	}
+        );
       }
     };
   });

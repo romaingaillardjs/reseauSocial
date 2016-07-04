@@ -502,6 +502,36 @@ exports.confirmerAmi = function  (req, res, next) {
       }
   );
 }
+exports.postMessage = function(req, res, next) {
+  console.log(  req.body.user_id + req.body.message)
+    User.update( { _id: req.body.user_id }, 
+      { 
+        $set: { 
+          messagePublicsRecus: 
+          [
+            {
+              "de":""+req.user.id+"",
+              "message" : ""+req.body.message+"",
+            }
+          ]
+        } 
+      } , function() {}
+      )
+    User.update( { _id: req.user.id }, 
+      { 
+        $set: { 
+          messagePublicsEnvoyes:
+          [
+            {
+              "a":""+req.body.user_id+"",
+              "id":""+req.body.message+"",
+            }
+          ] 
+        } 
+      } , function() {}
+      )       
+  };
+
 
 
 
