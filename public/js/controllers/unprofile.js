@@ -1,5 +1,6 @@
 angular.module('MyApp')
 	.controller('ProfilCtrl', function($scope, $rootScope, $location, $window, $auth, $routeParams, Search, Amis, Contact) {
+        
     $scope.user = $rootScope.userList;
     $scope.items = $rootScope.items;
 
@@ -10,8 +11,7 @@ angular.module('MyApp')
     	})
     	.error(function  (data) {
     		console.log(data)
-    	})
-    	
+    	})   	
     };  
     $scope.userlist = $rootScope.items;
     $scope.recomanderAmi = function (idArecommande, idcible) {
@@ -46,8 +46,4 @@ angular.module('MyApp')
           };
         });
     };
-    
-console.log($scope.userModel)
-    
-
 });

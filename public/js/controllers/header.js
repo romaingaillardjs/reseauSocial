@@ -1,5 +1,6 @@
 angular.module('MyApp')
   .controller('HeaderCtrl', function($scope, $rootScope, $location, $window, $auth, $http,Search) {
+    
     $scope.isActive = function (viewLocation) {
       return viewLocation === $location.path();
     };

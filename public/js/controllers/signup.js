@@ -1,5 +1,6 @@
 angular.module('MyApp')
   .controller('SignupCtrl', function($scope, $rootScope, $location, $window, $auth) {
+    
     $scope.signup = function() {
       $auth.signup($scope.user)
         .then(function(response) {
@@ -36,8 +37,4 @@ angular.module('MyApp')
     };
   });
 
-  function function_name(id,gag) {
-    console.log(gag)
-  }
-function_name('toto',10);
 

@@ -17,15 +17,12 @@ dotenv.load();
 // Models
 var User = require('./models/User');
 
-
-
 // Controllers
 var userController = require('./controllers/user');
 var contactController = require('./controllers/contact');
 var membresController = require('./controllers/membres');
 var amisController = require('./controllers/amis');
 var messagesController = require('./controllers/messages');
-
 
 var app = express();
 
@@ -84,7 +81,6 @@ app.post('/AjouterAmi', userController.ensureAuthenticated, amisController.Ajout
 app.post('/recomanderAmi', userController.ensureAuthenticated, amisController.recomanderAmi);
 app.post('/confirmerAmi', userController.ensureAuthenticated, amisController.confirmerAmi);
 app.post('/postMessage', userController.ensureAuthenticated, messagesController.postMessage);
-
 
 app.get('*', function(req, res) {
   res.redirect('/#' + req.originalUrl);
