@@ -17,9 +17,15 @@ dotenv.load();
 // Models
 var User = require('./models/User');
 
+
+
 // Controllers
 var userController = require('./controllers/user');
 var contactController = require('./controllers/contact');
+var membresController = require('./controllers/membres');
+var amisController = require('./controllers/amis');
+var messagesController = require('./controllers/messages');
+
 
 var app = express();
 
@@ -61,7 +67,7 @@ app.use(function(req, res, next) {
   }
 });
 
-app.post('/contact', userController.postMessage);
+app.post('/contact', contactController.contactPost);
 app.put('/account', userController.ensureAuthenticated, userController.accountPut);
 app.delete('/account', userController.ensureAuthenticated, userController.accountDelete);
 app.post('/signup', userController.signupPost);
@@ -71,12 +77,13 @@ app.post('/reset/:token', userController.resetPost);
 app.get('/unlink/:provider', userController.ensureAuthenticated, userController.unlink);
 app.post('/auth/facebook', userController.authFacebook);
 app.get('/auth/facebook/callback', userController.authFacebookCallback);
-app.get('/search', userController.ensureAuthenticated, userController.search);
-app.post('/profil',userController.ensureAuthenticated, userController.searchById);
-app.post('/AmisById', userController.ensureAuthenticated, userController.searchAmisById);
-app.post('/AjouterAmi', userController.ensureAuthenticated, userController.AjouterAmi);
-app.post('/recomanderAmi', userController.ensureAuthenticated, userController.recomanderAmi);
-app.post('/confirmerAmi', userController.ensureAuthenticated, userController.confirmerAmi);
+app.get('/search', userController.ensureAuthenticated, membresController.search);
+app.post('/profil',userController.ensureAuthenticated, membresController.searchById);
+app.post('/AmisById', userController.ensureAuthenticated, amisController.searchAmisById);
+app.post('/AjouterAmi', userController.ensureAuthenticated, amisController.AjouterAmi);
+app.post('/recomanderAmi', userController.ensureAuthenticated, amisController.recomanderAmi);
+app.post('/confirmerAmi', userController.ensureAuthenticated, amisController.confirmerAmi);
+app.post('/postMessage', userController.ensureAuthenticated, messagesController.postMessage);
 
 
 app.get('*', function(req, res) {

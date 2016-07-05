@@ -4,28 +4,23 @@
       <div class="panel">
         <div class="panel-body">
           <h3>Heading</h3>
-
           <img src="http://www.babelio.com/users/AVT_Anonyme_7683.jpeg">
           <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris
             condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod.
-            Donec sed odio dui.</p>
-            <span class="md-title">{{user.name}}</span> <span class="md-subhead ">
-
-
-
-            <div class="list-group">
-  <a href="#" class="list-group-item active">
-    <h4 class="list-group-item-heading">messages</h4>
-    <p class="list-group-item-text">
-    </p>
-    <p class="list-group-item-text">
-    </p>
-    <p class="list-group-item-text">...</p>
-    <p class="list-group-item-text">...</p>
-  </a>
-</div>
+            Donec sed odio dui.
+          </p>
+          <span class="md-title">{{user.name}}</span> <span class="md-subhead ">
+          <div ng-repeat="lesmessage in user.messagePublicsRecus" class="list-group">
+              <h4 class="list-group-item-heading">{{lesmessage.de}}</h4>
+              <p class="list-group-item-text">{{lesmessage.message}}
+              </p>
+              <p class="list-group-item-text">
+              </p>
+              <p class="list-group-item-text">...</p>
+              <p class="list-group-item-text">...</p>
+            </a>
+          </div>
           <button ng-click="ajouterAmi(user._id)" class="btn btn-default">Ajouter{{user._id}}</button>
-          
           <form name="myForm">
             <label for="repeatSelect"> Repeat select: </label>
             <select name="repeatSelect" id="repeatSelect" 
@@ -36,16 +31,11 @@
           <tt>model = {{userModel}}</tt>
           <button ng-click="recomanderAmi(user._id, userModel)" class="btn btn-default">Recommander à {{userModel}}</button>
           <button ng-click="confirmerAmi(user._id)" class="btn btn-default">confirmer Ami{{user._id}}</button>
-
-        
-
         </div>
       </div>
     </div>
   </div>
 </div>
-
-
 <div class="container">
   <div class="panel">
     <div class="panel-heading">
@@ -58,8 +48,7 @@
       <div ng-if="messages.success" role="alert" class="alert alert-success">
         <div ng-repeat="success in messages.success">{{success.msg}}</div>
       </div>
-       <form ng-submit="envoyerMessagePublic(user._id,message)" class="form-horizontal">
-        
+      <form ng-submit="envoyerMessagePublic(user._id,message)" class="form-horizontal">
         <div class="form-group">
           <label for="message" class="col-sm-2">Body</label>
           <div class="col-sm-8">
