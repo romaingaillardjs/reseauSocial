@@ -3,22 +3,11 @@
     <div class="col-sm-10">
       <div class="panel">
         <div class="panel-body">
-          <h3>Heading</h3>
-          <img src="http://www.babelio.com/users/AVT_Anonyme_7683.jpeg">
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris
-            condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod.
-            Donec sed odio dui.
-          </p>
-          <span class="md-title">{{user.name}}</span> <span class="md-subhead ">
+          <h3>Heading</h3> <img src="http://www.babelio.com/users/AVT_Anonyme_7683.jpeg">
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p> <span class="md-title">{{user.name}}</span> <span class="md-subhead ">
           <div ng-repeat="lesmessage in user.messagePublicsRecus" class="list-group">
               <h4 class="list-group-item-heading">{{lesmessage.de}}</h4>
-              <p class="list-group-item-text">{{lesmessage.message}}
-              </p>
-              <p class="list-group-item-text">
-              </p>
-              <p class="list-group-item-text">...</p>
-              <p class="list-group-item-text">...</p>
-            </a>
+              <p class="list-group-item-text">{{lesmessage.message}}</p>
           </div>
           <button ng-click="ajouterAmi(user._id)" class="btn btn-default">Ajouter{{user._id}}</button>
           <form name="myForm">
