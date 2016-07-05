@@ -11,8 +11,8 @@ angular.module('MyApp')
     	console.log($scope.amis)
           return $scope.amis 
       };
-
     $scope.listeAmis(angular.fromJson($window.localStorage.user).ami)
+    
     $scope.viewProfil = function(id) {
       return Search.searchById(id).success(function (data) {
         $rootScope.userList = data;
