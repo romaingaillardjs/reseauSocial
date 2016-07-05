@@ -58,11 +58,6 @@ angular.module('MyApp', ['ngRoute', 'ngSanitize', 'satellizer'])
         controller: 'ChatCtrl',
         resolve: { loginRequired: loginRequired }   
       })
-      .when('/faq', {
-        templateUrl: 'partials/faq.html',
-        controller: 'FaqCtrl',
-        resolve: { loginRequired: loginRequired }      
-      })
       .when('/profil/:id', {
         templateUrl: 'partials/unProfil.html',
         controller: 'ProfilCtrl',
