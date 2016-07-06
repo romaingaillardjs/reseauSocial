@@ -4,8 +4,12 @@ angular.module('MyApp')
     $scope.user = $rootScope.userList;
     $scope.items = $rootScope.items;
 
-    $scope.ajouterAmi = function  (id) {
-    	Amis.AjouterAmi(id)
+    $scope.ajouterAmi = function  (user) {
+
+        console.log($window.localStorage.user)
+        console.log(user)
+
+    	Amis.AjouterAmi(user._id,user.email,$window.localStorage.user.titre,$window.localStorage.user.email)
     	.success(function  (data) {
     		console.log(data)
     	})

@@ -77,7 +77,7 @@ app.get('/auth/facebook/callback', userController.authFacebookCallback);
 app.get('/search', userController.ensureAuthenticated, membresController.search);
 app.post('/profil',userController.ensureAuthenticated, membresController.searchById);
 app.post('/AmisById', userController.ensureAuthenticated, amisController.searchAmisById);
-app.post('/AjouterAmi', userController.ensureAuthenticated, amisController.AjouterAmi);
+app.post('/AjouterAmi', userController.ensureAuthenticated, amisController.AjouterAmi, contactController.ajouterAmiPost);
 app.post('/recomanderAmi', userController.ensureAuthenticated, amisController.recomanderAmi);
 app.post('/confirmerAmi', userController.ensureAuthenticated, amisController.confirmerAmi);
 app.post('/postMessage', userController.ensureAuthenticated, messagesController.postMessage);

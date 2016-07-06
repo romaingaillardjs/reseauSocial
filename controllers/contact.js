@@ -33,9 +33,9 @@ exports.contactPost = function(req, res) {
   }
 
   var mailOptions = {
-    from: req.body.name + ' ' + '<'+ req.body.email + '>',
-    to: req.body.email,
-    subject: '✔ Contact Form | Mega Boilerplate',
+    from: req.body.name + ' ' + '<'+ req.body.emailemetteur + '>',
+    to: req.body.emailrecepteur,
+    subject: '✔ aSocialNetworkForYou :) | hello',
     text: req.body.message
   };
 
@@ -44,4 +44,15 @@ exports.contactPost = function(req, res) {
   });
 };
 
+exports.ajouterAmiPost = function(req, res) {
+  var mailOptions = {
+    from: req.body.$window_localStorage_user_titre + ' ' + '<'+ req.body.$window_localStorage_user_email  + '>',
+    to: req.body.user_email,
+    subject: '✔ aSocialNetworkForYou :) | ' +req.body.$window_localStorage_user_titre + ' | vous à envoyé une demande d\'ajout à sa liste d\'amis ',
+    text: req.body.message
+  };
 
+  transporter.sendMail(mailOptions, function(err) {
+    res.send({ msg: 'Thank you! Your feedback has been submitted.' });
+  });
+};
