@@ -53,3 +53,8 @@
     </div>
   </div>
 </div>
+<div class="container">AMIS
+  <div class="panel" ng-repeat="ami in amis" ng-click="viewProfil(ami.id)">
+    <h4 class="list-group-item-heading">{{ami.name}}</h4>
+  </div>
+</div>

@@ -46,4 +46,20 @@ angular.module('MyApp')
           };
         });
     };
+    $scope.listeAmis = function (data) {
+        Search.searchAmisById(data).success(function (data) {
+        $scope.amis = data
+            
+      }).error(function (data) {
+        console.log(data)
+      });
+        return $scope.amis
+      };
+    $scope.listeAmis($scope.user.ami)
+        $scope.viewProfil = function(id) {
+      return Search.searchById(id).success(function (data) {
+        $rootScope.userList = data;
+        $location.path('/profil/'+data.name)
+      })
+    };
 });
