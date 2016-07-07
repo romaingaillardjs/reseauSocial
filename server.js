@@ -80,7 +80,9 @@ app.post('/AmisById', userController.ensureAuthenticated, amisController.searchA
 app.post('/AjouterAmi', userController.ensureAuthenticated, amisController.AjouterAmi, contactController.ajouterAmiPost);
 app.post('/recomanderAmi', userController.ensureAuthenticated, amisController.recomanderAmi);
 app.post('/confirmerAmi', userController.ensureAuthenticated, amisController.confirmerAmi);
-app.post('/postMessage', userController.ensureAuthenticated, messagesController.postMessage);
+app.post('/postMessagePublics', userController.ensureAuthenticated, messagesController.postMessagePublics);
+app.post('/postMessagePrives', userController.ensureAuthenticated, messagesController.postMessagePrives);
+app.post('/getMessagePrives', userController.ensureAuthenticated, messagesController.getMessagePrives);
 
 app.get('*', function(req, res) {
   res.redirect('/#' + req.originalUrl);

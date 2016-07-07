@@ -5,7 +5,6 @@ angular.module('MyApp')
     $scope.items = $rootScope.items;
 
     $scope.ajouterAmi = function  (user) {
-
         amiAjoute = user
         amiAjoutant = angular.fromJson($window.localStorage.user)
 
@@ -38,7 +37,7 @@ angular.module('MyApp')
         })     
     }; 
      $scope.envoyerMessagePublic = function (user_id, message) {
-      Contact.send(user_id, message)
+      Contact.postMessagePublics(user_id, message)
         .then(function(response) {
           $scope.messages = {
             success: [response.data]
@@ -50,6 +49,7 @@ angular.module('MyApp')
           };
         });
     };
+
     $scope.listeAmis = function (data) {
         Search.searchAmisById(data).success(function (data) {
         $scope.amis = data

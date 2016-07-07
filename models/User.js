@@ -19,6 +19,8 @@ var userSchema = new mongoose.Schema({
   demande_en_attente: [mongoose.Schema.Types.Mixed],
   messagePublicsRecus: [mongoose.Schema.Types.Mixed],
   messagePublicsEnvoyes: [mongoose.Schema.Types.Mixed],
+  messagePrivesRecus: [mongoose.Schema.Types.Mixed],
+  messagePrivesEnvoyes: [mongoose.Schema.Types.Mixed],
   email: { type: String, unique: true},
   password: String,
   passwordResetToken: String,

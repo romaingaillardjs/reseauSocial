@@ -53,9 +53,19 @@ angular.module('MyApp', ['ngRoute', 'ngSanitize', 'satellizer'])
         controller: 'ListeAmisCtrl',
         resolve: { loginRequired: loginRequired }   
       })
+      .when('/messages', {
+        templateUrl: 'partials/messages.html',
+        controller: 'MessagesCtrl',
+        resolve: { loginRequired: loginRequired }   
+      })
       .when('/chat', {
         templateUrl: 'partials/chat.html',
         controller: 'ChatCtrl',
+        resolve: { loginRequired: loginRequired }   
+      })
+      .when('/notifications', {
+        templateUrl: 'partials/notifications.html',
+        controller: 'NotificationsCtrl',
         resolve: { loginRequired: loginRequired }   
       })
       .when('/profil/:id', {
