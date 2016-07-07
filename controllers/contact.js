@@ -19,6 +19,7 @@ exports.contactGet = function(req, res) {
 /**
  * POST /contact
  */
+
 exports.contactPost = function(req, res) {
   req.assert('name', 'Name cannot be blank').notEmpty();
   req.assert('email', 'Email is not valid').isEmail();
@@ -33,9 +34,9 @@ exports.contactPost = function(req, res) {
   }
 
   var mailOptions = {
-    from: req.body.name + ' ' + '<'+ req.body.emailemetteur + '>',
-    to: req.body.emailrecepteur,
-    subject: '✔ aSocialNetworkForYou :) | hello',
+    from: req.body.name + ' ' + '<'+ req.body.email + '>',
+    to: 'your@email.com',
+    subject: '✔ Contact Form | Mega Boilerplate',
     text: req.body.message
   };
 
@@ -44,15 +45,21 @@ exports.contactPost = function(req, res) {
   });
 };
 
+
 exports.ajouterAmiPost = function(req, res) {
+
+  console.log('je passe par la' + req.body.amiAjoute.name)
+  console.log('je passe par la' + req.body.amiAjoutant.email)
+
   var mailOptions = {
-    from: req.body.$window_localStorage_user_titre + ' ' + '<'+ req.body.$window_localStorage_user_email  + '>',
-    to: req.body.user_email,
-    subject: '✔ aSocialNetworkForYou :) | ' +req.body.$window_localStorage_user_titre + ' | vous à envoyé une demande d\'ajout à sa liste d\'amis ',
+    from:  req.body.amiAjoute.name + ' ' + '<'+ req.body.amiAjoutant.email  + '>',
+    to: req.body.amiAjoute.email,
+    subject: '✔ aSocialNetworkForYou :) | '+'  '+req.user.name +'  '+ ' | vous à envoyé une demande d\'ajout à sa liste d\'amis ',
     text: req.body.message
   };
 
   transporter.sendMail(mailOptions, function(err) {
-    res.send({ msg: 'Thank you! Your feedback has been submitted.' });
+    console.log(err);
+    return res.send({ msg:"vous etes maintenant ami avec cette personne"})
   });
 };

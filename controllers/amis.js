@@ -3,26 +3,29 @@ var User = require('../models/User');
 
 exports.AjouterAmi = function  (req, res, next) {
 
-  console.log(req.body.id)
+  console.log(req.body.amiAjoute._id)
   console.log(req.user.id)
+
+
   User.findOne({
       _id : req.user.id , 
-      ami : { id : req.body.user_id}
+      ami : { id : req.body.amiAjoute._id}
       }, function(err, user) {
         if(user){
           console.log({ msg:"vous etes deja ami avec cette personne"})
           //return res.send("vous etes deja ami avec cette personne")
         }else{
             User.findOne({ _id : req.user.id }, function(err, user) {
-                user.demande_en_attente.push({"id":""+req.body.user_id+""})
+                user.demande_en_attente.push({"id":""+req.body.amiAjoute._id+""})
                 user.save()
                 
                 }
             )
-            User.findOne({ _id : req.body.user_id }, function(err, user) {
+            User.findOne({ _id : req.body.amiAjoute._id }, function(err, user) {
                 user.demande_d_ajout.push({"id":""+req.user.id+""})
                 user.save()
-                return res.send({ msg:"vous etes maintenant ami avec cette personne"})
+                next();
+                
                 }
             )
         }

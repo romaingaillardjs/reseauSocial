@@ -6,13 +6,13 @@ angular.module('MyApp')
         	console.log(data);
             return data
      	},
-     	AjouterAmi : function(user_id,user_email,$window_localStorage_user_titre,$window_localStorage_user_email) {
+     	AjouterAmi : function(amiAjoutant, amiAjoute) {
+
+        console.log(amiAjoutant +  amiAjoute)
           return $http.post('/AjouterAmi',
             {
-              user_id : user_id,
-              user_email : user_email,
-              $window_localStorage_user_titre : $window_localStorage_user_titre,
-              $window_localStorage_user_email : $window_localStorage_user_email
+              amiAjoutant : amiAjoutant, 
+              amiAjoute : amiAjoute
             }
           )
           .success(function (data) {

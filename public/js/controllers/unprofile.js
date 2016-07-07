@@ -6,10 +6,10 @@ angular.module('MyApp')
 
     $scope.ajouterAmi = function  (user) {
 
-        console.log($window.localStorage.user)
-        console.log(user)
+        amiAjoute = user
+        amiAjoutant = angular.fromJson($window.localStorage.user)
 
-    	Amis.AjouterAmi(user._id,user.email,$window.localStorage.user.titre,$window.localStorage.user.email)
+    	Amis.AjouterAmi(amiAjoutant, amiAjoute)
     	.success(function  (data) {
     		console.log(data)
     	})
