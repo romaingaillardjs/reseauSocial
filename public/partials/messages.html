@@ -4,13 +4,13 @@
       <h3 class="panel-title">Contact Form</h3> </div>
     <div class="panel-body">
      <div class="row">
-    <div ng-repeat="ami in amis" class="panel col-sm-4">
+    <div class="panel col-sm-4">
       amis
-      <div ng-click="voirAmisMessages(ami.id)">{{ami}}</div>
+      <div class="panel" ng-repeat="ami in amis"  ng-click="voirAmisMessages(ami.id)" >{{ami.name}}</div>
     </div>
     <div  class="panel col-sm-8">
       messages
-      <div ng-repeat="messages in amiMessages.messagesPrivesRecus">{{messages.messagePrivesRecus}}</div>
+      <div ng-repeat="messages in MessagesPrivesRecus">{{messages.message}}</div>
       <input type="text" ng-model="texteduMessage"/>
       <button type="submit" class="btn btn-success">Send message to {{amiMessages._id}}</button>
     </div>

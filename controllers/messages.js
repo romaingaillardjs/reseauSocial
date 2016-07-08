@@ -53,15 +53,19 @@ exports.postMessagePrives = function(req, res, next) {
          
 
   console.log(  req.body.id + req.user.id )
-
+      var data = [];
 
 // , messagePrivesEnvoyes : { recepteur : req.user.id }
-    User.find( { _id : req.body.id  }, function(err, user) {
-                console.log(user)
-              
-            });  
-
-              return res.send({ msg:"vous avez envoyé un message prive à cette personne"})
+    User.find( { _id : req.body.id }, function(err, user) {
+        for (var i = 0; i < user[0].messagePrivesEnvoyes.length ; i++) {
+          if (user[0].messagePrivesEnvoyes[i].recepteur == req.user.id) {
+              data.push(user[0].messagePrivesEnvoyes[i])
+          }; 
+        };
+        console.log(data)
+        return res.send(data)
+    });
+    
   }
 
         

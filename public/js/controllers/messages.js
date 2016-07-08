@@ -1,5 +1,8 @@
 angular.module('MyApp')
-  .controller('MessagesCtrl', function($scope, $window, Contact, Search, Message) {
+  .controller('MessagesCtrl', function($scope, $rootScope, $window, Contact, Search, Message) {
+
+
+
     $scope.envoyerMessagePrives = function (user_id, message) {
       Contact.postMessagePrives(user_id, message)
         .then(function(response) {
@@ -13,12 +16,18 @@ angular.module('MyApp')
           };
         });
     };
-    $scope.listeAmis = function () {
-      $scope.amis = angular.fromJson($window.localStorage.user).ami
-      console.log($scope.amis)
-          return $scope.amis 
+
+    $scope.listeAmis = function (data) {
+        console.log(angular.fromJson($window.localStorage.user).ami)
+        Search.searchAmisById(data).success(function (data) {
+        $scope.amis = data
+            
+      }).error(function (data) {
+        console.log(data)
+      });
+        return $scope.amis
       };
-    $scope.listeAmis()
+    $scope.listeAmis(angular.fromJson($window.localStorage.user).ami)
 
     $scope.voirAmisMessages = function (id) {
       console.log(id)
