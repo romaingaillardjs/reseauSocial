@@ -40,7 +40,6 @@ angular.module('MyApp', ['ngRoute', 'ngSanitize', 'satellizer'])
       .when('/monProfil', {
         templateUrl: 'partials/monProfil.html',
         controller: 'MonProfilCtrl',
-        controllerAs:'toto',
         resolve: { loginRequired: loginRequired }     
       })
       .when('/modifierProfil', {

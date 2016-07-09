@@ -26,18 +26,20 @@
           </a>
         </li>
       </ul>
-      <form class="navbar-form navbar-left">
-        <div class="form-group"> <input type="text" class="form-control" placeholder="Search" ng-model='search'> </div>
-        <ul class="list-group" ng-if="isAuthenticated()">
-          <li class="list-group-item" ng-show="search" ng-repeat="i in items | filter:search">
+      <form class="navbar-form navbar-left" >
+        <div class="form-group"> 
+          <input type="search" class="form-control" placeholder="Search" data-ng-model="search.name" required ng-focus="focus()"> 
+        <ul class="list-group" ng-if="isAuthenticated();search.name;"  ng-message="required" style="position:absolute">
+          <li class="list-group-item" ng-show="search" data-ng-repeat="i in items | filter:search:strict">
             <a ng-click="viewProfil(i._id)"> <img ng-src="{{i.image}}" />
               <p>{{i.name}}</p>
             </a>
           </li>
         </ul>
+        </div>
       </form>
       <ul ng-if="isAuthenticated()" class="nav navbar-nav navbar-right">
-        <li class="dropdown">
+        <li class="dropdown" >
           <a href="#" data-toggle="dropdown" class="navbar-avatar dropdown-toggle"> <img ng-src="{{currentUser.picture || currentUser.gravatar}}"> {{currentUser.name || currentUser.email || currentUser.id}} <i class="caret"></i> </a>
           <ul class="dropdown-menu">
             <li><a href="/account">My Account</a></li>

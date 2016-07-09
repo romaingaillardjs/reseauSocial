@@ -1,6 +1,5 @@
 angular.module('MyApp')
   .controller('LoginCtrl', function($scope, $rootScope, $location, $window, $auth) {
-    
     $scope.login = function() {
       $auth.login($scope.user)
         .then(function(response) {

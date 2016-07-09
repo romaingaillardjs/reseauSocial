@@ -10,6 +10,13 @@ angular.module('MyApp')
     $scope.isAuthenticated = function() {
       return $auth.isAuthenticated();
     };
+    $scope.focus = function(){
+ 
+    }
+    
+    $scope.blur = function(){
+      $scope.search.name = '';
+    }
     
     $scope.logout = function() {
       $auth.logout();
@@ -27,6 +34,7 @@ angular.module('MyApp')
       return Search.searchById(id).success(function (data) {
         $rootScope.userList = data;
         $location.path('/profil/'+data.name)
+        $scope.blur()
       })
     };
     $scope.nbnotifications = function (data) {

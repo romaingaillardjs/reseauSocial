@@ -4,18 +4,58 @@
       <div class="panel">
         <div class="panel-body">
           <h3>Heading</h3> <img src="http://www.babelio.com/users/AVT_Anonyme_7683.jpeg">
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p> <span class="md-title">{{ul.selected[1].game[0].name}}</span> <span class="md-subhead ">Cash Price : {{ul.selected[1].game[0].price}}</span>
-          <div class="list-group">
-            <a href="#" class="list-group-item active">
-              <h4 class="list-group-item-heading">messages</h4>
-              <p class="list-group-item-text"> </p>
-              <p class="list-group-item-text"> </p>
-              <p class="list-group-item-text">...</p>
-              <p class="list-group-item-text">...</p>
-            </a>
-          </div> <a href="#" role="button" class="btn btn-default">View details</a> </div>
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p> <span class="md-title">{{user.name}}</span> <span class="md-subhead ">
+          <div ng-repeat="lesmessage in user.messagePublicsRecus" class="list-group">
+              <h4 class="list-group-item-heading">{{lesmessage.de}}</h4>
+              <p class="list-group-item-text">{{lesmessage.message}}</p>
+          </div>
+          <button ng-click="ajouterAmi(user)" class="btn btn-default">Ajouter{{user._id}}</button>
+          <form name="myForm">
+            <label for="repeatSelect"> Repeat select: </label>
+            <select name="repeatSelect" id="repeatSelect" 
+              ng-model="userModel">
+              <option ng-repeat="option in userlist" value="{{option.id}}">{{option.name}}</option>
+            </select>
+          </form>
+          <tt>model = {{userModel}}</tt>
+          <button ng-click="recomanderAmi(user._id, userModel)" class="btn btn-default">Recommander à {{userModel}}</button>
+          <button ng-click="confirmerAmi(user._id)" class="btn btn-default">confirmer Ami{{user._id}}</button>
+        </div>
       </div>
     </div>
+  </div>
+</div>
+<div class="container">
+  <div class="panel">
+    <div class="panel-heading">
+      <h3 class="panel-title">Contact Form</h3>
+    </div>
+    <div class="panel-body">
+      <div ng-if="messages.error" role="alert" class="alert alert-danger">
+        <div ng-repeat="error in messages.error">{{error.msg}}</div>
+      </div>
+      <div ng-if="messages.success" role="alert" class="alert alert-success">
+        <div ng-repeat="success in messages.success">{{success.msg}}</div>
+      </div>
+      <form ng-submit="envoyerMessagePublic(user._id,message)" class="form-horizontal">
+        <div class="form-group">
+          <label for="message" class="col-sm-2">Body</label>
+          <div class="col-sm-8">
+            <textarea name="message" id="message" rows="7" class="form-control" ng-model="message"></textarea>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-8">
+            <button type="submit" class="btn btn-success">Send message to {{user._id}}</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="container">AMIS
+  <div class="panel" ng-repeat="ami in amis" ng-click="viewProfil(ami.id)">
+    <h4 class="list-group-item-heading">{{ami.name}}</h4>
   </div>
 </div>
      

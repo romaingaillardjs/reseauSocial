@@ -1,79 +1,60 @@
 angular.module('MyApp')
-.controller('MonProfilCtrl',['$scope', '$timeout', 'userService','$log','$q', function($scope, $timeout, userService, $log,$q) {
-  $scope.alert = '';
+.controller('MonProfilCtrl', function($scope, $rootScope, $location, $window, $auth, $routeParams, Search, Amis, Message ) {
+   $scope.user = $rootScope.userList;
+    $scope.items = $rootScope.items;
 
-  var that = this;
+    $scope.ajouterAmi = function  (user) {
+        amiAjoute = user
+        amiAjoutant = angular.fromJson($window.localStorage.user)
 
-    that.selected     = null;
-    that.users        = [ ];
-    that.selectUser   = selectUser;
- 
-    that.makeContact  = makeContact;
-
-
-    // Load all registered users
-
-    userService
-          .loadAllUsers()
-          .then( function( users ) {
-            that.users    = [].concat(users);
-            that.selected = users[0];
-          });
-
-    // *********************************
-    // Internal methods
-    // *********************************
-
-    /**
-     * Hide or Show the 'left' sideNav area
-     */
-
-
-    /**
-     * Select the current avatars
-     * @param menuId
-     */
-    var selectUser = function(user) {
-      // body...
-      that.selected = angular.isNumber(user) ? $scope.users[user] : user;
-    }
-
-    /**
-     * Show the Contact view in the bottom sheet
-     */
-    function makeContact(selectedUser) {
-
-        $mdBottomSheet.show({
-          controllerAs  : "cp",
-          templateUrl   : './src/users/view/contactSheet.html',
-          controller    : [ '$mdBottomSheet', ContactSheetController],
-          
-          
-        }).then(function(clickedItem) {
-          $log.debug( clickedItem.name + ' clicked!');
-        });
-
-        /**
-         * User ContactSheet controller
-         */
-        function ContactSheetController( $scope,$mdBottomSheet ) {
-          this.user = selectedUser;
-          this.actions = [
-            { name: 'Phone'       , icon: 'phone'       , icon_url: 'assets/svg/phone.svg'},
-            { name: 'Twitter'     , icon: 'twitter'     , icon_url: 'assets/svg/twitter.svg'},
-            { name: 'Google+'     , icon: 'google_plus' , icon_url: 'assets/svg/google_plus.svg'},
-            { name: 'Hangout'     , icon: 'hangouts'    , icon_url: 'assets/svg/hangouts.svg'}
-          ];
-          $scope.contactUser = function(action) {
-
-        var clickedItem = actions[action];
-          $mdBottomSheet.hide();
-            // The actually contact process has not been implemented...
-            // so just hide the bottomSheet
-
+      Amis.AjouterAmi(amiAjoutant, amiAjoute)
+      .success(function  (data) {
+        console.log(data)
+      })
+      .error(function  (data) {
+        console.log(data)
+      })    
+    };  
+    $scope.userlist = $rootScope.items;
+    $scope.recomanderAmi = function (idArecommande, idcible) {
+        Amis.recomanderAmi(idArecommande, idcible)
+        .success(function  (data) {
+            console.log(data)
+        })
+        .error(function  (data) {
+            console.log(data)
+        })
+        
+    }; 
+     $scope.envoyerMessagePublic = function (user_id, message) {
+      Message.postMessagePublics(user_id, message)
+        .then(function(response) {
+          $scope.messages = {
+            success: [response.data]
           };
-        }
-    }
+        })
+        .catch(function(response) {
+          $scope.messages = {
+            error: Array.isArray(response.data) ? response.data : [response.data]
+          };
+        });
+    };
 
+    $scope.listeAmis = function (data) {
+        Search.searchAmisById(data).success(function (data) {
+        $scope.amis = data
+            
+      }).error(function (data) {
+        console.log(data)
+      });
+        return $scope.amis
+      };
+    $scope.listeAmis($scope.user.ami)
+        $scope.viewProfil = function(id) {
+      return Search.searchById(id).success(function (data) {
+        $rootScope.userList = data;
+        $location.path('/profil/'+data.name)
+      })
+    };
 
-}])
+})
