@@ -1,6 +1,7 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-sm-10">
+  <div class="col-sm-2 col-xs-1"></div>
+    <div class="col-sm-8 col-xs-10">
       <div class="panel">
         <div class="panel-body">
           <h3>Heading</h3> <img src="http://www.babelio.com/users/AVT_Anonyme_7683.jpeg">
@@ -9,9 +10,9 @@
               <h4 class="list-group-item-heading">{{lesmessage.de}}</h4>
               <p class="list-group-item-text">{{lesmessage.message}}</p>
           </div>
-          <button ng-click="ajouterAmi(user)" class="btn btn-default">Ajouter{{user._id}}</button>
+          <button ng-show="ajouterAmis" ng-click="ajouterAmi(user)" class="btn btn-default">Ajouter{{user._id}}</button>
           <form name="myForm">
-            <label for="repeatSelect"> Repeat select: </label>
+            <label for="repeatSelect"> recommander a </label>
             <select name="repeatSelect" id="repeatSelect" 
               ng-model="userModel">
               <option ng-repeat="option in userlist" value="{{option.id}}">{{option.name}}</option>
@@ -23,6 +24,7 @@
         </div>
       </div>
     </div>
+    <div class="col-sm-2 col-xs-1"></div>
   </div>
 </div>
 <div class="container">

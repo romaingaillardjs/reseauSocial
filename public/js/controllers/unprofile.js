@@ -1,9 +1,21 @@
 angular.module('MyApp')
 	.controller('ProfilCtrl', function($scope, $rootScope, $location, $window, $auth, $routeParams, Search, Amis, Message) {
-        
+    $scope.ajouterAmis = true;
     $scope.user = $rootScope.userList;
     $scope.items = $rootScope.items;
 
+    console.log($scope.user.ami[0].id)
+    console.log($rootScope.currentUser._id)
+    if ($scope.user.ami) {
+      for (var i = 0; i < $scope.user.ami.length; i++) 
+      {
+        if ($scope.user.ami[''+i+''].id == $rootScope.currentUser._id) 
+          {
+            $scope.ajouterAmis = false
+          }
+      };
+    };
+    
     $scope.ajouterAmi = function  (user) {
         amiAjoute = user
         amiAjoutant = angular.fromJson($window.localStorage.user)
