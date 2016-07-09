@@ -109,6 +109,17 @@ footer {
   background-color: transparent;
   color: #262626;
 }
+.navbar-default .navbar-nav > li.notificationexist > a {
+  border-bottom-color: red;
+  background-color: transparent;
+  color: #262626;
+}
+
+.navbar-default .navbar-nav .notification-exist{
+  background-color: red;
+  color: white;
+}
+
 
 /* Panels
 /* ------------------------- */

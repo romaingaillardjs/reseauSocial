@@ -6,14 +6,16 @@
      <div class="row">
     <div class="panel col-sm-4">
       amis
-      <div class="panel" ng-repeat="ami in amis"  ng-click="voirAmisMessages(ami.id)" >{{ami.name}}</div>
+      <div class="panel" ng-repeat="ami in amis"  ng-click="voirAmisMessages(ami.id)">{{ami.name}}</div>
     </div>
     <div  class="panel col-sm-8">
       messages
       <div ng-repeat="messages in MessagesPrivesRecus">{{messages.message}}</div>
-      <input type="text" ng-model="texteduMessage"/>
-      <button type="submit" class="btn btn-success">Send message to {{amiMessages._id}}</button>
+      
     </div>
+    <input type="text" ng-model="texteduMessage"/>
+      <button type="submit" ng-click="envoyerMessagePrives(select,texteduMessage)" class="btn btn-success">Send message to {{select}}{{texteduMessage}}</button>
+
 
   </div>
    

@@ -40,8 +40,8 @@ exports.postMessagePrives = function(req, res, next) {
    User.findOne({ _id : req.user.id }, function(err, user) {
               user.messagePrivesEnvoyes.push(
                 {
-                "a":""+req.body.user_id+"",
-                "id":""+req.body.message+"",
+                "recepteur":""+req.body.user_id+"",
+                "message":""+req.body.message+"",
                 }
               )
               user.save()
@@ -49,23 +49,22 @@ exports.postMessagePrives = function(req, res, next) {
               return res.send({ msg:"vous avez envoyé un message prive à cette personne"})
         }
 
-        exports.getMessagePrives = function(req, res, next) {
-         
-
+exports.getMessagePrives = function(req, res, next) {
   console.log(  req.body.id + req.user.id )
       var data = [];
-
-// , messagePrivesEnvoyes : { recepteur : req.user.id }
     User.find( { _id : req.body.id }, function(err, user) {
-        for (var i = 0; i < user[0].messagePrivesEnvoyes.length ; i++) {
-          if (user[0].messagePrivesEnvoyes[i].recepteur == req.user.id) {
+        for (var i = 0; i < user[0].messagePrivesEnvoyes.length ; i++) 
+        {
+          if (user[0].messagePrivesEnvoyes[i].recepteur == req.user.id) 
+          {
+              
               data.push(user[0].messagePrivesEnvoyes[i])
-          }; 
+              
+          }
         };
         console.log(data)
         return res.send(data)
-    });
-    
-  }
-
+    }); 
+}
+//user[0].messagePrivesEnvoyes[i].push({vue:"true"})
         

@@ -82,7 +82,7 @@ app.post('/recomanderAmi', userController.ensureAuthenticated, amisController.re
 app.post('/confirmerAmi', userController.ensureAuthenticated, amisController.confirmerAmi);
 app.post('/postMessagePublics', userController.ensureAuthenticated, messagesController.postMessagePublics);
 app.post('/postMessagePrives', userController.ensureAuthenticated, messagesController.postMessagePrives);
-app.post('/getMessagePrives', userController.ensureAuthenticated, messagesController.getMessagePrives);
+app.post('/getMessagesPrives', userController.ensureAuthenticated, messagesController.getMessagePrives);
 
 app.get('*', function(req, res) {
   res.redirect('/#' + req.originalUrl);

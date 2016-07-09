@@ -119,6 +119,7 @@ exports.confirmerAmi = function  (req, res, next) {
         }
       }
   );
+  return res.send({ msg:"vous avez confirmé cette personne comme ami"})
 }
 exports.searchAmisById = function(req, res, next) {
 var local = [];

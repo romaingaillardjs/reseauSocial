@@ -1,5 +1,7 @@
 angular.module('MyApp')
-  .controller('HeaderCtrl', function($scope, $rootScope, $location, $window, $auth, $http,Search) {
+  .controller('HeaderCtrl', function($scope, $rootScope, $location, $window, $auth, $http, Search) {
+    
+    $scope.nbmessages = 3;
     
     $scope.isActive = function (viewLocation) {
       return viewLocation === $location.path();
@@ -26,7 +28,12 @@ angular.module('MyApp')
         $rootScope.userList = data;
         $location.path('/profil/'+data.name)
       })
-    };   
+    };
+    $scope.nbnotifications = function (data) {
+     return Search.searchNbNotification(data).success(function () {
+     })
+    };
+    $scope.nbnotifications(angular.fromJson($window.localStorage.user).demande_d_ajout)
   });
  
 

@@ -1,5 +1,5 @@
 angular.module('MyApp')
-	.controller('ProfilCtrl', function($scope, $rootScope, $location, $window, $auth, $routeParams, Search, Amis, Contact) {
+	.controller('ProfilCtrl', function($scope, $rootScope, $location, $window, $auth, $routeParams, Search, Amis, Message) {
         
     $scope.user = $rootScope.userList;
     $scope.items = $rootScope.items;
@@ -27,17 +27,8 @@ angular.module('MyApp')
         })
         
     }; 
-    $scope.confirmerAmi = function (id) {
-        Amis.confirmerAmi(id)
-        .success(function  (data) {
-            console.log(data)
-        })
-        .error(function  (data) {
-            console.log(data)
-        })     
-    }; 
      $scope.envoyerMessagePublic = function (user_id, message) {
-      Contact.postMessagePublics(user_id, message)
+      Message.postMessagePublics(user_id, message)
         .then(function(response) {
           $scope.messages = {
             success: [response.data]
