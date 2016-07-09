@@ -1,8 +1,8 @@
 <nav ng-controller="HeaderCtrl" class="navbar navbar-default navbar-static-top">
   <div class="container-fluid">
-    <div class="navbar-header">
+    <div class="navbar-header ">
       <button type="button" data-toggle="collapse" data-target="#navbar" class="navbar-toggle collapsed">
-        <span class="sr-only">Toggle navigation</span>
+        <span class="sr-only" >Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -11,6 +11,20 @@
     </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
+    <ul ng-if="isAuthenticated()" class="nav navbar-nav navbar-right">
+        <li class="dropdown" >
+          <a href="#" data-toggle="dropdown" class="navbar-avatar dropdown-toggle"> <img ng-src="{{currentUser.picture || currentUser.gravatar}}"> {{currentUser.name || currentUser.email || currentUser.id}} <i class="caret"></i> </a>
+          <ul class="dropdown-menu">
+            <li><a href="/account">My Account</a></li>
+            <li class="divider"></li>
+            <li><a href="#" ng-click="logout()" }>Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+      <ul ng-if="!isAuthenticated()" class="nav navbar-nav navbar-right">
+        <li ng-class="{ active: isActive('/login')}"><a href="/login">Log in</a></li>
+        <li ng-class="{ active: isActive('/signup')}"><a href="/signup">Sign up</a></li>
+      </ul>
       <ul class="nav navbar-nav">
         <li ng-class="{ active: isActive('/')}"><a href="/">Home</a></li>
         <li ng-class="{ active: isActive('/contact')}"><a href="/contact">Contact</a></li>
@@ -35,7 +49,7 @@
       <form class="navbar-form navbar-left" >
         <div class="form-group"> 
           <input type="search" class="form-control" placeholder="Search" data-ng-model="search.name" required ng-focus="focus()"> 
-        <ul class="list-group" ng-if="isAuthenticated();search.name;"  ng-message="required" style="position:absolute">
+        <ul class="list-group" ng-if="isAuthenticated();search.name;"  ng-message="required" >
           <li class="list-group-item" ng-show="search" data-ng-repeat="i in items | filter:search:strict">
             <a ng-click="viewProfil(i._id)"> <img ng-src="{{i.image}}" />
               <p>{{i.name}}</p>
@@ -44,20 +58,6 @@
         </ul>
         </div>
       </form>
-      <ul ng-if="isAuthenticated()" class="nav navbar-nav navbar-right">
-        <li class="dropdown" >
-          <a href="#" data-toggle="dropdown" class="navbar-avatar dropdown-toggle"> <img ng-src="{{currentUser.picture || currentUser.gravatar}}"> {{currentUser.name || currentUser.email || currentUser.id}} <i class="caret"></i> </a>
-          <ul class="dropdown-menu">
-            <li><a href="/account">My Account</a></li>
-            <li class="divider"></li>
-            <li><a href="#" ng-click="logout()" }>Logout</a></li>
-          </ul>
-        </li>
-      </ul>
-      <ul ng-if="!isAuthenticated()" class="nav navbar-nav navbar-right">
-        <li ng-class="{ active: isActive('/login')}"><a href="/login">Log in</a></li>
-        <li ng-class="{ active: isActive('/signup')}"><a href="/signup">Sign up</a></li>
-      </ul>
     </div>
   </div>
 </nav>

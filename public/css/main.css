@@ -121,6 +121,12 @@ footer {
 }
 
 
+@media (min-width: 800px) {
+.navbar-default .navbar-collapse .navbar-form .list-group{
+position:absolute;
+}
+
+
 /* Panels
 /* ------------------------- */
 
