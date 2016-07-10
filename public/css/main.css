@@ -122,7 +122,7 @@ footer {
 
 
 @media (min-width: 800px) {
-.navbar-default .navbar-collapse .navbar-form .list-group{
+.navbar-default .navbar-form .list-group{
 position:absolute;
 }
 

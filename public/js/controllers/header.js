@@ -8,8 +8,8 @@ angular.module('MyApp')
     $scope.test.focusout(function () {
       $timeout(function (){ 
         $scope.test.removeClass("in");
-        
-      }, 1000)  
+
+      }, 100)  
     });
     
     $scope.isActive = function (viewLocation) {
@@ -24,16 +24,19 @@ angular.module('MyApp')
     }
     
     $scope.blur = function(){
-      $scope.search.name = '';
-    }
-    
-   
+      $timeout(function ()
+        { 
+          $scope.test.removeClass("in");
+          $scope.search.name = '';
+          console.log('blur')
+        }, 100)  
+    }      
     $scope.collapsed = function(){
       $timeout(function ()
         { 
           $scope.test.removeClass("in");
           console.log('blur')
-        }, 1000)  
+        }, 100)  
     }
     
     $scope.logout = function() {
