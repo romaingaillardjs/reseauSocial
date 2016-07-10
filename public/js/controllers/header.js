@@ -27,7 +27,7 @@ angular.module('MyApp')
       $timeout(function ()
         { 
           $scope.test.removeClass("in");
-          $scope.search ? $scope.search.name = '' : '';
+           if ($scope.search) {$scope.search.name = ''};
           console.log('blur')
         }, 100)  
     }      
@@ -62,7 +62,7 @@ angular.module('MyApp')
      return Search.searchNbNotification(data).success(function () {
      })
     };
-    $window.localStorage.user ? $scope.nbnotifications(angular.fromJson($window.localStorage.user).demande_d_ajout) : '';
+    $scope.nbnotifications(angular.fromJson($window.localStorage.user).demande_d_ajout)
   });
  
 

@@ -10,6 +10,7 @@
     "async": "*",
     "bcrypt-nodejs": "*",
     "body-parser": "*",
+    "bootstrap": "*",
     "compression": "*",
     "cookie-parser": "*",
     "dotenv": "*",
