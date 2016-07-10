@@ -6,7 +6,7 @@ angular.module('MyApp')
           return $http.post('/profil', {id:data})
           .success(function(response) {
             console.log(response)
-          $window.localStorage.user = JSON.stringify(response.data.user);
+          $window.localStorage.user = JSON.stringify(response);
           console.log($window.localStorage.user)
         }).error(function  (data) {
           console.log(data)
