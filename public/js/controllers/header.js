@@ -2,6 +2,15 @@ angular.module('MyApp')
   .controller('HeaderCtrl', function($scope, $rootScope, $location, $window, $auth, $http,$timeout, Search) {
     
     $scope.nbmessages = 3;
+
+    angular.element(document.querySelector('#navbar'))
+    $scope.test = angular.element(document.querySelector('#navbar'));
+    $scope.test.focusout(function () {
+      $timeout(function (){ 
+        $scope.test.removeClass("in");
+        
+      }, 1000)  
+    });
     
     $scope.isActive = function (viewLocation) {
       return viewLocation === $location.path();
@@ -17,14 +26,14 @@ angular.module('MyApp')
     $scope.blur = function(){
       $scope.search.name = '';
     }
+    
+   
     $scope.collapsed = function(){
       $timeout(function ()
         { 
-          $scope.test = angular.element(document.querySelector('#navbar'));
           $scope.test.removeClass("in");
           console.log('blur')
-        }, 1000)
-      
+        }, 1000)  
     }
     
     $scope.logout = function() {
