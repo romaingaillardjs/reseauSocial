@@ -2,7 +2,7 @@ angular.module('MyApp')
   .controller('HeaderCtrl', function($scope, $rootScope, $location, $window, $auth, $http,$timeout, Search) {
     
     $scope.nbmessages = 3;
-
+console.log($window.localStorage.user)
     angular.element(document.querySelector('#navbar'))
     $scope.test = angular.element(document.querySelector('#navbar'));
     $scope.test.focusout(function () {
