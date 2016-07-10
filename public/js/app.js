@@ -6,7 +6,7 @@ angular.module('MyApp', ['ngRoute', 'ngSanitize', 'satellizer'])
     $routeProvider
       .when('/', {
         templateUrl: 'partials/home.html',
-        resolve: { skipIfAuthenticated: skipIfAuthenticated }
+        resolve: { loginRequired: loginRequired }
       })
       .when('/login', {
         templateUrl: 'partials/login.html',

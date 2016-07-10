@@ -1,16 +1,25 @@
 
 angular.module('MyApp')
-  .factory('Refresh', function($http,$rootScope,$window) {
-    return {
-      refresh: function(data) {
-          return $http.post('/profil', {id:data})
-          .success(function(response) {
-            console.log(response)
+.factory('Refresh', function($http,$rootScope,$window) {
+  return 
+  {
+    refresh: function(data) 
+    {
+      if ($window.localStorage.user) 
+      {
+        return 
+        $http.post('/profil', {id:data})
+        .success(function(response) 
+        {
+          console.log(response)
           $window.localStorage.user = JSON.stringify(response);
           console.log($window.localStorage.user)
         }).error(function  (data) {
           console.log(data)
         })
-      }
-    }  
-  });
+      }else{
+        return false
+      }      
+    }
+  }  
+});
