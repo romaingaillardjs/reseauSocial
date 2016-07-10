@@ -62,7 +62,7 @@ angular.module('MyApp')
      return Search.searchNbNotification(data).success(function () {
      })
     };
-    $scope.nbnotifications(angular.fromJson($window.localStorage.user).demande_d_ajout)
+    if ($window.localStorage.user) {$scope.nbnotifications(angular.fromJson($window.localStorage.user).demande_d_ajout)};
   });
  
 
