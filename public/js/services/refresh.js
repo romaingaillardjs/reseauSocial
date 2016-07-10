@@ -1,13 +1,10 @@
 
 angular.module('MyApp')
 .factory('Refresh', function($http,$rootScope,$window) {
-  /* return 
-  {
-    refresh: function(data) 
-    {
-      if ($window.localStorage.user) 
-      {
-        return 
+  return {
+    refresh: function (data) {
+      return 
+      if ($window.localStorage.user) {
         $http.post('/profil', {id:data})
         .success(function(response) 
         {
@@ -17,9 +14,7 @@ angular.module('MyApp')
         }).error(function  (data) {
           console.log(data)
         })
-      }else{
-        return false
-      }      
+      }  
     }
-  }*/
+  }
 });

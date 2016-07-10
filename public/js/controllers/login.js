@@ -4,7 +4,7 @@ angular.module('MyApp')
       $auth.login($scope.user)
         .then(function(response) {
           $rootScope.currentUser = response.data.user;
-          $window.localStorage.user = JSON.stringify(response.data.user);
+          $window.localStorage.user = response.data.user;
           console.log($window.localStorage.user)
           $location.path('/account');
         })

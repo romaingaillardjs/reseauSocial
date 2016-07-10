@@ -2,7 +2,8 @@ angular.module('MyApp')
   .controller('HeaderCtrl', function($scope, $rootScope, $location, $window, $auth, $http,$timeout, Search) {
     
     $scope.nbmessages = 3;
-console.log($window.localStorage.user)
+    console.log($window.localStorage.user)
+
     angular.element(document.querySelector('#navbar'))
     $scope.test = angular.element(document.querySelector('#navbar'));
     $scope.test.focusout(function () {
@@ -62,7 +63,10 @@ console.log($window.localStorage.user)
      return Search.searchNbNotification(data).success(function () {
      })
     };
-    if ($window.localStorage.user) {$scope.nbnotifications(angular.fromJson($window.localStorage.user).demande_d_ajout)};
+    if ($window.localStorage.user) {
+      $scope.nbnotifications($window.localStorage.user).demande_d_ajout
+      $scope.user = $window.localStorage.user
+    };
   });
  
 

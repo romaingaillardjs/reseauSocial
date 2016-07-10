@@ -1,7 +1,7 @@
 angular.module('MyApp')
 	.factory('Search', function($http, $rootScope) {
   	return {
-  		searchRequest: function(data) {
+  		searchRequest: function() {
     		  return $http.get('/search')
           .success(function (data) {
             console.log(data)
@@ -38,7 +38,6 @@ angular.module('MyApp')
             .error(function (data) 
             {
             $rootScope.nbnotification = '';
-            console.log(data) 
             }); 
       }
     }

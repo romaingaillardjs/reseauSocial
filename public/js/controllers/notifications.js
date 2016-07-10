@@ -13,7 +13,7 @@ angular.module('MyApp')
         });
       return $scope.amis
     };
-    $scope.listeAmis(angular.fromJson($window.localStorage.user).demande_d_ajout)
+    $scope.listeAmis($window.localStorage.user.demande_d_ajout)
     $scope.nbnotifications = function (data) {
      return Search.searchNbNotification(data).success(function () {
      })
