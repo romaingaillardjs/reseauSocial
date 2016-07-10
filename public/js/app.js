@@ -1,5 +1,5 @@
 angular.module('MyApp', ['ngRoute', 'ngSanitize', 'satellizer'])
-  .config(function($routeProvider, $locationProvider, $authProvider, $window) {
+  .config(function($routeProvider, $locationProvider, $authProvider) {
 
     $locationProvider.html5Mode(true);
 

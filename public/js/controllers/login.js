@@ -5,6 +5,7 @@ angular.module('MyApp')
         .then(function(response) {
           $rootScope.currentUser = response.data.user;
           $window.localStorage.user = JSON.stringify(response.data.user);
+          console.log($window.localStorage.user)
           $location.path('/account');
         })
         .catch(function(response) {

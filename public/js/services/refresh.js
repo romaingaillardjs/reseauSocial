@@ -6,8 +6,8 @@ angular.module('MyApp')
           return $http.post('/profil', {id:data})
           .success(function(response) {
             console.log(response)
-          $rootScope.currentUser = response;
-          $window.localStorage.user = JSON.stringify(response);
+          $window.localStorage.user = response;
+          console.log($window.localStorage.user)
         }).error(function  (data) {
           console.log(data)
         })
