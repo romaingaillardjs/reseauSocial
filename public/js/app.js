@@ -98,7 +98,7 @@ angular.module('MyApp', ['ngRoute', 'ngSanitize', 'satellizer'])
   })
   .run(function($rootScope, $window) {
     if ($window.localStorage.user) {
-      console.log($window.localStorage.user)
+      console.log(angular.fromJson($window.localStorage.user))
       $rootScope.currentUser = JSON.parse($window.localStorage.user);
     }
   });
