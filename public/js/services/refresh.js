@@ -1,7 +1,7 @@
 
 angular.module('MyApp')
 .factory('Refresh', function($http,$rootScope,$window) {
-  return 
+  /* return 
   {
     refresh: function(data) 
     {
@@ -21,5 +21,5 @@ angular.module('MyApp')
         return false
       }      
     }
-  }  
+  }*/
 });
