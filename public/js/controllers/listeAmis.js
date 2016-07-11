@@ -14,9 +14,9 @@ angular.module('MyApp')
     $scope.get_friends_list($scope.user.ami)
     
     $scope.viewProfil = function(id) {
-      return Amis.viewProfil.success(function (data) {
-        $rootScope.userList = data;
-        $location.path('/profil/'+data.name)
+      return Amis.viewProfil(id).success(function (data) {
+        $rootScope.unProfil = data.user;
+        $location.path('/profil/'+data.user.name)
       })
     }; 
 })

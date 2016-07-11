@@ -1,4 +1,4 @@
-<nav ng-controller="HeaderCtrl" class="navbar navbar-default navbar-static-top col-xs-12">
+<nav ng-if="currentUser" ng-controller="HeaderCtrl" class="navbar navbar-default navbar-static-top col-xs-12">
   <div class="navbar-header row col-sm-2">
     <a href="/" class="navbar-brand col-xs-6 col-sm-3">Project name</a>
       <button type="button" data-toggle="collapse" data-target="#navbar" class="navbar-toggle collapsed" ng-blur="collapsed()">
@@ -8,10 +8,6 @@
         <span class="icon-bar"></span>
       </button>
     </div>
-  <ul ng-if="!isAuthenticated()" class="nav navbar-nav navbar-right col-sm-1">
-        <li ng-class="{ active: isActive('/login')}"><a href="/login">Log in</a></li>
-        <li ng-class="{ active: isActive('/signup')}"><a href="/signup">Sign up</a></li>
-      </ul>
     <div id="navbar" class="navbar-collapse collapse col-sm-6">
       <ul class="nav navbar-nav">
         <li ng-class="{ active: isActive('/')}"><a href="/">Home</a></li>
@@ -60,5 +56,4 @@
       </form>  
   </div>
 </div> 
-      
 </nav>

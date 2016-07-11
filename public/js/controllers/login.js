@@ -5,7 +5,6 @@ angular.module('MyApp')
         .then(function(response) {
           console.log(response.data.user)
           console.log(angular.fromJson(response.data.user))
-          $rootScope.currentUser = response.data.user;
           $window.localStorage.user = JSON.stringify(response.data.user);
           $rootScope.currentUser = JSON.parse($window.localStorage.user);
           $rootScope.login = true

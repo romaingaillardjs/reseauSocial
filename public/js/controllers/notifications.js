@@ -1,5 +1,5 @@
 angular.module('MyApp')
-  .controller('NotificationsCtrl', function($scope, $rootScope, $window, Search, Amis, Notifications) {
+  .controller('NotificationsCtrl', function($scope, $rootScope, $window, $location,Search, Amis, Notifications) {
 
     $scope.user = $rootScope.currentUser
     console.log($scope.user)
@@ -36,11 +36,21 @@ angular.module('MyApp')
       }
       $scope.nbnotifications($scope.user.demande_d_ajout)
 
-    
+ $scope.miseAjourProfil = function(id) {
+      return Amis.viewProfil(id).success(function (data) {
+        $rootScope.currentUser = data.user;
+        $window.localStorage.user = JSON.stringify(data.user);
+        console.log($scope.user)
+        $scope.nbnotifications($rootScope.currentUser.demande_d_ajout)
+        $scope.listeAmis($rootScope.currentUser.demande_d_ajout)
+      })
+    }; 
+  
     $scope.confirmerAmi = function (id) {
       Amis.confirmerAmi(id)
       .success(function  (data) {
           console.log(data)
+         $scope.miseAjourProfil($scope.user._id)
       })
       .error(function  (data) {
           console.log(data)

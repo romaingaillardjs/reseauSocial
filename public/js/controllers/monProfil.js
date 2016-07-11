@@ -54,7 +54,7 @@ angular.module('MyApp')
     $scope.listeAmis($scope.user.ami)
         $scope.viewProfil = function(id) {
       return Search.search_By_Id(id).success(function (data) {
-        $rootScope.userList = data;
+        $rootScope.unProfil = data;
         $location.path('/profil/'+data.name)
       })
     };

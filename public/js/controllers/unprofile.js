@@ -58,7 +58,7 @@ angular.module('MyApp')
     $scope.viewProfil = function(id) {
       return Search.search_By_Id(id).success(function (data) {
         $rootScope.unProfil = data.user;
-        $location.path('/profil/'+data.name)
+        $location.path('/profil/'+data.user.name)
       })
     };
 
