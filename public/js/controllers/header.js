@@ -56,10 +56,12 @@ angular.module('MyApp')
     $scope.searchRequest();
     $scope.viewProfil = function(id) {
       return Search.search_By_Id(id).success(function (data) {
-        console.log(data.user)
-        $rootScope.unProfil = data.user;
-          $location.path('/profil/'+data.user.name)
-          $scope.blur()
+        console.log(JSON.stringify(data))
+        $rootScope.unProfil = data;
+        console.log($rootScope.unProfil._id)
+        $window.localStorage.lastPrifilView = $rootScope.unProfil._id
+        $location.path('/profil/'+data.name)
+        $scope.blur()
       })
     };
     $scope.nbnotifications = function (data) {

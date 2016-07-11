@@ -2,7 +2,7 @@ angular.module('MyApp')
 	.controller('ProfilCtrl', function($scope, $rootScope, $location, $window, $auth, $routeParams, Search, Amis, Message) {
     $scope.ajouterAmis = true;
     console.log($rootScope.unProfil)
-    $scope.user = $rootScope.unProfil;
+    
     $scope.items = $rootScope.items;
 
     $scope.ajouterAmi = function  (user) {
@@ -44,9 +44,7 @@ angular.module('MyApp')
 
     $scope.listeAmis = function (data) {
       if(data){ Search.search_List_By_Id(data).success(function (data) {
-        $scope.amis = data
-       
-            
+        $scope.amis = data     
       }).error(function (data) {
         console.log(data)
       });
@@ -56,9 +54,19 @@ angular.module('MyApp')
     if ($scope.user) {$scope.listeAmis($scope.user.ami)}; 
 
     $scope.viewProfil = function(id) {
-      return Search.search_By_Id(id).success(function (data) {
-        $rootScope.unProfil = data.user;
-        $location.path('/profil/'+data.user.name)
+      console.log('je suis la'+id)
+      return Search.search_By_Id(id)
+      .success(function (data) {
+        
+         data = JSON.stringify(data)
+         data = JSON.parse(data)
+         console.log('je suis la'+ data)
+        $rootScope.unProfil = data;
+        
+        $window.localStorage.lastPrifilView = $rootScope.unProfil._id
+        $location.path('/profil/'+data.name)
+      }).error(function  (data) {
+        console.log(data)
       })
     };
 
@@ -76,5 +84,9 @@ angular.module('MyApp')
     };
     if ($scope.user) {$scope.isFriends()}
 
-
+    if ($rootScope.unProfil==undefined) {
+    $scope.viewProfil($rootScope.unProfilId)
+    }else{
+      $scope.user = $rootScope.unProfil;
+    }
 });
