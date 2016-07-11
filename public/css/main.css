@@ -303,6 +303,7 @@ textarea {
 .box {
   position: relative;
   background: white;
+  color:black;
     height: 64px;
     transition: all .15s ease-in-out;
 }
