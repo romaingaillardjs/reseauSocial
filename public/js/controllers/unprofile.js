@@ -1,21 +1,10 @@
 angular.module('MyApp')
 	.controller('ProfilCtrl', function($scope, $rootScope, $location, $window, $auth, $routeParams, Search, Amis, Message) {
     $scope.ajouterAmis = true;
-    $scope.user = $rootScope.userList;
+    console.log($rootScope.unProfil)
+    $scope.user = $rootScope.unProfil;
     $scope.items = $rootScope.items;
 
-    console.log($scope.user.ami[0].id)
-    console.log($rootScope.currentUser._id)
-    if ($scope.user.ami) {
-      for (var i = 0; i < $scope.user.ami.length; i++) 
-      {
-        if ($scope.user.ami[''+i+''].id == $rootScope.currentUser._id) 
-          {
-            $scope.ajouterAmis = false
-          }
-      };
-    };
-    
     $scope.ajouterAmi = function  (user) {
         amiAjoute = user
         amiAjoutant = angular.fromJson($window.localStorage.user)
@@ -39,7 +28,7 @@ angular.module('MyApp')
         })
         
     }; 
-     $scope.envoyerMessagePublic = function (user_id, message) {
+    $scope.envoyerMessagePublic = function (user_id, message) {
       Message.postMessagePublics(user_id, message)
         .then(function(response) {
           $scope.messages = {
@@ -54,7 +43,7 @@ angular.module('MyApp')
     };
 
     $scope.listeAmis = function (data) {
-        Search.searchAmisById(data).success(function (data) {
+        Search.search_List_By_Id(data).success(function (data) {
         $scope.amis = data
             
       }).error(function (data) {
@@ -63,10 +52,27 @@ angular.module('MyApp')
         return $scope.amis
       };
     $scope.listeAmis($scope.user.ami)
-        $scope.viewProfil = function(id) {
-      return Search.searchById(id).success(function (data) {
+
+    $scope.viewProfil = function(id) {
+      return Search.search_By_Id(id).success(function (data) {
         $rootScope.userList = data;
         $location.path('/profil/'+data.name)
       })
     };
+
+    $scope.isFriends = function () {
+      if ($scope.user.ami) 
+      {
+        for (var i = 0; i < $scope.user.ami.length; i++) 
+        {
+          if ($scope.user.ami[''+i+''].id == $rootScope.currentUser._id) 
+          {
+              $scope.ajouterAmis = false
+          }
+        }
+      }
+    };
+    $scope.isFriends()
+
+
 });

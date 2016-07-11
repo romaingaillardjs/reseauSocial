@@ -1,8 +1,10 @@
 angular.module('MyApp')
-  .controller('HeaderCtrl', function($scope, $rootScope, $location, $window, $auth, $http,$timeout, Search) {
+  .controller('HeaderCtrl', function($scope, $rootScope, $location, $window, $auth, $http,$timeout, Search, Notifications) {
+
+    $scope.user = $rootScope.currentUser
     
     $scope.nbmessages = 3;
-    console.log($window.localStorage.user)
+    console.log($scope.user)
 
     angular.element(document.querySelector('#navbar'))
     $scope.test = angular.element(document.querySelector('#navbar'));
@@ -46,27 +48,25 @@ angular.module('MyApp')
       $location.path('/');
     };
     $scope.searchRequest = function() {
-      Search.searchRequest().success(function (data) {
+      Search.search_All_Ids().success(function (data) {
         $rootScope.items = data;
       });    
       return $rootScope.items;
     };  
     $scope.searchRequest();
     $scope.viewProfil = function(id) {
-      return Search.searchById(id).success(function (data) {
-        $rootScope.userList = data;
-        $location.path('/profil/'+data.name)
-        $scope.blur()
+      return Search.search_By_Id(id).success(function (data) {
+        console.log(data.user)
+        $rootScope.unProfil = data.user;
+          $location.path('/profil/'+data.user.name)
+          $scope.blur()
       })
     };
     $scope.nbnotifications = function (data) {
-     return Search.searchNbNotification(data).success(function () {
+     return Notifications.searchNbNotification(data).success(function () {
      })
     };
-    if ($window.localStorage.user) {
-      $scope.nbnotifications($window.localStorage.user).demande_d_ajout
-      $scope.user = $window.localStorage.user
-    };
+      //$scope.nbnotifications($scope.user)
   });
  
 

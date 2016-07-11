@@ -1,7 +1,9 @@
 angular.module('MyApp')
 .controller('MonProfilCtrl', function($scope, $rootScope, $location, $window, $auth, $routeParams, Search, Amis, Message ) {
-   $scope.user = $rootScope.userList;
+   $scope.user = $rootScope.currentUser;;
     $scope.items = $rootScope.items;
+
+    $scope.profile = $rootScope.currentUser;
 
     $scope.ajouterAmi = function  (user) {
         amiAjoute = user
@@ -41,7 +43,7 @@ angular.module('MyApp')
     };
 
     $scope.listeAmis = function (data) {
-        Search.searchAmisById(data).success(function (data) {
+        Search.search_List_By_Id(data).success(function (data) {
         $scope.amis = data
             
       }).error(function (data) {
@@ -51,7 +53,7 @@ angular.module('MyApp')
       };
     $scope.listeAmis($scope.user.ami)
         $scope.viewProfil = function(id) {
-      return Search.searchById(id).success(function (data) {
+      return Search.search_By_Id(id).success(function (data) {
         $rootScope.userList = data;
         $location.path('/profil/'+data.name)
       })
