@@ -63,10 +63,21 @@ angular.module('MyApp')
       })
     };
     $scope.nbnotifications = function (data) {
-     return Notifications.searchNbNotification(data).success(function () {
-     })
-    };
-      //$scope.nbnotifications($scope.user)
+     return Notifications.searchNbNotification(data)
+        .success(function (data) { 
+          console.log(data)
+           if (data.length > 0) { 
+              $rootScope.nbnotification = data.length
+            }else{
+              $rootScope.nbnotification = ''
+            }
+            console.log(data)    
+          })
+        .error(function (data) {
+          $rootScope.nbnotification = '';
+        }); 
+      }
+      $scope.nbnotifications($scope.user.demande_d_ajout)
   });
  
 

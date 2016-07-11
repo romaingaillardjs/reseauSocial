@@ -7,8 +7,10 @@ angular.module('MyApp')
           console.log(angular.fromJson(response.data.user))
           $rootScope.currentUser = response.data.user;
           $window.localStorage.user = JSON.stringify(response.data.user);
+          $rootScope.currentUser = JSON.parse($window.localStorage.user);
+          $rootScope.login = true
           
-          $location.path('/account');
+          $location.path('/');
         })
         .catch(function(response) {
           $scope.messages = {

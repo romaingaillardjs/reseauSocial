@@ -1,6 +1,6 @@
 angular.module('MyApp')
   .controller('MessagesCtrl', function($scope, $rootScope, $window, Contact, Message) {
-$scope.user = $rootScope.currentUser;;
+$scope.user = $rootScope.currentUser;
     $scope.envoyerMessagePrives = function (user_id, message) {
       Message.postMessagePrives(user_id, message)
         .then(function(response) {

@@ -43,19 +43,21 @@ angular.module('MyApp')
     };
 
     $scope.listeAmis = function (data) {
-        Search.search_List_By_Id(data).success(function (data) {
+      if(data){ Search.search_List_By_Id(data).success(function (data) {
         $scope.amis = data
+       
             
       }).error(function (data) {
         console.log(data)
       });
+      }
         return $scope.amis
       };
-    $scope.listeAmis($scope.user.ami)
+    if ($scope.user) {$scope.listeAmis($scope.user.ami)}; 
 
     $scope.viewProfil = function(id) {
       return Search.search_By_Id(id).success(function (data) {
-        $rootScope.userList = data;
+        $rootScope.unProfil = data.user;
         $location.path('/profil/'+data.name)
       })
     };
@@ -72,7 +74,7 @@ angular.module('MyApp')
         }
       }
     };
-    $scope.isFriends()
+    if ($scope.user) {$scope.isFriends()}
 
 
 });

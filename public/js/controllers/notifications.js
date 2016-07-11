@@ -22,6 +22,7 @@ angular.module('MyApp')
     $scope.nbnotifications = function (data) {
      return Notifications.searchNbNotification(data)
         .success(function (data) { 
+          console.log(data)
            if (data.length > 0) { 
               $rootScope.nbnotification = data.length
             }else{
@@ -33,6 +34,7 @@ angular.module('MyApp')
           $rootScope.nbnotification = '';
         }); 
       }
+      $scope.nbnotifications($scope.user.demande_d_ajout)
 
     
     $scope.confirmerAmi = function (id) {
