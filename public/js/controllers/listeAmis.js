@@ -15,8 +15,8 @@ angular.module('MyApp')
     
     $scope.viewProfil = function(id) {
       return Amis.viewProfil(id).success(function (data) {
-        $rootScope.unProfil = data.user;
-        $location.path('/profil/'+data.user.name)
+        $rootScope.unProfil = data;
+        $location.path('/profil/'+dataname)
       })
     }; 
 })
