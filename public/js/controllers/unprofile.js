@@ -58,8 +58,7 @@ angular.module('MyApp')
       return Search.search_By_Id(id)
       .success(function (data) {
         
-         data = JSON.stringify(data)
-         data = JSON.parse(data)
+         data = JSON.stringify(data);
          console.log('je suis la'+ data)
         $rootScope.unProfil = data;
         
