@@ -57,23 +57,23 @@ exports.confirmerAmi = function  (req, res, next) {
                 $push: { ami: {"id":""+req.user.id+""} } 
               } , function() {})       
         }
-      }
+        return res.send({ msg:"vous avez confirmé cette personne comme ami"})
+      }  
   );
-  return res.send({ msg:"vous avez confirmé cette personne comme ami"})
 }
 exports.searchAmisById = function(req, res, next) {
-var local = [];
-console.log(req.body.idList)
-for (var i = 0; i < req.body.idList.length; i++) {
-  console.log(req.body.idList[i].id)
-  local.push(mongoose.Types.ObjectId(''+req.body.idList[i].id+''))
-};
-console.log(local)
+  var local = [];
+  console.log(req.body.idList)
+  for (var i = 0; i < req.body.idList.length; i++) {
+    console.log(req.body.idList[i].id)
+    local.push(mongoose.Types.ObjectId(''+req.body.idList[i].id+''))
+  };
+  console.log(local)
   User.find(
   {
     _id: { $in: local}
   }, function(err, UserList){
-    console.log(UserList);
+      console.log(UserList);
      return res.send(UserList)
     }
   )

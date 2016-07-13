@@ -24,7 +24,7 @@ var userController = require('./controllers/user'),
     membresController = require('./controllers/membres'),
     amisController = require('./controllers/amis'),
     messagesController = require('./controllers/messages'),
-    RecommandationController = require('./controllers/recommandations');
+    recommandationController = require('./controllers/recommandations');
 
 var app = express();
 
@@ -80,7 +80,8 @@ app.get('/search', userController.ensureAuthenticated, membresController.search)
 app.post('/profil',userController.ensureAuthenticated, membresController.searchById);
 app.post('/AmisById', userController.ensureAuthenticated, amisController.searchAmisById);
 app.post('/AjouterAmi', userController.ensureAuthenticated, amisController.AjouterAmi, contactController.ajouterAmiPost);
-app.post('/recomanderAmi', userController.ensureAuthenticated, RecommandationController.postRecommandation);
+app.post('/getRecommandation', userController.ensureAuthenticated, recommandationController.getRecommandation);
+app.post('/recomanderAmi', userController.ensureAuthenticated, recommandationController.postRecommandation);
 app.post('/confirmerAmi', userController.ensureAuthenticated, amisController.confirmerAmi);
 app.post('/postMessagePublics', userController.ensureAuthenticated, messagesController.postMessagePublics);
 app.post('/postMessagePrives', userController.ensureAuthenticated, messagesController.postMessagePrives);
@@ -88,6 +89,8 @@ app.post('/getMessagesPrives', userController.ensureAuthenticated, messagesContr
 app.post('/countNoViewMessage', userController.ensureAuthenticated, messagesController.countNoViewMessage);
 app.post('/searchNbMessages', userController.ensureAuthenticated, messagesController.searchNbMessages);
 app.post('/searchNbNotification', userController.ensureAuthenticated, userController.searchNbNotification);
+
+
 
 
 app.get('*', function(req, res) {

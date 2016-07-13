@@ -37,8 +37,8 @@
               <div class="box-content">
                 <div class="btn btn-danger"ng-show="ajouterAmis">vous devez etre ami avec cette personne pour la recommander</div> 
                 <form ng-if="!ajouterAmis" name="myForm"> <label for="repeatSelect"> recommander a </label> <select name="repeatSelect" id="repeatSelect" ng-model="select.data">
-                    <option ng-repeat="option in userlist" value="{{option._id}}">{{option.name}}</option>
-                  </select> <button ng-click="recomanderAmi(user._id, select.data)" class="btn btn-default">recommander+{{select.data}}</button>
+                    <option ng-repeat="option in userlist"  value={{option._id}}>{{option.name}}</option>
+                  </select> <button ng-click="recomanderAmi(user._id, select.data, user.name)" class="btn btn-default">recommander+{{select.data}}</button>
                 </form> </div>
             </section> <input type="radio" name="accordion" id="acc-close" /> 
           </nav>

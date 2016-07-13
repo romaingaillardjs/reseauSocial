@@ -43,18 +43,13 @@ exports.postMessagePrives = function(req, res, next) {
 }
 exports.getMessagePrives = function(req, res, next) {
   var Messages;
-   Message.update( 
+    Message.update( 
       { "emetteur" : req.body.id , "recepteur" : req.user.id },
       { "vu" : true} ,
       { multi: true },
       function(err, messages) {
         console.log(messages)
-        })
-    Message.find( 
-      { "emetteur" : req.body.id , "recepteur" : req.user.id }
-      , function(err, messages) {
-        console.log(messages)
-        })
+    })
     Message.find( 
       { 
         $or: [ { "emetteur" : req.body.id , "recepteur" : req.user.id },{ "emetteur" : req.user.id , "recepteur" : req.body.id } ]
@@ -62,8 +57,7 @@ exports.getMessagePrives = function(req, res, next) {
         function(err, messages) {
         console.log(messages)
         return res.send(messages)        
-        })
-
+    })
 }
 exports.countNoViewMessage = function(req, res, next) {
    Message.find( 

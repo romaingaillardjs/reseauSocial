@@ -29,7 +29,10 @@ exports.postRecommandation = function  (req, res, next) {
 			  ({
   		setRecommandation: req.user.id,
   		getRecommandation: req.body.idArecommande ,
-  		clientRecommandation: req.body.idcible
+  		clientRecommandation: req.body.idcible,
+      setRecommandationName: req.user.name,
+      getRecommandationName: req.body.idArecommandeName, 
+      clientRecommandationName: req.body.idcibleName 
 			  });
     		recommandation.save()
       };
@@ -38,3 +41,15 @@ exports.postRecommandation = function  (req, res, next) {
         }
       });
     }
+
+  exports.getRecommandation = function  (req, res, next) {
+  console.log(req.body.idArecommande + req.body.idcible)
+    Recommandation.find(
+        { 
+          $or: [ { "getRecommandation" : req.user.id  } , { "clientRecommandation" : req.user.id } ]
+        },
+          function(err, recommandations) {
+          console.log(recommandations)
+          return res.send(recommandations)        
+    })
+  };

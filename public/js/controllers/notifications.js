@@ -1,5 +1,5 @@
 angular.module('MyApp')
-  .controller('NotificationsCtrl', function($scope, $rootScope, $window, $location,Search, Amis, Notifications) {
+  .controller('NotificationsCtrl', function($scope, $rootScope, $window, $location,Search, Amis, Notifications, Recommandation) {
 
     $scope.user = $rootScope.currentUser
     console.log($scope.user)
@@ -19,6 +19,15 @@ angular.module('MyApp')
     console.log($scope.user)
     $scope.listeAmis($scope.user.demande_d_ajout)
 
+    $scope.getRecommandation = function (id) {
+      Recommandation.getRecommandation(id)
+        .success( function  (data) {
+          console.log(data)
+        }
+      )
+    }
+    $scope.getRecommandation($scope.user._id)
+
     $scope.nbnotifications = function (data) {
      return Notifications.searchNbNotification(data)
         .success(function (data) { 
@@ -26,12 +35,12 @@ angular.module('MyApp')
            if (data.length > 0) { 
               $rootScope.nbnotification = data.length
             }else{
-              $rootScope.nbnotification = ''
+              $rootScope.nbnotification = 0
             }
             console.log(data)    
           })
         .error(function (data) {
-          $rootScope.nbnotification = '';
+          $rootScope.nbnotification = 0;
         }); 
       }
       $scope.nbnotifications($scope.user.demande_d_ajout)

@@ -10,8 +10,14 @@ angular.module('MyApp')
      	AjouterAmi : function(amiAjoutant, amiAjoute) {
           return $http.post('/AjouterAmi',{ amiAjoutant : amiAjoutant, amiAjoute : amiAjoute})
       },
-      recomanderAmi : function(idArecommande, idcible) {
-          return $http.post('/recomanderAmi', {idArecommande:idArecommande, idcible:idcible})
+      recomanderAmi : function(idArecommande, idcible, idArecommandeName, idcibleName) {
+          return $http.post('/recomanderAmi', 
+          {
+            idArecommande : idArecommande, 
+            idcible : idcible, 
+            idArecommandeName : idArecommandeName, 
+            idcibleName : idcibleName
+          })
       },
       confirmerAmi : function(id) {
           return $http.post('/confirmerAmi', {id:id})

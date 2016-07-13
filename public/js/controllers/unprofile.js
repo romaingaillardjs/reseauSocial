@@ -25,8 +25,8 @@ angular.module('MyApp')
     	})   	
     };  
     
-    $scope.recomanderAmi = function (idArecommande, idcible) {
-        Amis.recomanderAmi(idArecommande, idcible)
+    $scope.recomanderAmi = function (idArecommande, idcible, idArecommandeName, idcibleName) {
+        Amis.recomanderAmi(idArecommande, idcible, idArecommandeName, idcibleName)
         .success(function  (data) {
             console.log(data)
         })

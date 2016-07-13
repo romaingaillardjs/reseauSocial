@@ -38,3 +38,43 @@
       
     </div>
   </div>
+
+  <div class="panel" ng-repeat="recommandation in recommandations" ng-click="viewProfil(ami.id)">
+    <div class="panel-heading">
+      <h3 class="panel-title">{{ami.titre}}</h3>
+    </div>
+      <div class="panel-body">
+
+        <div ng-if="messages.error" role="alert" class="alert alert-danger">
+          <div ng-repeat="error in messages.error">{{error.msg}}</div>
+        </div>
+        <div ng-if="messages.success" role="alert" class="alert alert-success">
+          <div ng-repeat="success in messages.success">{{success.msg}}</div>
+        </div>
+        <form ng-submit="sendContactForm()" class="form-horizontal">
+          <div class="form-group">
+            <div for="name" class="col-sm-2" ng-show="ami.status=='confirmé'"> vous etes amis avec cette personne</div>
+          </div>
+          <div class="form-group">
+            <div for="name" class="col-sm-2" ng-show="ami.status=='invitationEncours'"> invitation En cours ... </div>
+          </div>
+           <div class="form-group">
+            <div for="name" class="col-sm-2" ng-show="ami.status=='attenteAjout'||ami.status=='recomandéPar'">
+             <h3 style="cursor: pointer;" ng-bind-html=renderHtml(ami.status)>{{ami.status}}</h3>
+                          <h3 ng-show="amis.status=='recomandéPar'"> {{ami.recomandation}} </h3>
+                          <button class="success">accepter</button>
+                          <button class="md-primary"> refuser</button>
+                
+            </div>
+          <div id="id{{amis.index}}" class="FAQclose">
+              <div>{{recommandation.name}}</div> <img src="" {{amis.img}} ""> </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-8">
+              <button ng-click="confirmerAmi(ami._id)"class="btn btn-default">confirmer Ami{{ami._id}}</button>
+            </div>
+          </div>
+        </form>
+      
+    </div>
+  </div>
