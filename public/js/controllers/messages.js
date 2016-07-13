@@ -1,6 +1,7 @@
 angular.module('MyApp')
   .controller('MessagesCtrl', function($scope, $rootScope, $window, $timeout,$location, Contact, Message) {
 $scope.user = $rootScope.currentUser;
+
     $scope.envoyerMessagePrives = function (user_id, message) {
       Message.postMessagePrives(user_id, message)
         .then(function(response) {
@@ -22,41 +23,42 @@ $scope.user = $rootScope.currentUser;
       })
     };
     $scope.listeAmis($scope.user.ami).success(function (data) {
-     $scope.getnbNoViewMessage()
+    $scope.checkNbMessage()
     })
 
 
 
-$scope.nbNoViewMessage = function (id, i) {    
+$scope.nbNoViewMessage = function (id) {    
       return Message.countNoViewMessage(id)
           .success(function (data) {
-            $scope.i = i;
+            console.log(data)
           }) 
         } 
 
-$scope.getnbNoViewMessage = function () {  
-  for (var i = 0; i < $scope.user.ami.length ; i++) {     
-  $scope.unfonction = function  (data, i) {
-    console.log('c fait..'+ data + i)
-    $scope.amis[""+i+""].countNoViewMessages = data
-    console.log($scope.user.ami[""+i+""])
-      }
-        $scope.nbNoViewMessage($scope.user.ami[""+i+""].id, i)
+ $scope.getnbNoViewMessage = function (id,i) { 
+        $scope.nbNoViewMessage(id)
           .then(function (data) { 
             console.log(data)
-            $scope.unfonction(data.data.nbmessage, $scope.i)
-            
+            $scope.toto = i;
+            $scope.amis[""+$scope.toto+""].countNoViewMessages = data.data.nbmessage
         })
-      }        
-  }
+      } 
+$scope.checkNbMessage = function () {
+    for (var i = 0; i < $scope.amis.length ; i++) 
+    {     
+      $scope.getnbNoViewMessage($scope.amis[""+i+""]._id,i)
+    }
+}
+
       
-    $scope.voirAmisMessages = function (id) {
+    $scope.voirAmisMessages = function (id,name) {
       console.log(id)
       $scope.select = id
+      $scope.currentAmiMessageName = name;
       Message.getMessagesPrives(id).success(function (data) {
         console.log(data)
         $scope.MessagesPrivesRecus = data; 
-        $scope.getnbNoViewMessage()
+        $scope.checkNbMessage()
         })
           return $scope.MessagesPrivesRecus
       };

@@ -121,6 +121,7 @@ angular.module('MyApp', ['ngRoute', 'ngSanitize', 'satellizer'])
       }
     }
     function nbMessages ($auth, $rootScope,$window, Notifications) {
+      if ($auth.isAuthenticated()) {
     $rootScope.currentUser = JSON.parse($window.localStorage.user)
        return Notifications.searchNbMessages($rootScope.currentUser._id)
           .success(function (data) { 
@@ -138,6 +139,7 @@ angular.module('MyApp', ['ngRoute', 'ngSanitize', 'satellizer'])
         }); 
       
     }   
+  }
   })
   .run(function($rootScope, $window) {
     if ($window.localStorage.user) {

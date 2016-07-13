@@ -42,6 +42,7 @@ exports.postMessagePrives = function(req, res, next) {
       return res.send({ msg:"vous avez envoyé un message prive à cette personne"})
 }
 exports.getMessagePrives = function(req, res, next) {
+  var Messages;
    Message.update( 
       { "emetteur" : req.body.id , "recepteur" : req.user.id },
       { "vu" : true} ,
@@ -53,8 +54,16 @@ exports.getMessagePrives = function(req, res, next) {
       { "emetteur" : req.body.id , "recepteur" : req.user.id }
       , function(err, messages) {
         console.log(messages)
-        return res.send(messages)
-        })   
+        })
+    Message.find( 
+      { 
+        $or: [ { "emetteur" : req.body.id , "recepteur" : req.user.id },{ "emetteur" : req.user.id , "recepteur" : req.body.id } ]
+      },
+        function(err, messages) {
+        console.log(messages)
+        return res.send(messages)        
+        })
+
 }
 exports.countNoViewMessage = function(req, res, next) {
    Message.find( 

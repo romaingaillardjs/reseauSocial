@@ -1,30 +1,40 @@
 <div class="container">
   <div class="panel">
     <div class="panel-heading">
-      <h3 class="panel-title">Contact Form</h3> </div>
+      <h3 class="panel-title">MESSAGES</h3> </div>
+      <hr>
     <div class="panel-body">
      <div class="row">
-    <div class="panel col-sm-4">
+    <div class="panel col-sm-2">
       amis
-      <div class="panel" ng-repeat="ami in amis"  ng-click="voirAmisMessages(ami.id,ami.name)">{{ami.name}} <span ng-if="ami.countNoViewMessages>0" class="btn btn-primary">+{{ami.countNoViewMessages}}</span> </div>
+      <hr>
+      <div class="panel btn btn-default col-sm-12" ng-repeat="ami in amis" ng-click="voirAmisMessages(ami.id,ami.name)">
+      <span >{{ami.name}} 
+      <span ng-if="ami.countNoViewMessages>0"ng-class="{'notification-exist badge btn-danger': ami.countNoViewMessages > 0}">
+              {{ami.countNoViewMessages}}
+            </span>
+      
+      </div>
     </div>
     <div  class="panel col-sm-8">
       messages
+      <hr>
       <div ng-repeat="messages in MessagesPrivesRecus">
+        <div  ng-class="{'btn btn-info ': messages.emetteur === user._id, 'btn btn-default': messages.emetteur !== user._id }">
+          <p>{{messages.createdAt}}</p> 
+          <p>{{messages.message}}</p> 
+          </div> 
+          <p ng-if="messages.emetteur === user._id">{{user.name}}</p>
+          <p ng-if="messages.emetteur !== user._id">{{currentAmiMessageName}}</p>
+          <hr>
+        </div>   
         <div>
-          <p>{{messages.time}}</p> 
-          <p>{{messages.de}}</p> 
-           <p>{{messages.message}}</p> 
-        </div> 
+      <input type="text" ng-model="texteduMessage"/>
+        <button type="submit" ng-click="envoyerMessagePrives(select,texteduMessage)" class="btn btn-success">Send message to {{select}}{{texteduMessage}}</button>
+      </div>   
       </div>
       
-    </div>
-    <input type="text" ng-model="texteduMessage"/>
-      <button type="submit" ng-click="envoyerMessagePrives(select,texteduMessage)" class="btn btn-success">Send message to {{select}}{{texteduMessage}}</button>
-
-
-  </div>
-   
+      </div>
     </div>
   </div>
 </div>
