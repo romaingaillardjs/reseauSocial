@@ -1,63 +1,59 @@
 <div class="container-fluid">
   <div class="row">
-  <div class="col-sm-2 col-xs-1"></div>
+    <div class="col-sm-2 col-xs-1"></div>
     <div class="col-sm-8 col-xs-10">
       <div class="panel">
         <div class="panel-body">
-          <h3>Heading</h3> <img src="http://www.babelio.com/users/AVT_Anonyme_7683.jpeg">
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p> <span class="md-title">{{user.name}}</span> <span class="md-subhead ">
+          <div>
+            <h3>{{user.name}}</h3> <img src="{{user.gravatar}}"> </div>
+          <div>Messageges publics</div>
           <div ng-repeat="lesmessage in user.messagePublicsRecus" class="list-group">
-              <h4 class="list-group-item-heading">{{lesmessage.de}}</h4>
-              <p class="list-group-item-text">{{lesmessage.message}}</p>
-          </div>
-          <button ng-click="ajouterAmi(user)" class="btn btn-default">Ajouter{{user._id}}</button>
+            <h4 class="list-group-item-heading">emetteur : {{lesmessage.de}}</h4>
+            <p class="list-group-item-text">time : {{lesmessage.time}}</p>
+            <p class="list-group-item-text">message : {{lesmessage.message}}</p>
+          </div class="col-sm-4"> <button ng-show="ajouterAmis" ng-click="ajouterAmi(user)" class="btn btn-success">Ajouter {{user.name}}</button>
+          <p ng-show="!ajouterAmis">vous etes amis avec cette personne</p>
+          <nav class="accordion"> <input type="radio" name="accordion" id="cb1" />
+            <section class="box btn-info"> <label class="box-title" for="cb1">poster son mur </label> <label class="box-close" for="acc-close"></label>
+              <div class="box-content">
+                <div ng-if="messages.error" role="alert" class="alert alert-danger">
+                  <div ng-repeat="error in messages.error">{{error.msg}}</div>
+                </div>
+                <div ng-if="messages.success" role="alert" class="alert alert-success">
+                  <div ng-repeat="success in messages.success">{{success.msg}}</div>
+                </div>
+                <form ng-submit="envoyerMessagePublic(user._id,message)" class="form-horizontal">
+                  <div class="form-group"> <label for="message" class="col-sm-2"></label>
+                    <div class="col-sm-8"> <textarea name="message" id="message" rows="7" class="form-control" ng-model="message"></textarea> </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-8"> <button type="submit" class="btn btn-default">Send message to {{user._id}}</button> </div>
+                  </div>
+                </form>
+            </section> <input type="radio" name="accordion" id="acc-close" /> 
+          </nav>
+          <nav class="accordion"> <input type="radio" name="accordion" id="cb2" />
+            <section class="box btn-primary"> <label class="box-title" for="cb2">recommander cette personne</label> <label class="box-close" for="acc-close"></label>
+              <div class="box-content">
+                <div class="btn btn-danger"ng-show="ajouterAmis">vous devez etre ami avec cette personne pour la recommander</div> 
+                <form ng-if="!ajouterAmis" name="myForm"> <label for="repeatSelect"> recommander a </label> <select name="repeatSelect" id="repeatSelect" ng-model="select.data">
+                    <option ng-repeat="option in userlist" value="{{option._id}}">{{option.name}}</option>
+                  </select> <button ng-click="recomanderAmi(user._id, select.data)" class="btn btn-default">recommander+{{select.data}}</button>
+                </form> </div>
+            </section> <input type="radio" name="accordion" id="acc-close" /> 
+          </nav>
+          <nav class="accordion"> <input type="radio" name="accordion" id="cb3" />
+            <section class="box btn-success"> <label class="box-title" for="cb3">voir ces amis</label> <label class="box-close" for="acc-close"></label>
+              <div class="box-content">
+                 <div class="panel" ng-repeat="ami in amis" ng-click="viewProfil(ami._id)">
+                  <h4 class="list-group-item-heading">{{ami.name}}</h4> </div></div>
+            </section> <input type="radio" name="accordion" id="acc-close" /> 
+          </nav>
           <form name="myForm">
-            <label for="repeatSelect"> Repeat select: </label>
-            <select name="repeatSelect" id="repeatSelect" 
-              ng-model="userModel">
-              <option ng-repeat="option in userlist" value="{{option.id}}">{{option.name}}</option>
-            </select>
-          </form>
-          <tt>model = {{userModel}}</tt>
-          <button ng-click="recomanderAmi(user._id, userModel)" class="btn btn-default">Recommander à {{userModel}}</button>
-          <button ng-click="confirmerAmi(user._id)" class="btn btn-default">confirmer Ami{{user._id}}</button>
+            </div>
         </div>
       </div>
-    </div>
-    <div class="col-sm-2 col-xs-1"></div>
-  </div>
-</div>
-<div class="container">
-  <div class="panel">
-    <div class="panel-heading">
-      <h3 class="panel-title">Contact Form</h3>
-    </div>
-    <div class="panel-body">
-      <div ng-if="messages.error" role="alert" class="alert alert-danger">
-        <div ng-repeat="error in messages.error">{{error.msg}}</div>
-      </div>
-      <div ng-if="messages.success" role="alert" class="alert alert-success">
-        <div ng-repeat="success in messages.success">{{success.msg}}</div>
-      </div>
-      <form ng-submit="envoyerMessagePublic(user._id,message)" class="form-horizontal">
-        <div class="form-group">
-          <label for="message" class="col-sm-2">Body</label>
-          <div class="col-sm-8">
-            <textarea name="message" id="message" rows="7" class="form-control" ng-model="message"></textarea>
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="col-sm-offset-2 col-sm-8">
-            <button type="submit" class="btn btn-success">Send message to {{user._id}}</button>
-          </div>
-        </div>
-      </form>
+      <div class="col-sm-2 col-xs-1"></div>
     </div>
   </div>
-</div>
-<div class="container">AMIS
-  <div class="panel" ng-repeat="ami in amis" ng-click="viewProfil(ami.id)">
-    <h4 class="list-group-item-heading">{{ami.name}}</h4>
-  </div>
-</div>
-     
+  
