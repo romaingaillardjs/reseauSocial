@@ -6,7 +6,7 @@ angular.module('MyApp', ['ngRoute', 'ngSanitize', 'satellizer'])
     $routeProvider
       .when('/', {
         templateUrl: 'partials/home.html',
-        resolve: { loginRequired: loginRequired }
+        resolve: { loginRequired: loginRequired ,nbnotifications: nbnotifications , nbMessages: nbMessages}
       })
       .when('/login', {
         templateUrl: 'partials/login.html',
@@ -96,6 +96,48 @@ angular.module('MyApp', ['ngRoute', 'ngSanitize', 'satellizer'])
         $location.path('/login');
       }
     }
+    function messages($location, $auth, Notifications) {
+      if ($auth.isAuthenticated()) {
+        Notifications.searchNbMessages($rootScope.currentUser._id)
+      }
+    }
+    function nbnotifications ($location, $auth, $rootScope,$window, Notifications) {
+    if ($auth.isAuthenticated()) {
+      $rootScope.currentUser = JSON.parse($window.localStorage.user)
+      console.log($rootScope.currentUser)
+      Notifications.searchNbNotification($rootScope.currentUser._id)
+        .success(function (data) { 
+          console.log(data)
+           if (data.nbnotification > 0) { 
+              $rootScope.nbnotification = data.nbnotification;
+            }else{
+              $rootScope.nbnotification = ''
+            }
+            console.log(data)    
+          })
+        .error(function (data) {
+          $rootScope.nbnotification = '';
+        }); 
+      }
+    }
+    function nbMessages ($auth, $rootScope,$window, Notifications) {
+    $rootScope.currentUser = JSON.parse($window.localStorage.user)
+       return Notifications.searchNbMessages($rootScope.currentUser._id)
+          .success(function (data) { 
+            console.log(data)
+            nbmessage = data.nbmessage
+             if (nbmessage > 0) { 
+                $rootScope.nbmessage = nbmessage
+              }else{
+                $rootScope.nbmessage = ''
+              }
+              console.log(data)    
+            })
+          .error(function (data) {
+            $rootScope.nbmessage = '';
+        }); 
+      
+    }   
   })
   .run(function($rootScope, $window) {
     if ($window.localStorage.user) {

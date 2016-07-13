@@ -41,8 +41,8 @@ angular.module('MyApp')
         $rootScope.currentUser = data.user;
         $window.localStorage.user = JSON.stringify(data.user);
         console.log($scope.user)
-        $scope.nbnotifications($rootScope.currentUser.demande_d_ajout)
-        $scope.listeAmis($rootScope.currentUser.demande_d_ajout)
+        $scope.nbnotifications($scope.user.demande_d_ajout)
+        $scope.listeAmis($scope.user.demande_d_ajout)
       })
     }; 
   

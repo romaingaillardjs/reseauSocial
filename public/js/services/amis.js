@@ -5,7 +5,7 @@ angular.module('MyApp')
         	return  Search.search_List_By_Id(data)
      	},
       viewProfil : function(data) {
-          return  Search.search_By_Id(data)
+          return Search.search_By_Id(data)
       },
      	AjouterAmi : function(amiAjoutant, amiAjoute) {
           return $http.post('/AjouterAmi',{ amiAjoutant : amiAjoutant, amiAjoute : amiAjoute})

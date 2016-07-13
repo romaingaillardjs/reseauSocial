@@ -1,15 +1,16 @@
-var express = require('express');
-var path = require('path');
-var logger = require('morgan');
-var compression = require('compression');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var expressValidator = require('express-validator');
-var dotenv = require('dotenv');
-var mongoose = require('mongoose');
-var jwt = require('jsonwebtoken');
-var moment = require('moment');
-var request = require('request');
+// npm
+var express = require('express'),
+    path = require('path'),
+    logger = require('morgan'),
+    compression = require('compression'),
+    cookieParser = require('cookie-parser'),
+    bodyParser = require('body-parser'),
+    expressValidator = require('express-validator'),
+    dotenv = require('dotenv'),
+    mongoose = require('mongoose'),
+    jwt = require('jsonwebtoken'),
+    moment = require('moment'),
+    request = require('request');
 
 // Load environment variables from .env file
 dotenv.load();
@@ -18,11 +19,12 @@ dotenv.load();
 var User = require('./models/User');
 
 // Controllers
-var userController = require('./controllers/user');
-var contactController = require('./controllers/contact');
-var membresController = require('./controllers/membres');
-var amisController = require('./controllers/amis');
-var messagesController = require('./controllers/messages');
+var userController = require('./controllers/user'),
+    contactController = require('./controllers/contact'),
+    membresController = require('./controllers/membres'),
+    amisController = require('./controllers/amis'),
+    messagesController = require('./controllers/messages'),
+    RecommandationController = require('./controllers/recommandations');
 
 var app = express();
 
@@ -78,11 +80,15 @@ app.get('/search', userController.ensureAuthenticated, membresController.search)
 app.post('/profil',userController.ensureAuthenticated, membresController.searchById);
 app.post('/AmisById', userController.ensureAuthenticated, amisController.searchAmisById);
 app.post('/AjouterAmi', userController.ensureAuthenticated, amisController.AjouterAmi, contactController.ajouterAmiPost);
-app.post('/recomanderAmi', userController.ensureAuthenticated, amisController.recomanderAmi);
+app.post('/recomanderAmi', userController.ensureAuthenticated, RecommandationController.postRecommandation);
 app.post('/confirmerAmi', userController.ensureAuthenticated, amisController.confirmerAmi);
 app.post('/postMessagePublics', userController.ensureAuthenticated, messagesController.postMessagePublics);
 app.post('/postMessagePrives', userController.ensureAuthenticated, messagesController.postMessagePrives);
 app.post('/getMessagesPrives', userController.ensureAuthenticated, messagesController.getMessagePrives);
+app.post('/countNoViewMessage', userController.ensureAuthenticated, messagesController.countNoViewMessage);
+app.post('/searchNbMessages', userController.ensureAuthenticated, messagesController.searchNbMessages);
+app.post('/searchNbNotification', userController.ensureAuthenticated, userController.searchNbNotification);
+
 
 app.get('*', function(req, res) {
   res.redirect('/#' + req.originalUrl);

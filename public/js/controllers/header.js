@@ -2,8 +2,6 @@ angular.module('MyApp')
   .controller('HeaderCtrl', function($scope, $rootScope, $location, $window, $auth, $http,$timeout, Search, Notifications) {
 
     $scope.user = $rootScope.currentUser
-    
-    $scope.nbmessages = 3;
     console.log($scope.user)
 
     angular.element(document.querySelector('#navbar'))
@@ -56,20 +54,21 @@ angular.module('MyApp')
     $scope.searchRequest();
     $scope.viewProfil = function(id) {
       return Search.search_By_Id(id).success(function (data) {
-        console.log(JSON.stringify(data))
+        console.log(data)
         $rootScope.unProfil = data;
-        console.log($rootScope.unProfil._id)
-        $window.localStorage.lastPrifilView = $rootScope.unProfil._id
-        $location.path('/profil/'+data.name)
+        console.log(angular.fromJson($rootScope.unProfil)._id)
+        $window.localStorage.lastPrifilView = angular.fromJson($rootScope.unProfil)._id
+        $location.path('/profil/' + data.name)
         $scope.blur()
       })
     };
     $scope.nbnotifications = function (data) {
+      console.log(data)
      return Notifications.searchNbNotification(data)
         .success(function (data) { 
-          console.log(data)
-           if (data.length > 0) { 
-              $rootScope.nbnotification = data.length
+          console.log(data.nbnotification)
+           if (data.nbnotification > 0) { 
+              $rootScope.nbnotification = data.nbnotification
             }else{
               $rootScope.nbnotification = ''
             }
@@ -77,9 +76,40 @@ angular.module('MyApp')
           })
         .error(function (data) {
           $rootScope.nbnotification = '';
-        }); 
+        });
       }
-      $scope.nbnotifications($scope.user.demande_d_ajout)
-  });
- 
 
+  $scope.nbMessages = function (id) {
+    console.log(id)
+       return Notifications.searchNbMessages(id)
+          .success(function (data) { 
+            console.log(data)
+            nbmessage = data.nbmessage
+             if (nbmessage > 0) { 
+                $rootScope.nbmessage = nbmessage
+              }else{
+                $rootScope.nbmessage = ''
+              }
+              console.log(data)    
+            })
+          .error(function (data) {
+            $rootScope.nbmessage = '';
+        }); 
+      
+    }
+
+
+
+    if ($rootScope.currentUser==undefined) {
+      console.log('je suis la' + $window.localStorage.user.demande_d_ajout)
+      console.log('je suis la' + $window.localStorage.user._id)
+    if ($scope.user.demande_d_ajout.length > 0) {$scope.nbnotifications($window.localStorage.user.demande_d_ajout)}
+    if ($scope.user._id) {$scope.nbMessages($window.localStorage.user._id)}
+
+    }else{
+      $scope.user = $rootScope.currentUser;
+      if ($scope.user.demande_d_ajout.length > 0) {$scope.nbnotifications($scope.user.demande_d_ajout)};
+      if ($scope.user._id) {$scope.nbMessages($scope.user._id)}
+    }
+ 
+    });

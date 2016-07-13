@@ -1,4 +1,8 @@
 var User = require('../models/User');
+var Message = require('../models/Messages');
+var mongoose = require('mongoose');
+var conn = mongoose.connection;
+console.log(conn)
 
 exports.postMessagePublics = function(req, res, next) {
 
@@ -9,6 +13,7 @@ exports.postMessagePublics = function(req, res, next) {
                 {
                 "de":""+req.user.id+"",
                 "message" : ""+req.body.message+"",
+                "time" : ""+Date.now()+""
                 }
               )
               user.save()
@@ -18,6 +23,7 @@ exports.postMessagePublics = function(req, res, next) {
                 {
                 "a":""+req.body.user_id+"",
                 "id":""+req.body.message+"",
+                "time" : ""+Date.now()+""
                 }
               )
               user.save()
@@ -25,46 +31,48 @@ exports.postMessagePublics = function(req, res, next) {
               return res.send({ msg:"vous avez envoyé un message public à cette personne"})
         }
 exports.postMessagePrives = function(req, res, next) {
-
-  console.log(  req.body.user_id + req.body.message + req.user.id)
-
-  User.findOne({ _id : req.body.user_id }, function(err, user) {
-              user.messagePrivesRecus.push(
-                {
-                "de":""+req.user.id+"",
-                "message" : ""+req.body.message+"",
-                }
-              )
-              user.save()
-            });
-   User.findOne({ _id : req.user.id }, function(err, user) {
-              user.messagePrivesEnvoyes.push(
-                {
-                "recepteur":""+req.body.user_id+"",
-                "message":""+req.body.message+"",
-                }
-              )
-              user.save()
-            });
-              return res.send({ msg:"vous avez envoyé un message prive à cette personne"})
-        }
-
-exports.getMessagePrives = function(req, res, next) {
-  console.log(  req.body.id + req.user.id )
-      var data = [];
-    User.find( { _id : req.body.id }, function(err, user) {
-        for (var i = 0; i < user[0].messagePrivesEnvoyes.length ; i++) 
-        {
-          if (user[0].messagePrivesEnvoyes[i].recepteur == req.user.id) 
-          {
-              
-              data.push(user[0].messagePrivesEnvoyes[i])
-              
-          }
-        };
-        console.log(data)
-        return res.send(data)
-    }); 
+  message = new Message
+  ({
+    emetteur: ""+req.user.id+"",
+    recepteur: ""+req.body.user_id+"",
+    message: ""+req.body.message+"",
+    vu:false
+  });
+    message.save()
+      return res.send({ msg:"vous avez envoyé un message prive à cette personne"})
 }
-//user[0].messagePrivesEnvoyes[i].push({vue:"true"})
+exports.getMessagePrives = function(req, res, next) {
+   Message.update( 
+      { "emetteur" : req.body.id , "recepteur" : req.user.id },
+      { "vu" : true} ,
+      { multi: true },
+      function(err, messages) {
+        console.log(messages)
+        })
+    Message.find( 
+      { "emetteur" : req.body.id , "recepteur" : req.user.id }
+      , function(err, messages) {
+        console.log(messages)
+        return res.send(messages)
+        })   
+}
+exports.countNoViewMessage = function(req, res, next) {
+   Message.find( 
+      { "emetteur" : req.body.id , "recepteur" : req.user.id , "vu" : false }
+      , function(err, messages) {
+        console.log(messages.length)
+        nbmessage = messages.length
+        return res.send({nbmessage : nbmessage})
+  })   
+}
+exports.searchNbMessages = function(req, res, next) {
+   Message.find( 
+      { "recepteur" : req.user.id , "vu" : false }
+      , function(err, messages) {
+        console.log(messages.length)
+        nbmessage = messages.length
+        return res.send({nbmessage : nbmessage})
+  })   
+}
+
         

@@ -16,6 +16,8 @@ angular.module('MyApp')
     $scope.viewProfil = function(id) {
       return Amis.viewProfil(id).success(function (data) {
         $rootScope.unProfil = data;
+        console.log(angular.fromJson($rootScope.unProfil)._id)
+        $window.localStorage.lastPrifilView = angular.fromJson($rootScope.unProfil)._id
         $location.path('/profil/'+data.name)
       })
     }; 

@@ -1,8 +1,11 @@
 angular.module('MyApp')
-	.factory('Notifications', function($http, $rootScope, Search) {
+	.factory('Notifications', function($http, $rootScope) {
 	  	return {
-	      	searchNbNotification: function(data) {
-	          return Search.search_List_By_Id(data);          
+	  		searchNbMessages: function(id) {
+	          return $http.post('/searchNbMessages', {id:id});          
+	    	},
+	      	searchNbNotification: function(id) {
+	          return $http.post('/searchNbNotification', {id:id});          
 	    	}
 	    }
 	});

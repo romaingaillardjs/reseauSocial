@@ -8,8 +8,9 @@
             <h3>{{user.name}}</h3> <img src="{{user.gravatar}}"> </div>
           <div>Messageges publics</div>
           <div ng-repeat="lesmessage in user.messagePublicsRecus" class="list-group">
-            <h4 class="list-group-item-heading">{{lesmessage.de}}</h4>
-            <p class="list-group-item-text">{{lesmessage.message}}</p>
+            <h4 class="list-group-item-heading">emetteur : {{lesmessage.de}}</h4>
+            <p class="list-group-item-text">time : {{lesmessage.time}}</p>
+            <p class="list-group-item-text">message : {{lesmessage.message}}</p>
           </div class="col-sm-4"> <button ng-show="ajouterAmis" ng-click="ajouterAmi(user)" class="btn btn-success">Ajouter {{user.name}}</button>
           <p ng-show="!ajouterAmis">vous etes amis avec cette personne</p>
           <nav class="accordion"> <input type="radio" name="accordion" id="cb1" />
@@ -35,9 +36,10 @@
             <section class="box btn-primary"> <label class="box-title" for="cb2">recommander cette personne</label> <label class="box-close" for="acc-close"></label>
               <div class="box-content">
                 <div class="btn btn-danger"ng-show="ajouterAmis">vous devez etre ami avec cette personne pour la recommander</div> 
-                <form ng-if="!ajouterAmis" name="myForm"> <label for="repeatSelect"> recommander a </label> <select name="repeatSelect" id="repeatSelect" ng-model="userModel">
-                    <option ng-repeat="option in userlist" value="{{option.id}}">{{option.name}}</option>
-                  </select> </form> <button ng-click="recomanderAmi(user._id, userModel)" class="btn btn-default">Recommander</button></div>
+                <form ng-if="!ajouterAmis" name="myForm"> <label for="repeatSelect"> recommander a </label> <select name="repeatSelect" id="repeatSelect" ng-model="select.data">
+                    <option ng-repeat="option in userlist" value="{{option._id}}">{{option.name}}</option>
+                  </select> <button ng-click="recomanderAmi(user._id, select.data)" class="btn btn-default">recommander+{{select.data}}</button>
+                </form> </div>
             </section> <input type="radio" name="accordion" id="acc-close" /> 
           </nav>
           <nav class="accordion"> <input type="radio" name="accordion" id="cb3" />
@@ -54,6 +56,4 @@
       <div class="col-sm-2 col-xs-1"></div>
     </div>
   </div>
-  <div class="container">AMIS
-   
-  </div>
+  

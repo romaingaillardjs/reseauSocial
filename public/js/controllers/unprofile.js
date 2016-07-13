@@ -1,9 +1,16 @@
 angular.module('MyApp')
 	.controller('ProfilCtrl', function($scope, $rootScope, $location, $window, $auth, $routeParams, Search, Amis, Message) {
     $scope.ajouterAmis = true;
-    console.log($rootScope.unProfil)
-    
-    $scope.items = $rootScope.items;
+
+    $scope.user = $rootScope.unProfil;
+
+    $scope.searchRequest = function() {
+      Search.search_All_Ids().success(function (data) {
+        $scope.userlist = data
+      });    
+      return $rootScope.items;
+    };
+    $scope.searchRequest()
 
     $scope.ajouterAmi = function  (user) {
         amiAjoute = user
@@ -17,7 +24,7 @@ angular.module('MyApp')
     		console.log(data)
     	})   	
     };  
-    $scope.userlist = $rootScope.items;
+    
     $scope.recomanderAmi = function (idArecommande, idcible) {
         Amis.recomanderAmi(idArecommande, idcible)
         .success(function  (data) {
@@ -56,22 +63,19 @@ angular.module('MyApp')
     $scope.viewProfil = function(id) {
       console.log('je suis la'+id)
       return Search.search_By_Id(id)
-      .success(function (data) {
-        
-         data = JSON.stringify(data);
+      .success(function (data) {  
          console.log('je suis la'+ data)
-        $rootScope.unProfil = data;
-        
-        $window.localStorage.lastPrifilView = $rootScope.unProfil._id
+        $rootScope.unProfil = data
+        $scope.user = $rootScope.unProfil;
+        $window.localStorage.lastPrifilView = angular.fromJson($rootScope.unProfil)._id
         $location.path('/profil/'+data.name)
+        $scope.isFriends()
       }).error(function  (data) {
         console.log(data)
       })
     };
 
     $scope.isFriends = function () {
-      if ($scope.user.ami) 
-      {
         for (var i = 0; i < $scope.user.ami.length; i++) 
         {
           if ($scope.user.ami[''+i+''].id == $rootScope.currentUser._id) 
@@ -79,12 +83,13 @@ angular.module('MyApp')
               $scope.ajouterAmis = false
           }
         }
-      }
     };
     if ($scope.user) {$scope.isFriends()}
 
+
     if ($rootScope.unProfil==undefined) {
     $scope.viewProfil($rootScope.unProfilId)
+
     }else{
       $scope.user = $rootScope.unProfil;
     }

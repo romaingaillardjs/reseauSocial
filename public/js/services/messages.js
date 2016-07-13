@@ -16,6 +16,8 @@ angular.module('MyApp')
       listeAmis: function(data) {
           return Search.search_List_By_Id(data)
       },
-      
+      countNoViewMessage: function(id) {
+          return $http.post('/countNoViewMessage', {id:id})
+      }
     }  
 	});
