@@ -65,20 +65,22 @@ exports.confirmerAmi = function  (req, res, next) {
 exports.supprimerAmi = function  (req, res, next) {
   console.log('suppr ami'+req.body.id)
   console.log('suppr ami'+req.user.id)
-  User.update({ _id: req.user.id },
-    { 
-      $pullAll: { ami: [{"id":""+req.body.id+""}] } 
-    } , function(err, user) {
-      console.log(user)
-    })
-  User.update({ _id: req.body.id },
-    { 
-      $pullAll: { ami: [{"id":""+req.user.id+""}] } 
-    } , function(err, user) {
-      console.log(user)
-       return res.send({ msg:"vous avez supprimé cette personne de votre liuste d'ami"})
-    })
- 
+  User.finOne({ _id: req.user.id }, 
+    function () {
+      User.update({ _id: req.user.id }, 
+      { 
+        $pullAll: { ami: [{"id":""+req.body.id+""}] } 
+      } , function(err, user) {
+        console.log(user)
+      })
+      User.update({ _id: req.body.id },
+      { 
+        $pullAll: { ami: [{"id":""+req.user.id+""}] } 
+      } , function(err, user) {
+        console.log(user)
+         
+      })
+  return res.send({ msg:"vous avez supprimé cette personne de votre liste d'ami"})
 };
 
 
