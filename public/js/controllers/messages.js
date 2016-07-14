@@ -25,7 +25,7 @@ $scope.checkNbMessage = function () {
 }
 $scope.majNbMessage = function() {
 
-  if (MajMessage!==undefined) 
+  if (angular.isDefined(MajMessage)) 
     {
       $interval.cancel(MajMessage)
     }
