@@ -383,4 +383,13 @@ input:checked + .box .box-close {
   height: 400px;
   overflow-x:scroll;
 }
+.messages {
+border-radius: 10px;
+}
 
+.heure{
+  text-align: center;
+}
+#bottom{
+  color : white;
+}

@@ -13,8 +13,8 @@
         <li ng-class="{ active: isActive('/')}"><a href="/">Home</a></li>
         <li ng-class="{ active: isActive('/monProfil')}"><a href="/monProfil">monProfil</a></li>
         <li ng-class="{ active: isActive('/listeAmis')}"><a href="/listeAmis">Amis</a></li>
-        <li ng-class="{ active: isActive('/messages')}" role="presentation">
-          <a href="/messages">Messages
+        <li ng-class="{ active: isActive('/messages#bottom')}" role="presentation">
+          <a href="/messages#bottom">Messages
             <span ng-class="{'notification-exist badge': nbmessage>0}">
               {{nbmessage}}
             </span>

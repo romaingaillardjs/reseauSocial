@@ -8,9 +8,6 @@ var qs = require('querystring');
 var User = require('../models/User');
 var mongoose = require('mongoose');
 
-
-
-
 function generateToken(user) {
   var payload = {
     iss: 'my.domain.com',

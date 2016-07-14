@@ -1,13 +1,21 @@
 angular.module('MyApp')
-  .controller('MessagesCtrl', function($scope, $rootScope, $window, $timeout,$interval ,$location, Contact, Message) {
+  .controller('MessagesCtrl', function($scope, $rootScope, $window, $timeout,$interval ,$location,$anchorScroll, Contact, Message) {
 $scope.user = $rootScope.currentUser;
 
+
+$scope.gotoBottom = function() {
+      $location.hash('bottom');
+      $anchorScroll();
+    };
+    $scope.gotoBottom()
     $scope.envoyerMessagePrives = function (user_id, message) {
       Message.postMessagePrives(user_id, message)
         .then(function(response) {
           $scope.messages = {
             success: [response.data]
           };
+          $scope.gotoBottom()
+          $scope.texteduMessage ='';
         })
         .catch(function(response) {
           $scope.messages = {
@@ -57,8 +65,10 @@ $scope.checkNbMessage = function () {
             .success(function (data) {
               console.log(data)
               $scope.MessagesPrivesRecus = data; 
+              $scope.gotoBottom()
             })
           }, 1000);
+
       $scope.checkNbMessage()
       $scope.select = id
       $scope.currentAmiMessageName = name;
