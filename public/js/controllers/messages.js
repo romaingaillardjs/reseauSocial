@@ -1,6 +1,7 @@
 angular.module('MyApp')
   .controller('MessagesCtrl', function($scope, $rootScope, $window, $timeout,$interval ,$location,$anchorScroll, Contact, Message) {
 $scope.user = $rootScope.currentUser;
+MajMessage = false;
 
 $scope.nbNoViewMessage = function (id) {    
       return Message.countNoViewMessage(id)
@@ -25,16 +26,19 @@ $scope.checkNbMessage = function () {
 }
 $scope.majNbMessage = function() {
 
-  if (angular.isDefined(MajMessage)) 
+  if (!MajMessage) 
     {
-      $interval.cancel(MajMessage)
-    }
-    MajMessage = $interval(function() {
+      MajMessage = $interval(function() {
       $scope.listeAmis($scope.user.ami)
         .success(function (data) {
           $scope.checkNbMessage()
         })
-    },3000)
+      },3000)
+    } else {
+      $interval.cancel(MajMessage)
+    }
+
+
 }
 $scope.gotoBottom = function() {
       $location.hash('bottom');
@@ -74,7 +78,7 @@ $scope.voirAmisMessages = function (id,name) {
       $scope.MessagesPrivesRecus = data; 
       $timeout(function () {
         $scope.gotoBottom()
-      }, 500 )
+      }, 500)
       $scope.gotoBottom()
     })
     if (angular.isDefined(stop)) 
