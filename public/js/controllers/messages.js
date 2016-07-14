@@ -33,7 +33,7 @@ $scope.majNbMessage = function() {
         .success(function (data) {
           $scope.checkNbMessage()
         })
-      },3000)
+      },100)
     } else {
       $interval.cancel(MajMessage)
     }
