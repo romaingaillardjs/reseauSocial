@@ -15,7 +15,9 @@ $scope.nbNoViewMessage = function (id) {
           .then(function (data) { 
             console.log(data)
             $scope.toto = i;
-            $scope.amis[""+$scope.toto+""].countNoViewMessages = data.data.nbmessage
+            if (data.data.nbmessage > ($scope.amis[""+$scope.toto+""].countNoViewMessages)) {
+              $scope.amis[""+$scope.toto+""].countNoViewMessages = data.data.nbmessage
+            };
         })
       } 
 $scope.checkNbMessage = function () {
@@ -79,7 +81,6 @@ $scope.voirAmisMessages = function (id,name) {
       $timeout(function () {
         $scope.gotoBottom()
       }, 500)
-      $scope.gotoBottom()
     })
     if (angular.isDefined(stop)) 
       {
