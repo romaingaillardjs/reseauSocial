@@ -1,7 +1,7 @@
 angular.module('MyApp')
   .controller('MessagesCtrl', function($scope, $rootScope, $window, $timeout,$interval ,$location,$anchorScroll, Contact, Message) {
 $scope.user = $rootScope.currentUser;
-MajMessage = false;
+var MajMessage = false;
 
 $scope.nbNoViewMessage = function (id) {    
       return Message.countNoViewMessage(id)
