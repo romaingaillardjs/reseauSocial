@@ -1,12 +1,17 @@
 <div class="container">
     <div class="row">
         <div ng-repeat="ami in amis">
-            <div class="panel col-md-3" ng-click="viewProfil(ami.id)">
+            <div class="panel col-md-3">
                 <div class="panel-heading">
                     <div class="panel-title">{{ami.name}}</div>
                     <img src="{{ami.gravatar}}">
-                    <button class="btn btn-warning">{{ami.ami.length}} amis </button>
-                    <button class="btn btn-warning"> wall {{ami.messagePublicsRecus.length}} post </button>
+                    <div class="panel default col-md-12">
+                        <div>{{ami.ami.length}} ami(s) </div>
+                        <div>wall {{ami.messagePublicsRecus.length}} post(s)</div> 
+                    </div>    
+                    <button class="btn btn-success col-md-12" ng-click="viewProfil(ami.id)"> voir son profil </button>
+                    <button class="btn btn-primary col-md-12" ng-click="viewProfil(ami.id)"> recommander </button>
+                    <button class="btn btn-danger col-md-12" ng-click="supprimerAmi(ami.id)"> supprimer </button>
                     <div class="panel-body">
                         <div for="name" class="col-sm-2" ng-show="ami.status=='attenteAjout'||ami.status=='recomandéPar'">
                             <h3 style="cursor: pointer;" ng-bind-html=renderHtml(ami.status)>{{ami.status}}</h3>

@@ -60,7 +60,28 @@ exports.confirmerAmi = function  (req, res, next) {
         return res.send({ msg:"vous avez confirmé cette personne comme ami"})
       }  
   );
-}
+};
+
+exports.supprimerAmi = function  (req, res, next) {
+  console.log('suppr ami'+req.body.id)
+  console.log('suppr ami'+req.user.id)
+  User.update({ _id: req.user.id },
+    { 
+      $pullAll: { ami: [{"id":""+req.body.id+""}] } 
+    } , function(err, user) {
+      console.log(user)
+    })
+  User.update({ _id: req.body.id },
+    { 
+      $pullAll: { ami: [{"id":""+req.user.id+""}] } 
+    } , function(err, user) {
+      console.log(user)
+       return res.send({ msg:"vous avez supprimé cette personne de votre liuste d'ami"})
+    })
+ 
+};
+
+
 exports.searchAmisById = function(req, res, next) {
   var local = [];
   console.log(req.body.idList)

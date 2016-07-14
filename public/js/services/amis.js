@@ -21,6 +21,10 @@ angular.module('MyApp')
       },
       confirmerAmi : function(id) {
           return $http.post('/confirmerAmi', {id:id})
+      },
+      supprimerAmi : function(id) {
+          return $http.post('/supprimerAmi', {id:id})
       }
+    
     }
   });

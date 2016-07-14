@@ -83,14 +83,13 @@ app.post('/AjouterAmi', userController.ensureAuthenticated, amisController.Ajout
 app.post('/getRecommandation', userController.ensureAuthenticated, recommandationController.getRecommandation);
 app.post('/recomanderAmi', userController.ensureAuthenticated, recommandationController.postRecommandation);
 app.post('/confirmerAmi', userController.ensureAuthenticated, amisController.confirmerAmi);
+app.post('/supprimerAmi', userController.ensureAuthenticated, amisController.supprimerAmi);
 app.post('/postMessagePublics', userController.ensureAuthenticated, messagesController.postMessagePublics);
 app.post('/postMessagePrives', userController.ensureAuthenticated, messagesController.postMessagePrives);
 app.post('/getMessagesPrives', userController.ensureAuthenticated, messagesController.getMessagePrives);
 app.post('/countNoViewMessage', userController.ensureAuthenticated, messagesController.countNoViewMessage);
 app.post('/searchNbMessages', userController.ensureAuthenticated, messagesController.searchNbMessages);
 app.post('/searchNbNotification', userController.ensureAuthenticated, userController.searchNbNotification);
-
-
 
 
 app.get('*', function(req, res) {

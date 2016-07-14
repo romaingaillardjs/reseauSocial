@@ -21,6 +21,11 @@ angular.module('MyApp')
         $location.path('/profil/'+data.name)
       })
     }; 
+      $scope.supprimerAmi = function(id) {
+      return Amis.supprimerAmi(id).success(function (data) {
+        $scope.get_friends_list($scope.user.ami)
+      })
+    }; 
 })
 
 

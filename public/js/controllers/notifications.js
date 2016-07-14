@@ -3,6 +3,7 @@ angular.module('MyApp')
 
     $scope.user = $rootScope.currentUser
     console.log($scope.user)
+
   	$scope.listeAmis = function (data) {
       Search.search_List_By_Id(data)
         .success(function (data) 
@@ -47,11 +48,12 @@ angular.module('MyApp')
 
  $scope.miseAjourProfil = function(id) {
       return Amis.viewProfil(id).success(function (data) {
-        $rootScope.currentUser = data.user;
-        $window.localStorage.user = JSON.stringify(data.user);
+        console.log(data)
         console.log($scope.user)
-        $scope.nbnotifications($scope.user.demande_d_ajout)
-        $scope.listeAmis($scope.user.demande_d_ajout)
+        $window.localStorage.user = JSON.stringify(data);
+        $rootScope.currentUser = JSON.parse($window.localStorage.user);
+        $scope.nbnotifications($rootScope.currentUser.demande_d_ajout)
+        $scope.listeAmis($rootScope.currentUser.demande_d_ajout)
       })
     }; 
   
