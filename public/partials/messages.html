@@ -16,10 +16,10 @@
       
       </div>
     </div>
-    <div  class="panel col-sm-8">
+    <div  class="panel message col-sm-8">
       messages
       <hr>
-      <div ng-repeat="messages in MessagesPrivesRecus">
+      <div   ng-repeat="messages in MessagesPrivesRecus">
         <p>{{messages.createdAt | date:'yyyy-MM-dd HH:mm:ss '}}</p> 
         <div  ng-class="{'btn btn-info ': messages.emetteur === user._id, 'btn btn-default': messages.emetteur !== user._id }">
           <p>{{messages.message}}</p> 

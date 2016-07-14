@@ -1,5 +1,5 @@
 angular.module('MyApp')
-  .controller('MessagesCtrl', function($scope, $rootScope, $window, $timeout,$location, Contact, Message) {
+  .controller('MessagesCtrl', function($scope, $rootScope, $window, $timeout,$interval ,$location, Contact, Message) {
 $scope.user = $rootScope.currentUser;
 
     $scope.envoyerMessagePrives = function (user_id, message) {
@@ -49,19 +49,19 @@ $scope.checkNbMessage = function () {
       $scope.getnbNoViewMessage($scope.amis[""+i+""]._id,i)
     }
 }
-
-      
     $scope.voirAmisMessages = function (id,name) {
       console.log(id)
+      if (angular.isDefined(stop)) {$interval.cancel(stop)};
+        stop = $interval(function() {
+          Message.getMessagesPrives(id)
+            .success(function (data) {
+              console.log(data)
+              $scope.MessagesPrivesRecus = data; 
+            })
+          }, 1000);
+      $scope.checkNbMessage()
       $scope.select = id
       $scope.currentAmiMessageName = name;
-      Message.getMessagesPrives(id).success(function (data) {
-        console.log(data)
-        $scope.MessagesPrivesRecus = data; 
-        $scope.checkNbMessage()
-        })
-          return $scope.MessagesPrivesRecus
       };
-
     
   })

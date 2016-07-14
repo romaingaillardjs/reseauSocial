@@ -375,3 +375,12 @@ input:checked + .box .box-close {
   font-size: 12pt;
 }
 
+
+
+/* message */
+/* ------------------------- */
+.message {
+  height: 400px;
+  overflow-x:scroll;
+}
+

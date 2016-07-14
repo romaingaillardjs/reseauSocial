@@ -81,6 +81,7 @@ exports.supprimerAmi = function  (req, res, next) {
          
       })
   return res.send({ msg:"vous avez supprimé cette personne de votre liste d'ami"})
+  })
 };
 
 
