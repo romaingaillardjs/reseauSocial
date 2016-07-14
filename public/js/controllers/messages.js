@@ -14,7 +14,6 @@ $scope.gotoBottom = function() {
           $scope.messages = {
             success: [response.data]
           };
-          $scope.gotoBottom()
           $scope.texteduMessage ='';
         })
         .catch(function(response) {
@@ -59,19 +58,35 @@ $scope.checkNbMessage = function () {
 }
     $scope.voirAmisMessages = function (id,name) {
       console.log(id)
+    Message.getMessagesPrives(id)
+            .success(function (data) {
+              $scope.MessagesPrivesRecus = data; 
+              $timeout(function () {
+                $scope.gotoBottom()
+              }, 500 )
+              $scope.gotoBottom()
+            })
+      
       if (angular.isDefined(stop)) {$interval.cancel(stop)};
         stop = $interval(function() {
           Message.getMessagesPrives(id)
             .success(function (data) {
               console.log(data)
-              $scope.MessagesPrivesRecus = data; 
-              $scope.gotoBottom()
+              
+              if (($scope.MessagesPrivesRecus.length > 0) && (data.length > $scope.MessagesPrivesRecus.length)) {
+
+                   $scope.MessagesPrivesRecus = data; 
+                   $timeout(function () {
+                     $scope.gotoBottom()
+                   },500)
+              }
             })
           }, 1000);
 
       $scope.checkNbMessage()
       $scope.select = id
       $scope.currentAmiMessageName = name;
+
       };
     
   })
