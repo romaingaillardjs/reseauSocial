@@ -18,17 +18,14 @@ angular.module('MyApp')
 
     	Amis.AjouterAmi(amiAjoutant, amiAjoute)
     	.success(function  (data) {
-    		console.log(data)
     	})
     	.error(function  (data) {
-    		console.log(data)
     	})   	
     };  
     
     $scope.recomanderAmi = function (idArecommande, idcible, idArecommandeName, idcibleName) {
         Amis.recomanderAmi(idArecommande, idcible, idArecommandeName, idcibleName)
         .success(function  (data) {
-            console.log(data)
         })
         .error(function  (data) {
             console.log(data)
@@ -53,7 +50,7 @@ angular.module('MyApp')
       if(data){ Search.search_List_By_Id(data).success(function (data) {
         $scope.amis = data     
       }).error(function (data) {
-        console.log(data)
+
       });
       }
         return $scope.amis
@@ -61,17 +58,14 @@ angular.module('MyApp')
     if ($scope.user) {$scope.listeAmis($scope.user.ami)}; 
 
     $scope.viewProfil = function(id) {
-      console.log('je suis la'+id)
       return Search.search_By_Id(id)
       .success(function (data) {  
-         console.log('je suis la'+ data)
         $rootScope.unProfil = data
         $scope.user = $rootScope.unProfil;
         $window.localStorage.lastPrifilView = angular.fromJson($rootScope.unProfil)._id
         $location.path('/profil/'+data.name)
         $scope.isFriends()
       }).error(function  (data) {
-        console.log(data)
       })
     };
 

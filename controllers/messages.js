@@ -2,12 +2,8 @@ var User = require('../models/User');
 var Message = require('../models/Messages');
 var mongoose = require('mongoose');
 var conn = mongoose.connection;
-console.log(conn)
 
 exports.postMessagePublics = function(req, res, next) {
-
-  console.log(  req.body.user_id + req.body.message + req.user.id)
-
   User.findOne({ _id : req.body.user_id }, function(err, user) {
               user.messagePublicsRecus.push(
                 {
@@ -48,14 +44,12 @@ exports.getMessagePrives = function(req, res, next) {
       { "vu" : true} ,
       { multi: true },
       function(err, messages) {
-        console.log(messages)
     })
     Message.find( 
       { 
         $or: [ { "emetteur" : req.body.id , "recepteur" : req.user.id },{ "emetteur" : req.user.id , "recepteur" : req.body.id } ]
       },
         function(err, messages) {
-        console.log(messages)
         return res.send(messages)        
     })
 }
@@ -63,7 +57,6 @@ exports.countNoViewMessage = function(req, res, next) {
    Message.find( 
       { "emetteur" : req.body.id , "recepteur" : req.user.id , "vu" : false }
       , function(err, messages) {
-        console.log(messages.length)
         nbmessage = messages.length
         return res.send({nbmessage : nbmessage})
   })   
@@ -72,7 +65,6 @@ exports.searchNbMessages = function(req, res, next) {
    Message.find( 
       { "recepteur" : req.user.id , "vu" : false }
       , function(err, messages) {
-        console.log(messages.length)
         nbmessage = messages.length
         return res.send({nbmessage : nbmessage})
   })   

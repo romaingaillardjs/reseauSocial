@@ -1,25 +1,30 @@
 angular.module('MyApp')
-  .controller('MessagesCtrl', function($scope, $rootScope, $window, $timeout,$interval ,$location,$anchorScroll, Contact, Message) {
+.controller('MessagesCtrl', function($scope, $rootScope, $window, $timeout,$interval ,$location,$anchorScroll, Contact, Message) {
 $scope.user = $rootScope.currentUser;
 var MajMessage = false;
 
 $scope.nbNoViewMessage = function (id) {    
       return Message.countNoViewMessage(id)
           .success(function (data) {
-            console.log(data)
           }) 
         } 
-
- $scope.getnbNoViewMessage = function (id,i) { 
+$scope.getnbNoViewMessage = function (id,i) { 
         $scope.nbNoViewMessage(id)
-          .then(function (data) { 
-            console.log(data)
+          .success(function (data) { 
             $scope.toto = i;
-            if (data.data.nbmessage > ($scope.amis[""+$scope.toto+""].countNoViewMessages)) {
-              $scope.amis[""+$scope.toto+""].countNoViewMessages = data.data.nbmessage
-            };
+
+            if (!($scope.amis[""+$scope.toto+""].countNoViewMessages))
+            {
+              $scope.amis[""+$scope.toto+""].countNoViewMessages = data.nbmessage 
+            }
+
+            if (($scope.amis[""+$scope.toto+""].countNoViewMessages) < data.nbmessage)
+            {
+              $scope.amis[""+$scope.toto+""].countNoViewMessages = data.nbmessage 
+            }
+
         })
-      } 
+} 
 $scope.checkNbMessage = function () {
     for (var i = 0; i < $scope.amis.length ; i++) 
     {     
@@ -35,12 +40,10 @@ $scope.majNbMessage = function() {
         .success(function (data) {
           $scope.checkNbMessage()
         })
-      },100)
+      },1000)
     } else {
       $interval.cancel(MajMessage)
     }
-
-
 }
 $scope.gotoBottom = function() {
       $location.hash('bottom');
@@ -70,7 +73,6 @@ $scope.listeAmis = function (data) {
   })
 };
 $scope.listeAmis($scope.user.ami).success(function (data) {
-$scope.checkNbMessage()
 $scope.majNbMessage()
 })
 
@@ -89,7 +91,6 @@ $scope.voirAmisMessages = function (id,name) {
     stop = $interval(function() {
       Message.getMessagesPrives(id)
         .success(function (data) {
-        console.log(data)
         if (($scope.MessagesPrivesRecus.length > 0) && (data.length > $scope.MessagesPrivesRecus.length)) 
           {
             $scope.MessagesPrivesRecus = data; 

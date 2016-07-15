@@ -3,12 +3,9 @@ angular.module('MyApp')
     $scope.login = function() {
       $auth.login($scope.user)
         .then(function(response) {
-          console.log(response.data.user)
-          console.log(angular.fromJson(response.data.user))
           $window.localStorage.user = JSON.stringify(response.data.user);
           $rootScope.currentUser = JSON.parse($window.localStorage.user);
-          $rootScope.login = true
-          
+          $rootScope.login = true;
           $location.path('/');
         })
         .catch(function(response) {
@@ -21,7 +18,6 @@ angular.module('MyApp')
     $scope.authenticate = function(provider) {
       $auth.authenticate(provider)
         .then(function(response) {
-          console.log(angular.fromJson(response.data.user))
           $rootScope.currentUser = response.data.user;
           $window.localStorage.user = JSON.stringify(response.data.user);
           $location.path('/');

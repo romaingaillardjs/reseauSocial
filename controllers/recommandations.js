@@ -2,10 +2,7 @@ var mongoose = require('mongoose');
 var User = require('../models/User');
 var Recommandation = require('../models/Recommandations');
 
-
 exports.postRecommandation = function  (req, res, next) {
-  console.log(req.body.idArecommande + req.body.idcible)
-
   User.findOne({
       _id : req.body.idcible , 
       ami : { id : req.body.idArecommande}
@@ -43,7 +40,6 @@ exports.postRecommandation = function  (req, res, next) {
     }
 
   exports.getRecommandation = function  (req, res, next) {
-  console.log(req.body.idArecommande + req.body.idcible)
     Recommandation.find(
         { 
           $or: [ { "getRecommandation" : req.user.id  } , { "clientRecommandation" : req.user.id } ]

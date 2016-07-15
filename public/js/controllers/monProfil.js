@@ -11,20 +11,16 @@ angular.module('MyApp')
 
       Amis.AjouterAmi(amiAjoutant, amiAjoute)
       .success(function  (data) {
-        console.log(data)
       })
       .error(function  (data) {
-        console.log(data)
       })    
     };  
     $scope.userlist = $rootScope.items;
     $scope.recomanderAmi = function (idArecommande, idcible) {
         Amis.recomanderAmi(idArecommande, idcible)
         .success(function  (data) {
-            console.log(data)
         })
         .error(function  (data) {
-            console.log(data)
         })
         
     }; 
@@ -47,7 +43,6 @@ angular.module('MyApp')
         $scope.amis = data
             
       }).error(function (data) {
-        console.log(data)
       });
         return $scope.amis
       };

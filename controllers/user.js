@@ -361,7 +361,6 @@ exports.searchNbNotification = function(req, res, next) {
    User.find( 
       { _id : req.user.id }
       , function(err, user) {
-        console.log(user)
         nbnotification = user[0].demande_d_ajout.length;
         return res.send({nbnotification : nbnotification})
   })   

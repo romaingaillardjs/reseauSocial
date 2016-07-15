@@ -2,9 +2,6 @@ var mongoose = require('mongoose');
 var User = require('../models/User');
 
 exports.AjouterAmi = function  (req, res, next) {
-
-  console.log(req.body.amiAjoute._id)
-  console.log(req.user.id)
   User.findOne({
       _id : req.user.id , 
       ami : { id : req.body.amiAjoute._id}
@@ -30,8 +27,6 @@ exports.AjouterAmi = function  (req, res, next) {
 }
 
 exports.confirmerAmi = function  (req, res, next) {
-  console.log(req.body.id)
-   console.log(req.user.id)
   User.findOne({
       _id : req.user.id , 
       ami : { id : req.body.id}
@@ -63,31 +58,33 @@ exports.confirmerAmi = function  (req, res, next) {
 };
 
 exports.supprimerAmi = function  (req, res, next) {
-  console.log('suppr ami'+req.body.id)
-  console.log('suppr ami'+req.user.id)
-  User.finOne({ _id: req.user.id }, 
-    function () {
-      User.update({ _id: req.user.id }, 
+  console.log(req.body.userid)
+  console.log(req.body.id)
+    User.findOne({
+      _id : req.body.userid 
+      }
+      , function(err, user) {
+        console.log(user)
+
+      User.update({ "_id": req.user.id }, 
       { 
         $pullAll: { ami: [{"id":""+req.body.id+""}] } 
       } , function(err, user) {
         console.log(user)
       })
-      User.update({ _id: req.body.id },
+      User.update({ "_id": req.body.id },
       { 
         $pullAll: { ami: [{"id":""+req.user.id+""}] } 
       } , function(err, user) {
-        console.log(user)
-         
+        console.log(user)  
       })
   return res.send({ msg:"vous avez supprimé cette personne de votre liste d'ami"})
-  })
+    })
 };
 
 
 exports.searchAmisById = function(req, res, next) {
   var local = [];
-  console.log(req.body.idList)
   for (var i = 0; i < req.body.idList.length; i++) {
     console.log(req.body.idList[i].id)
     local.push(mongoose.Types.ObjectId(''+req.body.idList[i].id+''))
