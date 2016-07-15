@@ -1,6 +1,6 @@
 var User = require('../models/User');
 var MessagePublic = require('../models/MessagePublic');
-var MessagePrive = require('../models/MessagesPrive');
+var MessagePrive = require('../models/messagesPrive');
 var mongoose = require('mongoose');
 
 var conn = mongoose.connection;
