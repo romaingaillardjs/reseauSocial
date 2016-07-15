@@ -42,7 +42,8 @@
                 <div ng-if="messages.success" role="alert" class="alert alert-success">
                   <div ng-repeat="success in messages.success">{{success.msg}}</div>
                 </div>
-                <form ng-submit="envoyerMessagePublic(user._id,message)" class="form-horizontal">
+                <div class="btn btn-danger"ng-show="ajouterAmis">vous devez etre ami avec cette personne pour poster sur son mur</div> 
+                <form ng-if="!ajouterAmis" ng-submit="envoyerMessagePublic(user._id,message)" class="form-horizontal">
                   <div class="form-group"> <label for="message" class="col-sm-2"></label>
                     <div class="col-sm-8"> <textarea name="message" id="message" rows="7" class="form-control" ng-model="message"></textarea> </div>
                   </div>
