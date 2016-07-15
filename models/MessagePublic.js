@@ -9,9 +9,10 @@ var messagesSchema = new mongoose.Schema({
   emetteur: String,
   recepteur: String,
   message: String,
+  reponse: [mongoose.Schema.Types.Mixed],
   vu: Boolean
 }, schemaOptions);
 
-Message = mongoose.model('Message', messagesSchema);
+MessagePublic = mongoose.model('MessagePublic', messagesSchema);
 
-module.exports = Message;
+module.exports = MessagePublic;

@@ -18,6 +18,9 @@ angular.module('MyApp')
       },
       countNoViewMessage: function(id) {
           return $http.post('/countNoViewMessage', {id:id})
+      },
+      repondreMessagePublics: function(user_id, message, name) {
+        return $http.post('/repondreMessagePublics', {user_id : user_id,  message: message, name: name})
       }
     }  
 	});
