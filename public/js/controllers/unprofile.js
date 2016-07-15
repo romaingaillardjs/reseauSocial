@@ -111,7 +111,7 @@ $scope.majProfil = function () {
   }else{
     $scope.user = $rootScope.unProfil;
     $scope.viewProfil($scope.user._id)
-    $scope.voirAmisMessages($rootScope.unProfilId,name)
+    $scope.voirAmisMessages($scope.user._id,name)
   }
 }
 $scope.majProfil()
