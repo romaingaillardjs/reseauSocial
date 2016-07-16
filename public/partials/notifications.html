@@ -31,7 +31,10 @@
           </div>
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-8">
-              <button ng-click="confirmerAmi(ami._id)"class="btn btn-default">confirmer Ami{{ami._id}}</button>
+              <button ng-click="confirmerAmi(ami)"class="btn btn-default">confirmer Ami{{ami._id}}</button>
+            </div>
+            <div class="col-sm-offset-2 col-sm-8">
+              <button ng-click="AnnulerDemande(ami)"class="btn btn-default">ne pas confirmer{{ami._id}}</button>
             </div>
           </div>
         </form>
@@ -41,7 +44,7 @@
 
   <div class="panel" ng-repeat="recommandation in recommandations" ng-click="viewProfil(ami.id)">
     <div class="panel-heading">
-      <h3 class="panel-title">{{ami.titre}}</h3>
+      <h3 class="panel-title">{{recommandation.setRecommandationName[0]}} vous a recommander {{recommandation.getRecommandationName[0]}}</h3>
     </div>
       <div class="panel-body">
 
@@ -71,7 +74,7 @@
           </div>
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-8">
-              <button ng-click="confirmerAmi(ami._id)"class="btn btn-default">confirmer Ami{{ami._id}}</button>
+              <button ng-click="confirmerAmiRecomandation(recommandation)"class="btn btn-default">confirmer Ami{{recommandation.getRecommandation[0]}}</button>
             </div>
           </div>
         </form>

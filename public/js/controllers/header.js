@@ -12,6 +12,9 @@ angular.module('MyApp')
       }, 100)  
     });
     
+    $scope.voirListeMembre = function () {
+      $location.path('/ListeMembres/')
+    }
     $scope.isActive = function (viewLocation) {
       return viewLocation === $location.path();
     };
@@ -28,13 +31,13 @@ angular.module('MyApp')
         { 
           $scope.test.removeClass("in");
            if ($scope.search) {$scope.search.name = ''};
-        }, 100)  
+        }, 500)  
     }      
     $scope.collapsed = function(){
       $timeout(function ()
         { 
           $scope.test.removeClass("in");
-        }, 100)  
+        }, 500)  
     }
     
     $scope.logout = function() {

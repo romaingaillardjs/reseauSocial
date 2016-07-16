@@ -19,12 +19,14 @@ angular.module('MyApp')
             idcibleName : idcibleName
           })
       },
-      confirmerAmi : function(id) {
-          return $http.post('/confirmerAmi', {id:id})
+      confirmerAmi : function(user) {
+          return $http.post('/confirmerAmi', {user:user})
       },
       supprimerAmi : function(id,userid) {
           return $http.post('/supprimerAmi', {id:id,userid:userid})
+      },
+      AnnulerDemandeAmi: function(user) {
+          return $http.post('/AnnulerDemandeAmi', {user:user});  
       }
-    
     }
   });

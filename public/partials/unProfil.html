@@ -7,7 +7,7 @@
           <div>
             <h3>{{user.name}}</h3> <img src="{{user.picture}}"> </div>
 
-          <button ng-show="ajouterAmis" ng-click="ajouterAmi(user)" class="btn btn-success">Ajouter {{user.name}}</button>
+          <button  ng-if="demande_d_ajout==true && ajouterAmis==true" ng-click="ajouterAmi(user)" class="btn btn-success">Ajouter {{user.name}}</button>
         </div>
           <p ng-show="!ajouterAmis">Vous êtes ami avec cette personne</p>
                   <nav class="accordion"> <input type="radio" name="accordion" id="cb1" />
@@ -45,7 +45,7 @@
                   <div ng-repeat="success in messages.success">{{success.msg}}</div>
                 </div>
                 <div class="btn btn-danger" ng-show="ajouterAmis">vous devez etre ami avec cette personne pour poster sur son mur</div> 
-                <form ng-if="!ajouterAmis" ng-submit="envoyerMessagePublic(user._id,message)" class="form-horizontal">
+                <form ng-if="!ajouterAmis" ng-submit="envoyerMessagePublic(user,message)" class="form-horizontal">
                   <div class="form-group"> <label for="message" class="col-sm-2"></label>
                     <div class="col-sm-8"> <textarea name="message" id="message" rows="7" class="form-control" ng-model="message"></textarea> </div>
                   </div>
@@ -59,9 +59,9 @@
             <section class="box btn-primary"> <label class="box-title" for="cb3">recommander cette personne</label> <label class="box-close" for="acc-close"></label>
               <div class="box-content">
                 <div class="btn btn-danger"ng-show="ajouterAmis">vous devez etre ami avec cette personne pour la recommander</div> 
-                <form ng-if="!ajouterAmis" name="myForm"> <label for="repeatSelect"> recommander a </label> <select name="repeatSelect" id="repeatSelect" ng-model="select.data">
-                    <option ng-repeat="option in userlist"  value={{option._id}}>{{option.name}}</option>
-                  </select> <button ng-click="recomanderAmi(user._id, select.data, user.name)" class="btn btn-default">recommander+{{select.data}}</button>
+                <form ng-if="!ajouterAmis" name="myForm"> <label for="repeatSelect"> recommander a </label> <select name="repeatSelect" id="repeatSelect" ng-model="select">
+                    <option ng-repeat="option in userlist"  value="{{option}}">{{option.name}}</option>
+                  </select> <button ng-click="recomanderAmi(user, select)" class="btn btn-default">recommander+{{select}} </button>
                 </form> </div>
             </section> <input type="radio" name="accordion" id="acc-close" /> 
           </nav>

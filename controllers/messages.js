@@ -2,6 +2,14 @@ var User = require('../models/User');
 var MessagePublic = require('../models/MessagePublic');
 var MessagePrive = require('../models/messagesPrive');
 var mongoose = require('mongoose');
+var nodemailer = require('nodemailer');
+var transporter = nodemailer.createTransport({
+  service: 'Mailgun',
+  auth: {
+    user: process.env.MAILGUN_USERNAME,
+    pass: process.env.MAILGUN_PASSWORD
+  }
+});
 
 var conn = mongoose.connection;
 
@@ -23,12 +31,26 @@ exports.postMessagePublics = function(req, res, next) {
   message = new MessagePublic
   ({
     emetteur: ""+req.user.id+"",
-    recepteur: ""+req.body.user_id+"",
+    recepteur: ""+req.body.user._id+"",
     message: ""+req.body.message+"",
     vu:false
   });
     message.save()
+
+  console.log('je passe par la' + req.body.user.name)
+  console.log('je passe par la' + req.user.email)
+
+  var mailOptions = {
+    from:  req.body.user.name + ' ' + '<'+ req.user.email  + '>',
+    to: req.body.user.email,
+    subject: '✔ aSocialNetworkForYou :) | '+'  '+req.user.name +'  '+ ' | vous à envoyé une demande d\'ajout à sa liste d\'amis ',
+    text: ""+req.body.message+""
+  };
+
+  transporter.sendMail(mailOptions, function(err) {
+    console.log(err);
   return res.send({ msg:"vous avez envoyé un message public à cette personne"})
+  });
 }
 exports.repondreMessagePublics = function(req, res, next) {
     MessagePublic.update( 

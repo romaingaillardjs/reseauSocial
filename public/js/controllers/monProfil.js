@@ -1,7 +1,10 @@
 angular.module('MyApp')
-.controller('MonProfilCtrl', function($scope, $rootScope, $location, $window, $auth, $routeParams, Search, Amis, Message ) {
-   $scope.user = $rootScope.currentUser;;
-    $scope.items = $rootScope.items;
+.controller('MonProfilCtrl', function($scope, $rootScope, $location, $window, $auth, $routeParams,$interval, Search, Amis, Message ) {
+  $interval.cancel($rootScope.MajMessage)
+  $interval.cancel($rootScope.stop)
+  
+  $scope.user = $rootScope.currentUser;;
+  $scope.items = $rootScope.items;
 
     $scope.profile = $rootScope.currentUser;
 

@@ -19,6 +19,8 @@ angular.module('MyApp')
     $scope.getRecommandation = function (id) {
       Recommandation.getRecommandation(id)
         .success( function  (data) {
+          console.log(data)
+          $scope.recommandations = data
         }
       )
     }
@@ -55,5 +57,22 @@ angular.module('MyApp')
       })
       .error(function  (data) {
       })
-    }; 
+    }
+      $scope.confirmerAmiRecomandation = function (id) {
+      Recommandation.confirmerAmiRecomandation(id)
+      .success(function  (data) {
+         $scope.miseAjourProfil($scope.user._id)
+      })
+      .error(function  (data) {
+      })
+    }
+    $scope.AnnulerDemande = function (id) {
+      Amis.AnnulerDemandeAmi(id)
+      .success(function  (data) {
+         $scope.miseAjourProfil($scope.user._id)
+      })
+      .error(function  (data) {
+      })
+    };
+    
 })

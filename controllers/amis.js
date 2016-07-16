@@ -1,5 +1,13 @@
 var mongoose = require('mongoose');
 var User = require('../models/User');
+var nodemailer = require('nodemailer');
+var transporter = nodemailer.createTransport({
+  service: 'Mailgun',
+  auth: {
+    user: process.env.MAILGUN_USERNAME,
+    pass: process.env.MAILGUN_PASSWORD
+  }
+});
 
 exports.AjouterAmi = function  (req, res, next) {
   User.findOne({
@@ -29,7 +37,7 @@ exports.AjouterAmi = function  (req, res, next) {
 exports.confirmerAmi = function  (req, res, next) {
   User.findOne({
       _id : req.user.id , 
-      ami : { id : req.body.id}
+      ami : { id : req.body.user.id}
       }, function(err, user) {
         if(user){
           console.log({ msg:"vous etes deja ami avec cette personne"})
@@ -37,23 +45,68 @@ exports.confirmerAmi = function  (req, res, next) {
         }else{
             User.update( { _id: req.user.id }, 
               { 
-                $pullAll: { demande_d_ajout: [{"id":""+req.body.id+""}] }
+                $pullAll: { demande_d_ajout: [{"id":""+req.body.user.id+""}] }
               } , function() {})
             User.update( { _id: req.user.id }, 
               { 
-                $push: { ami: {"id":""+req.body.id+""} } 
+                $push: { ami: {"id":""+req.body.user.id+""} } 
               } , function() {})
-            User.update( { _id: req.body.id }, 
+            User.update( { _id: req.body.user.id }, 
               { 
-                $pullAll: { demande_en_attente: [{"id":""+req.user.id+""}] } 
+                $pullAll: { demande_en_attente: [{"id":""+req.user.id.id+""}] } 
               } , function() {})
-            User.update( { _id: req.body.id }, 
+            User.update( { _id: req.body.user.id }, 
               { 
                 $push: { ami: {"id":""+req.user.id+""} } 
               } , function() {})       
         }
+                var mailOptions = {
+          from:  req.body.user.name + ' ' + '<'+ req.user.email  + '>',
+          to: req.body.user.email,
+          subject: '✔ aSocialNetworkForYou :) | '+'  '+req.user.name +'  '+ ' | vous à envoyé une demande d\'ajout à sa liste d\'amis ',
+          text: ""+req.user.name+" a annulé votre demmande"
+        };
+
+        transporter.sendMail(mailOptions, function(err) {
+          console.log(err);
         return res.send({ msg:"vous avez confirmé cette personne comme ami"})
-      }  
+      })
+    }   
+  );
+};
+exports.AnnulerDemandeAmi = function  (req, res, next) {
+  User.findOne({
+      _id : req.user.id , 
+      ami : { id : req.body.user.id}
+      }, function(err, user) {
+        if(user){
+          console.log({ msg:"vous etes deja ami avec cette personne"})
+          return res.send({ msg:"vous etes deja ami avec cette personne"})
+        }else{
+            User.update( { _id: req.user.id }, 
+              { 
+                $pullAll: { demande_d_ajout: [{"id":""+req.body.user.id+""}] }
+              } , function() {})
+            User.update( { _id: req.body.user.id }, 
+              { 
+                $pullAll: { demande_en_attente: [{"id":""+req.user.id.id+""}] } 
+              } , function() {})   
+        }
+        console.log('je passe par la' + req.body.user.name)
+        console.log('je passe par la' + req.user.email)
+
+        var mailOptions = {
+          from:  req.body.user.name + ' ' + '<'+ req.user.email  + '>',
+          to: req.body.user.email,
+          subject: '✔ aSocialNetworkForYou :) | '+'  '+req.user.name +'  '+ ' | vous à envoyé une demande d\'ajout à sa liste d\'amis ',
+          text: ""+req.user.name+" a annulé votre demmande"
+        };
+
+        transporter.sendMail(mailOptions, function(err) {
+          console.log(err);
+        return res.send({ msg:"vous avez annulé la demmande d'ami"})
+      }) 
+    }
   );
 };
 

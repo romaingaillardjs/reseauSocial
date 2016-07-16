@@ -1,25 +1,7 @@
 <div class="container-fluid">
-    <div ng-if="amis.length==0">
-        <p>Vous n'avez pas encore d'ami(s)</p> 
-        <p>(Pour ajouter un ami, recherchez un membre dans la barre de recherche et ajoutez le)</p> 
-    </div>
-    <div ng-if="amis.length" class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-      <form class="navbar-form align" >
-        <div class="form-group"> 
-          <input type="search" class="form-control" placeholder="Rechercher un ami" data-ng-model="search.name" required ng-blur="blur()"> 
-        <ul class="list-group" ng-if="isAuthenticated();search.name;"  ng-message="required" >
-          <li class="list-group-item" ng-show="search" data-ng-repeat="i in amis | filter:search:strict">
-            <a ng-click="viewProfil(i._id)"> <img ng-src="{{i.image}}" />
-              <p>{{i.name}}</p>
-            </a>
-          </li>
-        </ul>
-        </div>
-    </form>
-    </div>
-      <div class="container col-sm-9 col-md-9 col-lg-9">
-          <div class="row" ng-show="!search" data-ng-repeat="ami in amis | filter:search:strict">
-        <div class="panel col-sm-4 col-md-4 col-lg-4">
+    <div class="row">
+        <div  data-ng-repeat="ami in membres">
+        <div class="panel col-sm-3 col-md-3 col-lg-3">
                 <div class="panel-title">{{ami.name}}</div>
                 <img class="col-sm-12 col-md-12 col-lg-12" src="{{ami.gravatar}}">
                 <div class="panel default col-md-12">
@@ -38,6 +20,7 @@
                     </div>
                 </div>         
             </div>
+            <div class="col-sm-1 col-md-1 col-lg-1"></div>
         </div>
     </div>
 </div>

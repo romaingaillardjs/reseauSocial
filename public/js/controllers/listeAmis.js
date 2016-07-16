@@ -1,5 +1,8 @@
 angular.module('MyApp')
-.controller('ListeAmisCtrl', function($rootScope, $scope, $window, $location, Amis) {
+.controller('ListeAmisCtrl', function($rootScope, $scope, $window, $location, $interval, Amis) {
+$interval.cancel($rootScope.MajMessage)
+$interval.cancel($rootScope.stop)
+
 $scope.user = $rootScope.currentUser;  
  $scope.miseAjourProfil = function(id) {
     console.log(id)
@@ -8,7 +11,7 @@ $scope.user = $rootScope.currentUser;
     $rootScope.currentUser = JSON.parse($window.localStorage.user);
     console.log($rootScope.currentUser._id)
     id = {id: $rootScope.currentUser._id}
-    $scope.get_friends_list(id)
+    $scope.get_friends_list($rootScope.currentUser.ami)
   })
 }; 
 $scope.get_friends_list = function (data) {

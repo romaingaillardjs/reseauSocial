@@ -36,9 +36,9 @@
         <li class="dropdown" >
           <a href="#" data-toggle="dropdown" class="navbar-avatar dropdown-toggle"> <img ng-src="{{currentUser.picture || currentUser.gravatar}}"> {{currentUser.name || currentUser.email || currentUser.id }} <i class="caret"></i> </a>
           <ul class="dropdown-menu">
-            <li><a href="/account">My Account</a></li>
+            <li><a href="/account">Mon compte</a></li>
             <li class="divider"></li>
-            <li><a href="#" ng-click="logout()" }>Logout</a></li>
+            <li><a href="#" ng-click="logout()" }>Deconnexion</a></li>
           </ul>
         </li>
       </ul>
@@ -47,8 +47,9 @@
       <form class="navbar-form navbar-left col-xs-12 col-sm-2 col-md-2 col-lg-2" >
         <div class="form-group"> 
           <input type="search" class="form-control" placeholder="Rechercher quelqu'un" data-ng-model="search.name" required ng-blur="blur()"> 
+          <button ng-click="voirListeMembre()">voir la liste des membres</button> 
         <ul class="list-group col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-if="isAuthenticated();search.name;"  ng-message="required" >
-          <li class="list-group-item" ng-show="search" data-ng-repeat="i in items | filter:search:strict">
+          <li class="list-group-item" ng-show="search" data-ng-repeat="i in items | filter:search:strict" ng-click="viewProfil(i._id)">
             <a ng-click="viewProfil(i._id)"> <img ng-src="{{i.image}}" />
               <p>{{i.name}}</p>
             </a>

@@ -53,6 +53,11 @@ angular.module('MyApp', ['ngRoute', 'ngSanitize', 'satellizer'])
         controller: 'ListeAmisCtrl',
         resolve: { loginRequired: loginRequired }   
       })
+        .when('/ListeMembres', {
+        templateUrl: 'partials/listeMembres.html',
+        controller: 'ListeMembresCtrl',
+        resolve: { loginRequired: loginRequired }   
+      })
       .when('/messages', {
         templateUrl: 'partials/messages.html',
         controller: 'MessagesCtrl',

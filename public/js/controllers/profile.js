@@ -1,5 +1,7 @@
 angular.module('MyApp')
-  .controller('ProfileCtrl', function($scope, $rootScope, $location, $window, $auth, Account) {
+  .controller('ProfileCtrl', function($scope, $rootScope, $location, $window, $auth, $interval, Account) {
+    $interval.cancel($rootScope.MajMessage)
+    $interval.cancel($rootScope.stop)
     $scope.profile = $rootScope.currentUser;
 
     $scope.updateProfile = function() {

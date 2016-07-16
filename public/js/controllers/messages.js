@@ -33,16 +33,16 @@ $scope.checkNbMessage = function () {
 }
 $scope.majNbMessage = function() {
 
-  if (!MajMessage) 
+  if (!$rootScope.MajMessage) 
     {
-      MajMessage = $interval(function() {
+      $rootScope.MajMessage = $interval(function() {
       $scope.listeAmis($scope.user.ami)
         .success(function (data) {
           $scope.checkNbMessage()
         })
       },1000)
     } else {
-      $interval.cancel(MajMessage)
+      $interval.cancel($rootScope.MajMessage)
     }
 }
 $scope.gotoBottom = function() {
@@ -84,11 +84,11 @@ $scope.voirAmisMessages = function (id,name) {
         $scope.gotoBottom()
       }, 500)
     })
-    if (angular.isDefined(stop)) 
+    if (angular.isDefined($rootScope.stop)) 
       {
-        $interval.cancel(stop)
+        $interval.cancel($rootScope.stop)
       }
-    stop = $interval(function() {
+    $rootScope.stop = $interval(function() {
       Message.getMessagesPrives(id)
         .success(function (data) {
         if (($scope.MessagesPrivesRecus.length > 0) && (data.length > $scope.MessagesPrivesRecus.length)) 
