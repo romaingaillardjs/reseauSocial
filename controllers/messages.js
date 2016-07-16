@@ -48,6 +48,14 @@ exports.repondreMessagePublics = function(req, res, next) {
       return res.send({ msg:"vous avez repondu"})
     })
 }
+
+exports.supprimerMessage = function(req, res, next) {
+  MessagePublic.remove({ _id: req.body.id }, function(err) {
+    res.send({ msg: 'votre message à été supprimer' });
+  });
+};
+
+
 exports.postMessagePrives = function(req, res, next) {
   message = new MessagePrive
   ({

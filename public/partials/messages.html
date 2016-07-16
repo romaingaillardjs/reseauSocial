@@ -21,7 +21,7 @@
       <hr>
     <div class="message col-sm-12">
     <div ng-repeat="messages in MessagesPrivesRecus" class="col-sm-12 col-xs-12">
-      <div class="heure col-sm-12 col-xs-12"><p>{{messages.createdAt | date:'yyyy-MM-dd HH:mm:ss '}}</p></div> 
+      <div class="align col-sm-12 col-xs-12"><p>{{messages.createdAt | date:'yyyy-MM-dd HH:mm:ss '}}</p></div> 
       <div class="col-sm-12 col-xs-12">
         <div  ng-class="{'btn btn-info pull-right messages': messages.emetteur === user._id, 'messages btn btn-default pull-left': messages.emetteur !== user._id }">
           <p>{{messages.message}}</p> 

@@ -387,8 +387,9 @@ input:checked + .box .box-close {
 border-radius: 10px;
 }
 
-.heure{
+.align{
   text-align: center;
+  margin: auto;
 }
 #bottom{
   color : white;

@@ -102,6 +102,14 @@ $scope.isFriends = function () {
 };
 if ($scope.user) {$scope.isFriends()}
 
+$scope.supprimerMessage = function (id) {
+  Message.supprimerMessage(id)
+  .success(function (argument) {
+    $scope.majProfil()
+  })
+
+}
+
 $scope.majProfil = function () {
 
   if ($rootScope.unProfil==undefined) {

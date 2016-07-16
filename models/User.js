@@ -10,7 +10,14 @@ var schemaOptions = {
 };
 
 var userSchema = new mongoose.Schema({
+  Pseudo: String,
   name: String,
+  surname: String,
+  coordonne: String,
+  age: String,
+  presentation:String,
+  preference:String,
+  gender: String,
   ami:[mongoose.Schema.Types.Mixed],
   demande_d_ajout: [mongoose.Schema.Types.Mixed],
   demande_en_attente: [mongoose.Schema.Types.Mixed],

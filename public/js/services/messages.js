@@ -21,6 +21,9 @@ angular.module('MyApp')
       },
       repondreMessagePublics: function(user_id, message, name) {
         return $http.post('/repondreMessagePublics', {user_id : user_id,  message: message, name: name})
+      },
+      supprimerMessage: function (id) {
+        return $http.post('/supprimerMessage', {id: id})
       }
     }  
 	});

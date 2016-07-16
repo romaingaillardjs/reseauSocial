@@ -74,8 +74,6 @@ app.post('/login', userController.loginPost);
 app.post('/forgot', userController.forgotPost);
 app.post('/reset/:token', userController.resetPost);
 app.get('/unlink/:provider', userController.ensureAuthenticated, userController.unlink);
-app.post('/auth/facebook', userController.authFacebook);
-app.get('/auth/facebook/callback', userController.authFacebookCallback);
 app.get('/search', userController.ensureAuthenticated, membresController.search);
 app.post('/profil',userController.ensureAuthenticated, membresController.searchById);
 app.post('/AmisById', userController.ensureAuthenticated, amisController.searchAmisById);
@@ -89,6 +87,7 @@ app.post('/postMessagePublics', userController.ensureAuthenticated, messagesCont
 app.post('/repondreMessagePublics', userController.ensureAuthenticated, messagesController.repondreMessagePublics);
 app.post('/postMessagePrives', userController.ensureAuthenticated, messagesController.postMessagePrives);
 app.post('/getMessagesPrives', userController.ensureAuthenticated, messagesController.getMessagePrives);
+app.post('/supprimerMessage', userController.ensureAuthenticated, messagesController.supprimerMessage);
 app.post('/countNoViewMessage', userController.ensureAuthenticated, messagesController.countNoViewMessage);
 app.post('/searchNbMessages', userController.ensureAuthenticated, messagesController.searchNbMessages);
 app.post('/searchNbNotification', userController.ensureAuthenticated, userController.searchNbNotification);
