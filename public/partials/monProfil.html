@@ -8,13 +8,61 @@
             <h3>{{user.name}}</h3>
             <img src="{{user.picture}}"> 
          </div>
-         <div>Messages publics</div>
-         <div ng-repeat="lesmessage in user.messagePublicsRecus" class="list-group">
-            <h4 class="list-group-item-heading">emetteur : {{lesmessage.de}}</h4>
-            <p class="list-group-item-text">time : {{lesmessage.time}}</p>
-            <p class="list-group-item-text">message : {{lesmessage.message}}</p>
-            </div>
 
+         <section>
+             <legend>Information</legend>
+            <div class="col-sm-12">
+              <label for="email" class="col-sm-3">Email</label>
+              <p>{{user.email}}</p>
+            </div>
+            <div class="col-sm-12">
+              <label for="email" class="col-sm-3">prenom</label>
+            <p>{{user.name}}</p>
+            </div>
+            <div class="col-sm-12">
+              <label for="email" class="col-sm-3">Nom de famille</label>
+            <p>{{user.surname}}</p>
+            </div>
+            <div class="col-sm-12">
+              <label for="email" class="col-sm-3">genre</label>
+            <p>{{user.genre}}</p>
+            </div>
+            <div class="col-sm-12">
+              <label for="email" class="col-sm-3">Pseudo</label>
+            <p>{{user.Pseudo}}</p>
+            </div>
+            <div class="col-sm-12">
+              <label for="email" class="col-sm-3">age</label>
+              <p>{{user.age}}</p>
+            </div>
+            <div class="col-sm-12">
+              <label for="email" class="col-sm-3">presentation</label>
+              <p>{{user.presentation}}</p>
+            </div>
+            <div class="col-sm-12">
+              <label for="email" class="col-sm-3">preference</label>
+              <p>{{user.preference}}</p>
+            </div>
+            <div class="col-sm-12">
+              <label for="email" class="col-sm-3">telephone</label>
+              <p>{{user.coordonne}}</p>
+            </div>
+            <div class="col-sm-12">
+              <label for="email" class="col-sm-3">adresse</label>
+              <p>{{user.location}}</p>
+            </div>
+            <div class="col-sm-12">
+              <label for="email" class="col-sm-3">site web</label>
+              <p>{{user.website}}</p>
+            </div>
+            <div class="col-sm-12">
+              <label for="email" class="col-sm-3">photo</label>
+              <p>{{user.picture}}</p>
+            </div>
+         </div>
+
+         </section>
+                       
 
             <nav class="accordion"> <input type="radio" name="accordion" id="cb1" />
             <section class="box btn-default"> <label class="box-title" for="cb1">voir mon mur </label> <label class="box-close" for="acc-close"></label>
