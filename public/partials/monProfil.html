@@ -8,7 +8,7 @@
             <h3>{{user.name}}</h3>
             <img src="{{user.picture}}"> 
          </div>
-         <div>Messageges publics</div>
+         <div>Messages publics</div>
          <div ng-repeat="lesmessage in user.messagePublicsRecus" class="list-group">
             <h4 class="list-group-item-heading">emetteur : {{lesmessage.de}}</h4>
             <p class="list-group-item-text">time : {{lesmessage.time}}</p>
@@ -75,6 +75,7 @@
                      <div ng-if="messages.success" role="alert" class="alert alert-success">
                         <div ng-repeat="success in messages.success">{{success.msg}}</div>
                      </div>
+                     
                      <div class="panel">
       <div class="panel-body">
          <div ng-if="messages.error" role="alert" class="alert alert-danger">

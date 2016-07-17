@@ -13,7 +13,7 @@
                   <nav class="accordion"> <input type="radio" name="accordion" id="cb1" />
             <section class="box btn-default"> <label class="box-title" for="cb1">voir son mur </label> <label class="box-close" for="acc-close"></label>
               <div class="box-content">
-          <div>Messageges publics</div>
+          <div>Messages publics</div>
           <div ng-repeat="lesmessage in messagePublicsRecus" class="list-group">
             <h4 class="list-group-item-heading">emetteur : {{lesmessage.emeteur}}</h4>
             <p class="list-group-item-text">time : {{lesmessage.createdAt}}</p>
@@ -32,7 +32,8 @@
                   </div>
                 </div>
               </div>
-            </div > 
+            </div> 
+            </div>
             </section> <input type="radio" name="accordion" id="acc-close" /> 
           </nav>
           <nav class="accordion"> <input type="radio" name="accordion" id="cb2" />
@@ -52,7 +53,7 @@
                   <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-8"> <button  ng-click="envoyerMessagePublic(user)" class="btn btn-default">Send message to {{user._id}}</button> </div>
                   </div>
-                </form>
+                </form> </div>
             </section> <input type="radio" name="accordion" id="acc-close" /> 
           </nav>
           <nav class="accordion"> <input type="radio" name="accordion" id="cb3" />
@@ -72,8 +73,70 @@
                   <h4 class="list-group-item-heading">{{ami.name}}</h4> </div></div>
             </section> <input type="radio" name="accordion" id="acc-close" /> 
           </nav>
-          <form name="myForm">
+          <nav class="accordion"> <input type="radio" name="accordion" id="cb5" />
+            <section class="box btn-primary"> <label class="box-title" for="cb5">Voir ses informations</label> <label class="box-close" for="acc-close"></label>
+              <div class="box-content">
+               <div class="btn btn-danger"ng-show="ajouterAmis">vous devez etre ami avec cette personne pour voir ses informations</div> 
+ <div ng-if="!ajouterAmis" class="panel">
+      <div class="panel-body">
+         <form ng-submit="updateProfile()" class="form-horizontal">
+            <legend>Information</legend>
+            <div class="col-sm-12">
+              <label for="email" class="col-sm-3">Email</label>
+              <p>{{user.email}}</p>
             </div>
+            <div class="col-sm-12">
+              <label for="email" class="col-sm-3">prenom</label>
+            <p>{{user.name}}</p>
+            </div>
+            <div class="col-sm-12">
+              <label for="email" class="col-sm-3">Nom de famille</label>
+            <p>{{user.surname}}</p>
+            </div>
+            <div class="col-sm-12">
+              <label for="email" class="col-sm-3">genre</label>
+            <p>{{user.genre}}</p>
+            </div>
+            <div class="col-sm-12">
+              <label for="email" class="col-sm-3">Pseudo</label>
+            <p>{{user.Pseudo}}</p>
+            </div>
+            <div class="col-sm-12">
+              <label for="email" class="col-sm-3">age</label>
+              <p>{{user.age}}</p>
+            </div>
+            <div class="col-sm-12">
+              <label for="email" class="col-sm-3">presentation</label>
+              <p>{{user.presentation}}</p>
+            </div>
+            <div class="col-sm-12">
+              <label for="email" class="col-sm-3">preference</label>
+              <p>{{user.preference}}</p>
+            </div>
+            <div class="col-sm-12">
+              <label for="email" class="col-sm-3">telephone</label>
+              <p>{{user.coordonne}}</p>
+            </div>
+            <div class="col-sm-12">
+              <label for="email" class="col-sm-3">adresse</label>
+              <p>{{user.location}}</p>
+            </div>
+            <div class="col-sm-12">
+              <label for="email" class="col-sm-3">site web</label>
+              <p>{{user.website}}</p>
+            </div>
+            <div class="col-sm-12">
+              <label for="email" class="col-sm-3">photo</label>
+              <p>{{user.picture}}</p>
+            </div>
+
+
+
+
+               </div>
+            </section> <input type="radio" name="accordion" id="acc-close" /> 
+          </nav>
+          </div>
         </div>
       </div>
       <div class="col-sm-2 col-xs-1"></div>
