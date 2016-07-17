@@ -1,122 +1,17 @@
 <div class="container">
   <div class="panel">
     <div class="panel-body">
-      <div ng-if="messages.error" role="alert" class="alert alert-danger">
-        <div ng-repeat="error in messages.error">{{error.msg}}</div>
-      </div>
-      <div ng-if="messages.success" role="alert" class="alert alert-success">
-        <div ng-repeat="success in messages.success">{{success.msg}}</div>
-      </div>
-      <form ng-submit="updateProfile()" class="form-horizontal">
-        <legend>Profile Information</legend>
-        <div class="form-group">
-          <label for="email" class="col-sm-3">Email</label>
-          <div class="col-sm-7">
-            <input type="email" name="email" id="email" class="form-control" ng-model="profile.email">
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="name" class="col-sm-3">prenom</label>
-          <div class="col-sm-7">
-            <input type="text" name="name" id="name" class="form-control" ng-model="profile.name">
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-3">Gender</label>
-          <div class="col-sm-4">
-            <label class="radio-inline radio col-sm-4">
-              <input type="radio" name="gender" value="male" ng-checked="profile.gender === 'male'"><span>Male</span>
-            </label>
-            <label class="radio-inline col-sm-4">
-              <input type="radio" name="gender" value="female" ng-checked="profile.gender === 'female'"><span>Female</span>
-            </label>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="surname" class="col-sm-3">Nom</label>
-          <div class="col-sm-7">
-            <input type="text" name="surname" id="surname" class="form-control" ng-model="profile.surname">
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="presentation" class="col-sm-3">coordonne</label>
-          <div class="col-sm-7">
-            <input type="text" name="coordonne" id="coordonne" class="form-control" ng-model="profile.coordonne">
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="presentation" class="col-sm-3">age</label>
-          <div class="col-sm-7">
-            <input type="text" name="age" id="age" class="form-control" ng-model="profile.age">
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="presentation" class="col-sm-3">presentation</label>
-          <div class="col-sm-7">
-            <input type="text" name="presentation" id="presentation" class="form-control" ng-model="profile.presentation">
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="presentation" class="col-sm-3">presentation</label>
-          <div class="col-sm-7">
-            <input type="text" name="presentation" id="presentation" class="form-control" ng-model="profile.presentation">
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="preference" class="col-sm-3">preference</label>
-          <div class="col-sm-7">
-            <input type="text" name="preference" id="preference" class="form-control" ng-model="profile.preference">
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="preference" class="col-sm-3">preference</label>
-          <div class="col-sm-7">
-            <input type="text" name="preference" id="preference" class="form-control" ng-model="profile.preference">
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="location" class="col-sm-3">Location</label>
-          <div class="col-sm-7">
-            <input type="text" name="location" id="location" class="form-control" ng-model="profile.location">
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="website" class="col-sm-3">Website</label>
-          <div class="col-sm-7">
-            <input type="text" name="website" id="website" class="form-control" ng-model="profile.website">
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-3">Gravatar</label>
-          <div class="col-sm-4">
-            <img ng-src="{{profile.gravatar}}" class="profile" width="100" height="100">
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="col-sm-offset-3 col-sm-4">
-            <button type="submit" class="btn btn-success">Update Profile</button>
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
-  <div class="panel">
-    <div class="panel-body">
       <form ng-submit="changePassword()" class="form-horizontal">
         <legend>Change Password</legend>
         <div class="form-group">
-          <label for="password" class="col-sm-3">New Password</label>
           <div class="col-sm-7">
-            <input type="password" name="password" id="password" class="form-control" ng-model="profile.password">
+            <input type="password" ng-hide="true"name="password" value="rien" placeholder="mot de passe" id="password" class="form-control" ng-model="profile.password">
           </div>
         </div>
         <div class="form-group">
-          <label for="confirm" class="col-sm-3">Confirm Password</label>
+          <label for="confirm" class="col-sm-3">Nouveau Mot de Passe</label>
           <div class="col-sm-7">
-            <input type="password" name="confirm" id="confirm" class="form-control" ng-model="profile.confirm">
+            <input type="password" name="confirm" placeholder="mot de passe" id="confirm" class="form-control" ng-model="profile.confirm">
           </div>
         </div>
         <div class="form-group">
@@ -125,21 +20,6 @@
           </div>
         </div>
       </form>
-    </div>
-  </div>
-  <div class="panel">
-    <div class="panel-body">
-      <div class="form-horizontal">
-        <legend>Linked Accounts</legend>
-        <div class="form-group">
-          <div class="col-sm-offset-3 col-sm-4">
-            <p>
-              <a href="#" ng-click="unlink('facebook')" ng-if="currentUser.facebook" class="text-danger">Unlink your Facebook account</a>
-              <a href="#" ng-click="link('facebook')" ng-if="!currentUser.facebook">Link your Facebook account</a>
-            </p>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
   <div class="panel">

@@ -297,7 +297,7 @@ textarea {
   margin: 0;
 
 }
-.accordion input {
+.accordion input[name=accordion]{
   display: none;
 }
 .box {
@@ -366,13 +366,6 @@ input:checked + .box .box-title {
 input:checked + .box .box-content,
 input:checked + .box .box-close {
   display: inline-block;
-}
-.madeby {
-  position: fixed;
-  bottom: 4px;
-  left: 4px;
-  color: rgba(0,0,0,.38);
-  font-size: 12pt;
 }
 
 

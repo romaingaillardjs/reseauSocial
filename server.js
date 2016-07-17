@@ -68,12 +68,12 @@ app.use(function(req, res, next) {
 
 app.post('/contact', contactController.contactPost);
 app.put('/account', userController.ensureAuthenticated, userController.accountPut);
+app.put('/changePassword', userController.ensureAuthenticated, userController.changePassword);
 app.delete('/account', userController.ensureAuthenticated, userController.accountDelete);
 app.post('/signup', userController.signupPost);
 app.post('/login', userController.loginPost);
 app.post('/forgot', userController.forgotPost);
 app.post('/reset/:token', userController.resetPost);
-app.get('/unlink/:provider', userController.ensureAuthenticated, userController.unlink);
 app.get('/search', userController.ensureAuthenticated, membresController.search);
 app.post('/profil',userController.ensureAuthenticated, membresController.searchById);
 app.post('/AmisById', userController.ensureAuthenticated, amisController.searchAmisById);

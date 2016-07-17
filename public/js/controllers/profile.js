@@ -34,34 +34,6 @@ angular.module('MyApp')
         });
     };
 
-    $scope.link = function(provider) {
-      $auth.link(provider)
-        .then(function(response) {
-          $scope.messages = {
-            success: [response.data]
-          };
-        })
-        .catch(function(response) {
-          $window.scrollTo(0, 0);
-          $scope.messages = {
-            error: [response.data]
-          };
-        });
-    };
-    $scope.unlink = function(provider) {
-      $auth.unlink(provider)
-        .then(function() {
-          $scope.messages = {
-            success: [response.data]
-          };
-        })
-        .catch(function(response) {
-          $scope.messages = {
-            error: [response.data]
-          };
-        });
-    };
-
     $scope.deleteAccount = function() {
       Account.deleteAccount()
         .then(function() {

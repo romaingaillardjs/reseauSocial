@@ -17,7 +17,7 @@ var userSchema = new mongoose.Schema({
   age: String,
   presentation:String,
   preference:String,
-  gender: String,
+  genre: String,
   ami:[mongoose.Schema.Types.Mixed],
   demande_d_ajout: [mongoose.Schema.Types.Mixed],
   demande_en_attente: [mongoose.Schema.Types.Mixed],
@@ -30,11 +30,8 @@ var userSchema = new mongoose.Schema({
   gender: String,
   location: String,
   website: String,
-  picture: String,
-  facebook: String,
-  twitter: String,
-  google: String,
-  vk: String
+  picture: String
+
 }, schemaOptions);
 
 userSchema.pre('save', function(next) {

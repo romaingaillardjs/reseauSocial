@@ -96,47 +96,41 @@ exports.signupPost = function(req, res, next) {
  * Update profile information OR change password.
  */
 exports.accountPut = function(req, res, next) {
-  if ('password' in req.body) {
-    req.assert('password', 'Password must be at least 4 characters long').len(4);
-    req.assert('confirm', 'Passwords must match').equals(req.body.password);
-  } else {
-    req.assert('email', 'Email is not valid').isEmail();
-    req.assert('email', 'Email cannot be blank').notEmpty();
-    req.sanitize('email').normalizeEmail({ remove_dots: false });
-  }
-
-  var errors = req.validationErrors();
-
-  if (errors) {
-    return res.status(400).send(errors);
-  }
-
-  User.findById(req.user.id, function(err, user) {
-    if ('password' in req.body) {
-      user.password = req.body.password;
-    } else {
-      user.email = req.body.email;
-      user.name = req.body.name;
-      user.location = req.body.location;
-      user.surname = req.body.surname;
-      user.coordonne = req.body.coordonne;
-      user.age = req.body.age;
-      user.presentation = req.body.presentation;
-      user.preference = req.body.preference;
-      user.gender = req.body.gender;
-      user.website = req.body.website;
-    }
+    User.findById(req.user.id, function(err, user) {
+      user.email = req.body.data.email;
+      user.name = req.body.data.name;
+      user.location = req.body.data.location;
+      user.surname = req.body.data.surname;
+      user.coordonne = req.body.data.coordonne;
+      user.age = req.body.data.age;
+      user.presentation = req.body.data.presentation;
+      user.preference = req.body.data.preference;
+      user.genre = req.body.data.genre;
+      user.website = req.body.data.website;
+      user.picture = req.body.data.picture;
+      user.surname = req.body.data.surname;
+      user.Pseudo = req.body.data.Pseudo;
+      
+      
     user.save(function(err) {
       if ('password' in req.body) {
-        res.send({ msg: 'Your password has been changed.' });
+        res.send({ user: user, msg: 'Your profile information has been updated.' });
       } else if (err && err.code === 11000) {
         res.status(409).send({ msg: 'The email address you have entered is already associated with another account.' });
       } else {
         res.send({ user: user, msg: 'Your profile information has been updated.' });
       }
-    });
-  });
+    })
+  })
 };
+
+exports.changePassword = function(req, res, next) {
+
+  User.findById(req.user.id, function(err, user) {
+      user.password = req.body.confirm;
+      user.save()
+    })
+}
 
 /**
  * DELETE /account
@@ -147,32 +141,6 @@ exports.accountDelete = function(req, res, next) {
   });
 };
 
-/**
- * GET /unlink/:provider
- */
-exports.unlink = function(req, res, next) {
-  User.findById(req.user.id, function(err, user) {
-    switch (req.params.provider) {
-      case 'facebook':
-        user.facebook = undefined;
-        break;
-      case 'google':
-        user.google = undefined;
-        break;
-      case 'twitter':
-        user.twitter = undefined;
-        break;
-      case 'vk':
-        user.vk = undefined;
-        break;
-      default:
-        return res.status(400).send({ msg: 'Invalid OAuth Provider' });
-    }
-    user.save(function(err) {
-      res.send({ msg: 'Your account has been unlinked.' });
-    });
-  });
-};
 
 /**
  * POST /forgot

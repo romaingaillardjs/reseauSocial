@@ -40,9 +40,9 @@ $scope.recomanderAmi = function (user, select) {
         console.log(data)
     })
 }; 
-$scope.envoyerMessagePublic = function (user_id, message) {
-  Message.postMessagePublics(user_id, message)
-    .then(function(response) {
+$scope.envoyerMessagePublic = function (user) {
+  Message.postMessagePublics(user)
+    .success(function (response) {
       $scope.messages = {
         success: [response.data]
       };
@@ -56,9 +56,11 @@ $scope.envoyerMessagePublic = function (user_id, message) {
 };
 $scope.repondreMessagePublic = function (user_id, message, name) {
   Message.repondreMessagePublics(user_id, message, name)
-  .success(function (data) {
-    $scope.majProfil()
-    console.log('je suis la')
+    .success(function (response) {
+      $scope.messages = {
+        success: [response.data]
+      };
+      $scope.majProfil()
     })
     .catch(function(response) {
       $scope.messages = {

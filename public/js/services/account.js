@@ -2,10 +2,10 @@ angular.module('MyApp')
   .factory('Account', function($http) {
     return {
       updateProfile: function(data) {
-        return $http.put('/account', data);
+        return $http.put('/account', {data : data});
       },
       changePassword: function(data) {
-        return $http.put('/account', data);
+        return $http.put('/changePassword', data);
       },
       deleteAccount: function() {
         return $http.delete('/account');

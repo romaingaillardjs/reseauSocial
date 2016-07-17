@@ -28,29 +28,16 @@ exports.getMessagesPublics = function(req, res, next) {
     })
 }
 exports.postMessagePublics = function(req, res, next) {
+  console.log(req.body.user)
   message = new MessagePublic
   ({
     emetteur: ""+req.user.id+"",
     recepteur: ""+req.body.user._id+"",
-    message: ""+req.body.message+"",
+    message: ""+req.body.user.message+"",
     vu:false
   });
     message.save()
-
-  console.log('je passe par la' + req.body.user.name)
-  console.log('je passe par la' + req.user.email)
-
-  var mailOptions = {
-    from:  req.body.user.name + ' ' + '<'+ req.user.email  + '>',
-    to: req.body.user.email,
-    subject: '✔ aSocialNetworkForYou :) | '+'  '+req.user.name +'  '+ ' | vous à envoyé une demande d\'ajout à sa liste d\'amis ',
-    text: ""+req.body.message+""
-  };
-
-  transporter.sendMail(mailOptions, function(err) {
-    console.log(err);
   return res.send({ msg:"vous avez envoyé un message public à cette personne"})
-  });
 }
 exports.repondreMessagePublics = function(req, res, next) {
     MessagePublic.update( 
