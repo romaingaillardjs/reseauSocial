@@ -1,6 +1,9 @@
 angular.module('MyApp')
   .controller('HeaderCtrl', function($scope, $rootScope, $location, $window, $auth, $http,$timeout, Search, Notifications) {
 
+
+
+
     $scope.user = $rootScope.currentUser
 
     angular.element(document.querySelector('#navbar'))

@@ -94,8 +94,6 @@ app.post('/countNoViewMessage', userController.ensureAuthenticated, messagesCont
 app.post('/searchNbMessages', userController.ensureAuthenticated, messagesController.searchNbMessages);
 app.post('/searchNbNotification', userController.ensureAuthenticated, userController.searchNbNotification);
 
-
-
 app.get('*', function(req, res) {
   res.redirect('/#' + req.originalUrl);
 });
@@ -108,12 +106,10 @@ if (app.get('env') === 'production') {
     res.sendStatus(err.status || 500);
   });
 }
-
+var nbUserConnected = 0;
 io.on('connection', function (socket) {
-  socket.emit('news', { hello: 'world' });
-  socket.on('my other event', function (data) {
-    console.log(data);
-  });
+  nbUserConnected += 1;
+  socket.emit('news', { nbUserConnected: nbUserConnected });
 });
 
 server.listen(app.get('port'), function(){

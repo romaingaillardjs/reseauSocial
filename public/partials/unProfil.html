@@ -104,7 +104,7 @@
                     <div class="col-sm-8"> <textarea name="message" id="message" rows="7" class="form-control" ng-model="user.message"></textarea> </div>
                   </div>
                   <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-8"> <button  ng-click="envoyerMessagePublic(user)" class="btn btn-default">Send message to {{user._id}}</button> </div>
+                    <div class="col-sm-offset-2 col-sm-8"> <button  ng-click="envoyerMessagePublic(user)" class="btn btn-default">envoyer</button> </div>
                   </div>
                 </form> </div>
             </section> <input type="radio" name="accordion" id="acc-close" /> 
@@ -113,9 +113,9 @@
             <section class="box btn-primary"> <label class="box-title" for="cb3">recommander cette personne</label> <label class="box-close" for="acc-close"></label>
               <div class="box-content">
                 <div class="btn btn-danger"ng-show="ajouterAmis">vous devez etre ami avec cette personne pour la recommander</div> 
-                <form ng-if="!ajouterAmis" name="myForm"> <label for="repeatSelect"> recommander a </label> <select name="repeatSelect" id="repeatSelect" ng-model="select">
+                <form ng-if="!ajouterAmis" name="myForm"> <label for="repeatSelect"> recommander à</label> <select name="repeatSelect" id="repeatSelect" ng-model="select">
                     <option ng-repeat="option in userlist"  value="{{option}}">{{option.name}}</option>
-                  </select> <button ng-click="recomanderAmi(user, select)" class="btn btn-default">recommander+{{select}} </button>
+                  </select> <button ng-click="recomanderAmi(user, select)" class="btn btn-default">recommander </button>
                 </form> </div>
             </section> <input type="radio" name="accordion" id="acc-close" /> 
           </nav>

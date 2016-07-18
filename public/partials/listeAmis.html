@@ -20,7 +20,8 @@
       <div class="container col-sm-9 col-md-9 col-lg-9">
           <div class="row" ng-show="!search" data-ng-repeat="ami in amis | filter:search:strict">
         <div class="panel col-sm-4 col-md-4 col-lg-4">
-                <div class="panel-title">{{ami.name}}</div>
+                <div class="panel-title">{{ami.name}} {{ami.surname}}</div>
+                <div><p>{{ami.Pseudo}}</div> 
                 <img class="col-sm-12 col-md-12 col-lg-12" src="{{ami.gravatar}}">
                 <div class="panel default col-md-12">
                     <div>{{ami.ami.length}} ami(s) </div>

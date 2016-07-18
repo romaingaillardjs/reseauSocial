@@ -67,7 +67,7 @@
             <nav class="accordion"> <input type="radio" name="accordion" id="cb1" />
             <section class="box btn-default"> <label class="box-title" for="cb1">voir mon mur </label> <label class="box-close" for="acc-close"></label>
               <div class="box-content">
-          <div>Messageges publics</div>
+          <div>Messages publics</div>
           <div ng-repeat="lesmessage in messagePublicsRecus" class="list-group">
             <h4 class="list-group-item-heading">emetteur : {{lesmessage.emetteur}}</h4>
             <p class="list-group-item-text">time : {{lesmessage.createdAt}}</p>
@@ -106,7 +106,7 @@
                            <div class="col-sm-8"> <textarea name="message" id="message" rows="7" class="form-control" ng-model="user.message"></textarea> </div>
                         </div>
                         <div class="form-group">
-                           <div class="col-sm-offset-2 col-sm-8"> <button type="submit" ng-click="envoyerMessagePublic(user)" class="btn btn-default">Send message to {{user._id}}</button> </div>
+                           <div class="col-sm-offset-2 col-sm-8"> <button type="submit" ng-click="envoyerMessagePublic(user)" class="btn btn-default">envoyer</button> </div>
                         </div>
                      </form>
                </section>

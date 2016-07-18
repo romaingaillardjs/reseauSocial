@@ -7,6 +7,11 @@ angular.module('MyApp')
           $rootScope.currentUser = JSON.parse($window.localStorage.user);
           $rootScope.login = true;
           $location.path('/');
+          var socket = io();
+            socket.on('news', function (data) {
+              console.log(data);
+              $rootScope.nbUserConnected = data
+            });
         })
         .catch(function(response) {
           $scope.messages = {
@@ -21,6 +26,11 @@ angular.module('MyApp')
           $rootScope.currentUser = response.data.user;
           $window.localStorage.user = JSON.stringify(response.data.user);
           $location.path('/');
+          var socket = io();
+            socket.on('news', function (data) {
+              console.log(data);
+              $rootScope.nbUserConnected = data
+            });
         })
         .catch(function(response) {
           if (response.error) {

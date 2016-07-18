@@ -151,7 +151,6 @@ angular.module('MyApp', ['ngRoute', 'ngSanitize', 'satellizer'])
       console.log($window.localStorage.user)
       $rootScope.unProfilId = $window.localStorage.lastPrifilView
       console.log($rootScope.unProfilId)
-
       $rootScope.currentUser = JSON.parse($window.localStorage.user);
    }
  });

@@ -47,7 +47,7 @@ $scope.envoyerMessagePublic = function (user) {
         success: [response.data]
       };
       $scope.majProfil()
-    })
+})
     .catch(function(response) {
       $scope.messages = {
         error: Array.isArray(response.data) ? response.data : [response.data]
@@ -61,6 +61,7 @@ $scope.repondreMessagePublic = function (user_id, message, name) {
         success: [response.data]
       };
       $scope.majProfil()
+      $scope.postmessageSocket()
     })
     .catch(function(response) {
       $scope.messages = {
@@ -126,6 +127,8 @@ $scope.majProfil = function () {
     
   }
 }
+
 $scope.majProfil()
 $scope.searchRequest()
+
 });
