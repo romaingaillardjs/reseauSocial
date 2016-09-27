@@ -1,19 +1,40 @@
 <nav ng-if="currentUser" ng-controller="HeaderCtrl" class="navbar navbar-default navbar-static-top col-xs-12 ">
   <div class="row">
-  <div class="navbar-header col-xs-12 col-sm-12 col-md-2 col-lg-4 align">
-    <a href="/" class="navbar-brand col-xs-6 col-sm-12 col-md-12 col-lg-12">A Social Network For You</a>
+
+    <a href="/" class="navbar-brand col-xs-10 col-sm-12 col-md-12 col-lg-12">A Social Network For You</a>
+
+        <div class="navbar-header col-xs-2 col-sm-12">
+      
       <button type="button" data-toggle="collapse" data-target="#navbar" class="navbar-toggle collapsed" ng-blur="collapsed()">
         <span class="sr-only" >Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-    </div>
-    <div id="navbar" class="navbar-collapse collapse align col-xs-12 col-sm-4 col-md-4 col-lg-4">
+    </div> 
+
+
+    <form class="col-xs-12 col-sm-2" >
+      <div class="form-group"> 
+      <input type="search" class="form-control search" placeholder="Rechercher quelqu'un" data-ng-model="search.name" required ng-blur="blur()"> 
+        <ul class="list-group col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-if="isAuthenticated();search.name;"  ng-message="required" >
+          <li class="list-group-item" ng-show="search" data-ng-repeat="i in items | filter:search:strict" ng-click="viewProfil(i._id)">
+            <a ng-click="viewProfil(i._id)"> <img ng-src="{{i.image}}" />
+              <p>{{i.name}}</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </form> 
+
+
+
+    <div id="navbar" class="navbar-collapse collapse align col-xs-12 col-sm-8">
       <ul class="nav navbar-nav align">
         <li ng-class="{ active: isActive('/')}"><a href="/">Home</a></li>
         <li ng-class="{ active: isActive('/monProfil')}"><a href="/monProfil">Profil</a></li>
         <li ng-class="{ active: isActive('/listeAmis')}"><a href="/listeAmis">Amis</a></li>
+        <li ng-class="{ active: isActive('/ListeMembres')}"><a href="/ListeMembres">Membres</a></li>
         <li ng-class="{ active: isActive('/messages#bottom')}" role="presentation">
           <a href="/messages#bottom">Messages
             <span ng-class="{'notification-exist badge': nbmessage>0}">
@@ -30,11 +51,9 @@
           </a>
         </li>
       </ul>  
-  </div>
-    <div class="navbar-header col-sm-4 col-md-4 col-lg-4">
-       <ul ng-if="isAuthenticated()" class="nav navbar-nav navbar-right col-xs-12 col-sm-2 col-md-2 col-lg-2" >
+      <ul ng-if="isAuthenticated()" class="nav navbar-nav" >
         <li class="dropdown" >
-          <a href="#" data-toggle="dropdown" class="navbar-avatar dropdown-toggle"> <img ng-src="{{currentUser.picture || currentUser.gravatar}}"> {{currentUser.name || currentUser.email || currentUser.id }} <i class="caret"></i> </a>
+          <a href="#" data-toggle="dropdown" class="navbar-avatar dropdown-toggle"> {{currentUser.name || currentUser.email || currentUser.id }} <i class="caret"></i> </a>
           <ul class="dropdown-menu">
             <li><a href="/account">Mon compte</a></li>
             <li class="divider"></li>
@@ -42,23 +61,6 @@
           </ul>
         </li>
       </ul>
-
-    <div class="row">
-      <form class="navbar-form navbar-left col-xs-12 col-sm-2 col-md-2 col-lg-2" >
-        <div class="form-group"> 
-          <input type="search" class="form-control" placeholder="Rechercher quelqu'un" data-ng-model="search.name" required ng-blur="blur()"> 
-          <button ng-click="voirListeMembre()">voir la liste des membres</button> 
-        <ul class="list-group col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-if="isAuthenticated();search.name;"  ng-message="required" >
-          <li class="list-group-item" ng-show="search" data-ng-repeat="i in items | filter:search:strict" ng-click="viewProfil(i._id)">
-            <a ng-click="viewProfil(i._id)"> <img ng-src="{{i.image}}" />
-              <p>{{i.name}}</p>
-            </a>
-          </li>
-        </ul>
-        </div>
-          </div>
-      </form>  
-
-      </div>
-</div> 
+    </div> 
+  </div>  
 </nav>
