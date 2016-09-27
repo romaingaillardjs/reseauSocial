@@ -4,7 +4,7 @@
         <div  data-ng-repeat="ami in membres">
             <div class="panel col-xs-8 col-xs-offset-2  col-sm-4 col-sm-offset-1 col-md-3 col-md-offset-1 col-lg-2 col-lg-offset-1">
                     <div class="panel-title col-xs-12">{{ami.name}}</div>
-                    <img class="col-xs-12 col-sm-12 col-md-12 col-lg-12" src="{{ami.gravatar}}">
+                    <img class="listemembresimage col-xs-12 col-sm-12 col-md-12 col-lg-12" src="{{ami.picture || ami.gravatar}}">
                     <div class="col-xs-12">
                         <div class="col-xs-12">{{ami.ami.length}} ami(s) </div>
                         <div class="col-xs-12">wall {{ami.messagePublicsRecus.length}} post(s)</div> 

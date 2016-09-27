@@ -1,39 +1,39 @@
-<div class="container">
-  <div class="panel">
-    <div class="panel-heading">
-      <h3 class="panel-title">MESSAGES</h3> </div>
-      <hr>
-    <div class="panel-body">
-     <div class="row">
-    <div class="panel col-sm-2">
-      amis
-      <hr>
-      <div class="panel btn btn-default col-sm-12" ng-repeat="ami in amis" ng-click="voirAmisMessages(ami.id,ami.name)">
-      <span >{{ami.name}} 
-      <span ng-if="ami.countNoViewMessages>0"ng-class="{'notification-exist badge btn-danger': ami.countNoViewMessages > 0}">
-              {{ami.countNoViewMessages}}
-            </span>
-      
-      </div>
-    </div>
-    <div  class="panel col-sm-8">
-      messages
-      <hr>
-    <div class="message col-sm-12">
-    <div ng-repeat="messages in MessagesPrivesRecus" class="col-sm-12 col-xs-12">
-      <div class="align col-sm-12 col-xs-12"><p>{{messages.createdAt | date:'yyyy-MM-dd HH:mm:ss '}}</p></div> 
-      <div class="col-sm-12 col-xs-12">
-        <div  ng-class="{'btn btn-info pull-right messages': messages.emetteur === user._id, 'messages btn btn-default pull-left': messages.emetteur !== user._id }">
-          <p>{{messages.message}}</p> 
-        </div> 
+<div class="container-fluid">
+  <div class="row">
+    <div class="panel messagepanel">
+      <div class="panel-heading"></div>
+      <div class="panel-body">
+        <div class="panel col-xs-10 col-sm-2">
+            <div class="panel-heading message-panel">
+            amis
+            </div>
+          <div class="panel btn btn-default col-xs-12" ng-repeat="ami in amis" ng-click="voirAmisMessages(ami.id,ami.name)">
+          <span>{{ami.name}}</span> 
+          <span ng-if="ami.countNoViewMessages>0"ng-class="{'notification-exist badge btn-danger': ami.countNoViewMessages > 0}">{{ami.countNoViewMessages}}</span>
+          </div>
         </div>
-      </div>  
-      <a id="bottom">bottom</a> 
-    </div>
 
-    <div ng-show="currentAmiMessageName">
-      <input type="text" ng-model="texteduMessage" class="col-sm-8"/>
-      <button type="submit" ng-click="envoyerMessagePrives(select,texteduMessage)" class="btn btn-success col-sm-4">Envoyer</button>
-    </div>   
-  </div>    
+        <div class="col-xs-1"></div>
+
+        <div  class="panel col-xs-12 col-sm-8">
+          <div class="panel-heading message-panel">
+          messages
+          </div>
+          <div class="message col-sm-12">
+          <div ng-repeat="messages in MessagesPrivesRecus" class="col-sm-12 col-xs-12">
+            <div class="align col-sm-12 col-xs-12"><p>{{messages.createdAt | date:'yyyy-MM-dd HH:mm:ss '}}</p></div> 
+            <div class="col-sm-12 col-xs-12">
+              <div  ng-class="{'btn btn-info pull-right messages': messages.emetteur === user._id, 'messages btn btn-default pull-left': messages.emetteur !== user._id }">
+                <p>{{messages.message}}</p> 
+              </div> 
+              </div>
+            </div>  
+            <a id="bottom">bottom</a> 
+          </div>
+      <div ng-show="currentAmiMessageName">
+        <input type="text" placeholder="message" ng-model="texteduMessage" class="col-xs-8 col-sm-8"/>
+        <button type="submit" ng-click="envoyerMessagePrives(select,texteduMessage)" class="btn btn-success col-xs-4 col-sm-4">Envoyer</button>
+      </div>   
+    </div>    
+  </div>
 </div>
