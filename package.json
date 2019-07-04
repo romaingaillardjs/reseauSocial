@@ -4,7 +4,9 @@
   "description": "My app description",
   "scripts": {
     "deploy": "npm test && git push heroku master",
-    "start": "node server.js"
+    "start": "node server.js",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "dependencies": {
     "async": "*",
@@ -22,10 +24,12 @@
     "morgan": "*",
     "nodemailer": "*",
     "request": "*",
-    "socket.io": "*"
+    "socket.io": "*",
+    "snyk": "^1.189.0"
   },
   "devDependencies": {},
   "engines": {
     "node": "6.1.0"
-  }
+  },
+  "snyk": true
 }
